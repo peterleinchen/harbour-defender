@@ -3,6 +3,8 @@ Description=Check for update loop and break it whenever requested from Defender
 Documentation= man:systemd.path
 #user units do NOT work for system: After=pre-user-session.target
 After=sailfish-unlock-agent.service
+After=decrypt-home_encrypted.service
+DefaultDependencies=no
 
 [Path]
 PathExists=/home/nemo/.config/harbour-defender/updLoop
