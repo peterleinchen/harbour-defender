@@ -40,7 +40,6 @@ ERRLOG_FILE_PATH = CONFIG_HOME_DIR + '/' + 'error.log'
 
 LOGFILE_LAST = '/var/log/'+ APP_NAME +'_last.json'
 
-
 whitelist = []
 urls = []
 whitelist_priority = True # whether the whitelist should surpass the blacklist in .editable files
@@ -54,7 +53,10 @@ android1_dir="/system/etc"
 android1_hosts="/system/etc/hosts"
 android2_dir="/opt/alien/system/etc"
 android2_hosts="/opt/alien/system/etc/hosts"
-
+# the android3 is not needed (as only an empty ro bind from /opt2/appsupport/system.img 
+# and Jolla eventually bound the /system/etc/hosts into the container!) 
+#android3_dir="/opt/appsupport/rootfs/system/etc"
+#android3_hosts="/opt/appsupport/rootfs/system/etc/hosts"
 
 config_etc = configparser.ConfigParser()
 config_etc.read(CONFIG_ETC_PATH)

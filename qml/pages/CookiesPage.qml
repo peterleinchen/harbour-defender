@@ -71,7 +71,7 @@ Page {
 
         }
         section {
-            property: "baseDomain"
+            property: "host"
             criteria: ViewSection.FullString
             delegate: ListItem {
                     id: sectionHeader

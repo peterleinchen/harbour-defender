@@ -27,12 +27,12 @@ SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
 
 # Installs
 units.files = \
-   harbour-defender-adRestart.service  \
    harbour-defender.service  \
-   harbour-defender-updLoop.service \
-   harbour-defender.timer \
-   harbour-defender-adRestart.path  \
    harbour-defender.path  \
+   harbour-defender.timer \
+   harbour-defender-adRestart.service  \
+   harbour-defender-adRestart.path  \
+   harbour-defender-updLoop.service \
    harbour-defender-updLoop.path
 units.path = $${UNITDIR}
 INSTALLS += units
@@ -54,12 +54,12 @@ CONFIG += sailfishapp_i18n
 TRANSLATIONS += translations/harbour-defender-de.ts
 
 DISTFILES += \
-    qml/pages/SourcesPage.qml \
-    qml/pages/SourceDetailPage.qml \
     qml/pages/CookiesPage.qml \
-    qml/pages/WelcomePage.qml \
     qml/pages/DocsPage.qml \
-    qml/pages/components/SourcesMenuItem.qml \
-    qml/pages/components/GeneralMenuItem.qml \
+    qml/pages/SettingsPage.qml \
+    qml/pages/SourceDetailPage.qml \
+    qml/pages/SourcesPage.qml \
+    qml/pages/WelcomePage.qml \
     qml/pages/components/CookiesMenuItem.qml \
-    qml/pages/SettingsPage.qml
+    qml/pages/components/GeneralMenuItem.qml \
+    qml/pages/components/SourcesMenuItem.qml

@@ -26,6 +26,7 @@ LOGFILE_LAST = '/var/log/'+ APP_NAME +'_last.json'
 cookies_path = HOME_DIR + '/.local/share/org.sailfishos/browser/.mozilla/' + 'cookies.sqlite'
 if not os.path.isfile(cookies_path):
     cookies_path = HOME_DIR + '/.mozilla/mozembed/' + 'cookies.sqlite'
+#nope, cookies_path += '?immutable=1'
 
 def initialize():
     if not os.path.isdir(CONFIG_HOME_DIR):
@@ -129,6 +130,7 @@ def show_error_log():
 
 def restart_android_support():
     #os.system("systemctl restart aliendalvik")
+    #os.system("systemctl restart appsupport")
     ##above would need root rights (defender_updater), possibly via service/path unit:
     os.system("touch " + ADRESTART_FILE_PATH + "; sleep 1;")
     if os.path.isfile(ADRESTART_FILE_PATH):
@@ -152,9 +154,9 @@ def touch(path):
 
 def load_query(cur, searchStr=None):
     if searchStr and searchStr.isalnum():
-        query = cur.execute("SELECT * FROM moz_cookies WHERE baseDomain LIKE ? ORDER BY baseDomain, creationTime", ('%'+searchStr+'%',))
+        query = cur.execute("SELECT * FROM moz_cookies WHERE host LIKE ? ORDER BY host, creationTime", ('%'+searchStr+'%',))
     else:
-        query = cur.execute('SELECT * FROM moz_cookies ORDER BY baseDomain, creationTime')
+        query = cur.execute('SELECT * FROM moz_cookies ORDER BY host, creationTime')
     colname = [ d[0] for d in query.description ]
     result_list = [ dict(zip(colname, r)) for r in query.fetchall() ]
     return result_list
@@ -175,7 +177,7 @@ def cookie_delete_single(cookieId, searchStr=None):
 
 def cookie_delete_domain(cookieDomain, searchStr=None):
     cur = sqlite3.connect(cookies_path).cursor()
-    data = cur.execute("DELETE FROM moz_cookies WHERE baseDomain=?", (cookieDomain,))
+    data = cur.execute("DELETE FROM moz_cookies WHERE host=?", (cookieDomain,))
     cur.connection.commit()
     result_list = load_query(cur, searchStr)
     cur.connection.close()
@@ -183,7 +185,7 @@ def cookie_delete_domain(cookieDomain, searchStr=None):
 
 def cookie_delete_blacklist(cookieBlacklist, searchStr=None):
     cur = sqlite3.connect(cookies_path).cursor()
-    sql = "DELETE FROM moz_cookies WHERE baseDomain IN ({seq})".format(
+    sql = "DELETE FROM moz_cookies WHERE host IN ({seq})".format(
     seq=','.join(['?']*len(cookieBlacklist)))
     cur.execute(sql, cookieBlacklist)
     cur.connection.commit()
@@ -193,7 +195,7 @@ def cookie_delete_blacklist(cookieBlacklist, searchStr=None):
 
 def cookie_delete_whitelist(cookieWhitelist, searchStr=None):
     cur = sqlite3.connect(cookies_path).cursor()
-    sql = "DELETE FROM moz_cookies WHERE baseDomain NOT IN ({seq})".format(
+    sql = "DELETE FROM moz_cookies WHERE host NOT IN ({seq})".format(
     seq=','.join(['?']*len(cookieWhitelist)))
     cur.execute(sql, cookieWhitelist)
     cur.connection.commit()
@@ -261,7 +263,7 @@ def get_stats():
         if src['sourceenabled']:
             sources_enabled_count += 1
     cur = sqlite3.connect(cookies_path).cursor()
-    cookies_count, domains_count = cur.execute("SELECT COUNT(*) AS cookies_count, COUNT(DISTINCT baseDomain) AS domains_count FROM moz_cookies").fetchall()[0]
+    cookies_count, domains_count = cur.execute("SELECT COUNT(*) AS cookies_count, COUNT(DISTINCT host) AS domains_count FROM moz_cookies").fetchall()[0]
     cur.connection.close()
     cookie_bl_count = len(cookie_load_list(blacklist = True))
     if os.path.isfile(LOGFILE_LAST):

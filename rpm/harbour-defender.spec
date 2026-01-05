@@ -10,7 +10,7 @@ Name:       harbour-defender
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Privacy watcher
-Version:    0.6.0
+Version:    0.7.0
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3
@@ -94,12 +94,20 @@ if [ -f /usr/lib/systemd/system/sailfish-unlock-agent.service ]; then
   sed -e 's/WantedBy=.*/WantedBy=sailfish-unlock-agent.service/' -i /etc/systemd/system/%{name}.path
   sed -e 's/WantedBy=.*/WantedBy=sailfish-unlock-agent.service/' -i /etc/systemd/system/%{name}-adRestart.path
   sed -e 's/WantedBy=.*/WantedBy=sailfish-unlock-agent.service/' -i /etc/systemd/system/%{name}-updLoop.path
+else if [ -f /usr/lib/systemd/system/decrypt-home_encrypted.service ]; then
+  #exchange the path unit's WantedBy in case of ENrypted devices, 
+  #normally the default for X.. devices and SW >= 3.3 flashed
+  #but different for community portss
+  sed -e 's/WantedBy=.*/WantedBy=decrypt-home_encrypted.service/' -i /etc/systemd/system/%{name}.path
+  sed -e 's/WantedBy=.*/WantedBy=decrypt-home_encrypted.service/' -i /etc/systemd/system/%{name}-adRestart.path
+  sed -e 's/WantedBy=.*/WantedBy=decrypt-home_encrypted.service/' -i /etc/systemd/system/%{name}-updLoop.path
 else
   # exchange the path unit's WantedBy in case of NOT encrypted devices, 
   # for older devices not supporting or having activated  encryption
   sed -e 's/WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}.path
   sed -e 's/WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}-adRestart.path
   sed -e 's/WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}-updLoop.path
+  fi
 fi
 systemctl start %{name}.timer
 systemctl enable %{name}.timer

@@ -1,8 +1,10 @@
 [Unit]
-Description=Restart Aliendalvik serice on request from Defender
+Description=Restart AppSupport/Aliendalvik serice on request from Defender
 
 [Service]
 Type=oneshot
 ExecStart=/bin/sh -c "FILE_PATH=`cat /tmp/defender.dir`/.config/harbour-defender; \
+                      systemctl restart appsupport; \
                       systemctl restart aliendalvik; \
                       rm -f $FILE_PATH/adRestart;"
+

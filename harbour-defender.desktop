@@ -4,6 +4,8 @@ X-Nemo-Application-Type=silica-qt5
 Icon=harbour-defender
 Exec=harbour-defender
 Name=Defender
+[X-Sailjail]
+Sandboxing=Disabled
 # translation example:
 # your app name in German locale (de)
 #
