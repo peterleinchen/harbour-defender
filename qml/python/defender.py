@@ -239,7 +239,9 @@ def cookie_locker(lock = False):
     if lock:
         os.chmod(cookies_path, S_IREAD|S_IRGRP|S_IROTH)
     else:
-        os.chmod(cookies_path, S_IWUSR|S_IREAD)
+        os.chmod(cookies_path, S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
+        os.chmod(cookies_path + "-shm", S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
+        os.chmod(cookies_path + "-wal", S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
     return 0
 
 def cookie_is_locked():

@@ -1,0 +1,158 @@
+# Rename this file as harbour-defender.changes to include changelog
+# entries in your RPM file.
+#
+# Add new changelog entries following the format below.
+# Add newest entries to the top of the list.
+# Separate entries from eachother with a blank line.
+
+# * date Author's Name <author's email> version-release
+# - Summary of changes
+# * date Peter Leinchen <peterleinchen@t-online.de> vx.y.z
+
+v0.7.1
+- added/fixed the file rights for cookies.sqlite DB amd especially the -shm (and also -wal) additions by newer browser
+
+  
+
+Author: Peter Leinchen <peterleinchen@t-online.de>
+Date:   Mon Jan 5 13:37:39 2026 +0100
+v0.7.0
+After looong absence:
+- disabled sailjail sandboxing
+- fixed the change in cookies database (baseDomain --> host), hereby
+- fixed the empty cookies and configuration lists
+- adapted to renaming of aliendalvik to appsupport
+- added support for community ports (decrypt-home_encrypted.service)
+--
+OISD has discontinued hosts/domains - syntax, https://oisd.nl/,
+but left it in with this version: please report back further discontinued or new lists!
+
+ 
+
+v0.6.0
+Author: Peter Leinchen <peterleinchen@t-online.de>
+Date:   Sun Mar 13 10:43:36 2022 +0100
+- changed version to 0.6.0 (with changes of rinigus for OBS builds in spec, pro and yaml files)
+-- 
+Author: Rinigus <rinigus.git@gmail.com>
+- Merge pull request #2 from rinigus/obs
+- Add license, update build scripts, and add OBS support
+- Add Chum section
+- Revamp build scripts
+- Drop YAML and cleanup SPEC
+- Set license to GPLv3, fixes #1
+- Add missing dependencies
+
+  
+
+--
+Warning:
+in case you are going to encrypt your device manually (only possible for some devices (Xs and XA2s) when having f
+Information:
+(deprecated as of SFOS 4.1.0.xx, fixed by Jolla),
+note to myself --> remove on next OS release...
+in case you upgraded from SFOS 3 to SFOS 4 having Defender already installed you might need to re-install (or uni
+--
+
+ 
+
+v0.5.7
+
+- fixed handling of exception on resolvings hosts url (leading to 'update loop')
+
+- added functionality (and pulley menu) to show an error log, in case it exists
+
+- added creation of special lxc extra_config file to get the (native file system) /system/etc/hosts file bound into the Android (aliendalvik container) file system
+
+- added funtionality (and pulley menu) to restart Android Support (needed to get the updates written to native hosts file read anew into the aliendalvik container)
+
+- added new sources from oisd.nl (thanks to @dry1)
+
+i486 and aarch64 build brought to you by courtesy of @orangecat
+
+ 
+
+v0.5.6
+
+- fixed the annoyance that sporadically the hosts file was reset to default values (caused by a cyclic update without internet connectivity, e.g. flight mode)
+
+- added new Adware repositories of  GoodbyeAds (thanks to @orangecat), be aware that mixing repositories of bigger size may take looong time (even hours) so keep it running...
+
+ 
+
+v0.5.5
+
+- corrected version number and URL in spec file
+
+- added support for i486 (Jolla tablet)
+
+- provision of aarch64 (courtesy of @orangecat / FSO)
+
+ 
+
+v0.5.4
+
+- added version info into DocsPage
+
+- added removal of 'update trigger' file on uninstallation
+
+- added pulley menu for removal of 'update trigger' file
+  (still a reboot or uninstall/install or `devel-su systemctl restart harbour-defender`might be needed)
+
+ 
+
+v0.5.3
+
+- fix the update loop, e.g. for community ports (where /system is mounted RO); import UnableToWriteHost exception and catch that situation on trying to write updated hosts file(s),
+
+- added some small error logging writing to user space file /home/$USER/.config/harbour-defender
+
+- fix rebuild_hosts to create a new blank default hosts file and save it correctly; NOT reading/copying the default /etc/hosts entries,
+
+ 
+
+v0.5.2
+
+- fix regarding the Disable (all) lists at once pulley menu, now the Disable functionality works and disables all lists
+
+(small typo only which looks like was there from the early beginning ;)
+
+ 
+
+v0.5.1
+
+- take care of changes in SFOS4
+
+- fix reading cookies.sqlite from new file location
+
+- hack for sailjailed browser not taking changed hosts file into account (nsswitch.conf problem)
+
+- more secure method at install time to have systemd not bootloop [ one scenario could still cause it: if you have defender installed on a non-encrypted device, (you upgrade this and) encrypt it, defender will have old systemd WantedBy references and cause your device to bootloop. Resolution: uninstall before encrypting and reinstall ]
+
+ 
+
+v0.4.3
+
+removed not anymore working lists from configuration
+
+ 
+
+v0.4.2
+
+fixing the start issue of path unit which caused the infinite update loop
+
+ 
+
+v0.4.1
+
+take over from nodevel and fixing the boot loop on encrypted devices
+
+as well as taking care of new default user name 'defaultuser' or old 'nemo'
+
+ 
+
+--
+* Sun Apr 13 2014 Jack Tar <jack.tar@example.com> 0.0.1-1
+- Scrubbed the deck
+- Hoisted the sails
+
