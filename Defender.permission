@@ -1,0 +1,96 @@
+# -*- mode: sh -*-
+
+# Firejail profile for harbour-defender
+
+# x-sailjail-translation-catalog = sailjail-permissions
+# x-sailjail-translation-key-description = permission-la-defender
+# x-sailjail-description = Defender, privacy guard and ad-blocker (/etc/hosts, cookies.sqlite)
+# x-sailjail-translation-key-long-description = permission-la-defender_description
+# x-sailjail-long-description = Fetches ad-block lists from configured internet sources, writes thm to osts fil(s), works also for AlienDalvik/AppSupport. Also includes Internet permission.
+
+### PERMISSIONS
+# Whitelisting
+# and make them writable
+
+whitelist ${HOME}/.config/harbour-defender/
+read-write ${HOME}/.config/harbour-defender/
+
+whitelist ${HOME}/.mozilla/mozembed/
+whitelist ${HOME}/.mozilla/mozembed/cookies.sqlite
+read-write ${HOME}/.mozilla/mozembed/cookies.sqlite
+whitelist ${HOME}/.local/share/org.sailfishos/browser/.mozilla/
+whitelist ${HOME}/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite
+read-write ${HOME}/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite
+read-write ${HOME}/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite-shm
+read-write ${HOME}/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite-wal
+
+whitelist /var/log/harbour-defender_last.conf
+read-write /var/log/harbour-defender_last.json
+
+ignore private-etc
+#doh, crashes sailjail: whitelist /etc/
+noblacklist /etc/
+read-write /etc/
+
+#nope: private-etc defender.conf
+whitelist /etc/defender.conf
+read-write /etc/defender.conf
+
+whitelist /etc/hosts
+read-write /etc/hosts
+#mkfile /etc/hosts.editable
+whitelist /etc/hosts.editable
+read-write /etc/hosts.editable
+whitelist /system/etc/hosts
+read-write /system/etc/hosts
+#mkfile /system/etc/hosts.editable
+whitelist /system/etc/hosts.editable
+read-write /system/etc/hosts.editable
+#legacy, obsoleted /opt/alien/system/etc/hosts
+
+#hmm, seems all not really t work for single files
+ignore private-tmp
+noblacklist /tmp/
+ignore read-only /tmp/
+read-write /tmp/
+
+mkfile /tmp/hosts
+mkdir /tmp/defender/
+
+noblacklist /tmp/hosts
+noblacklist /tmp/defender/
+#doh, crashes sailjail: whiitelist /tmp/
+whitelist /tmp/hosts
+read-write /tmp/hosts
+whitelist /tmp/defender/
+read-write /tmp/defender/
+
+whitelist /usr/share/harbour-defender/qml/python/
+read-only /usr/share/harbour-defender/qml/python/
+
+noblacklist /bin/
+noblacklist /bin/sh
+noblacklist /bin/echo
+noblacklist /bin/busybox
+noblacklist /usr/bin/
+noblacklist /usr/bin/sh
+noblacklist /usr/bin/echo
+noblacklist /usr/bin/busybox
+noblacklist /usr/bin/wc
+#doh: whitelist /bin/busybox
+#whiteldoh: ist /usr/bin/busybox
+#doh: whitelist /usr/bin/wc
+private-bin busybox,echo,grep,ps,sh,sleep,touch,wc
+
+noblacklist /usr/share/
+noblacklist /usr/share/themes/
+whitelist /usr/share/themes/
+read-only /usr/share/themes/
+whitelist /usr/share/themes//silica
+read-only /usr/share/themes//silica
+
+whitelist ${HOME}/.cache/harbour-defender
+whitelist ${HOME}/.config/harbour-defender
+whitelist ${HOME}/.local/share/harbour-defender
+
+include /etc/sailjail/permissions/Internet.permission
