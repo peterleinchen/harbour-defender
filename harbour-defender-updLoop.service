@@ -3,6 +3,6 @@ Description=Check for update loop and break it/clean up on request from Defender
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c "FILE_PATH=`cat /tmp/defender.dir`/.config/harbour-defender; \
+ExecStart=/bin/sh -c "FILE_PATH=`cat /tmp/defender/dir`/.config/harbour-defender; \
                       systemctl stop harbour-defender; \
                       rm -f $FILE_PATH/updLoop;"
