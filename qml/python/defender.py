@@ -9,8 +9,12 @@ import datetime
 APP_NAME = 'defender'
 
 #CONFIG_HOME_DIR = '/home/nemo/.config/harbour-' + APP_NAME
+if not os.path.isdir("/tmp/defender"):
+    os.path.mkdir("/tmp/defender");
+USER_NAME = os.environ['USER']
+os.system("echo -n '" + USER_NAME + "' > /tmp/defender/usr")
 HOME_DIR = os.environ['HOME']
-os.system("echo -n '" + HOME_DIR + "' > /tmp/defender.dir")
+os.system("echo -n '" + HOME_DIR + "' > /tmp/defender/dir")
 CONFIG_HOME_DIR = HOME_DIR + '/.config/harbour-' + APP_NAME
 CONFIG_ETC_DIR = '/etc'
 
