@@ -21,12 +21,16 @@ import socket
 #APP_DIR = '/opt/sdk/harbour-' + APP_NAME + '/usr/share/harbour-' + APP_NAME + '/qml/python''
 
 #CONFIG_HOME_DIR = '/home/nemo/.config/harbour-' + APP_NAME
-#doh HOME_DIR = os.environ['HOME']
+#doh, root: HOME_DIR = os.environ['HOME']
 ADMIN_USER = 'defaultuser'
 HOME_DIR = '/home/' + ADMIN_USER
 if not os.path.isdir(HOME_DIR):
     ADMIN_USER = 'nemo'
     HOME_DIR = '/home/' + ADMIN_USER
+if not os.path.isdir(HOME_DIR):
+    print("Neither 'nemo' nor 'defaultuser' have a home :(, \n
+    please give a new one in qml/python/defender_updater.py (around line: 30)")
+    exit(255)
                                         
 CONFIG_HOME_DIR = HOME_DIR + '/.config/harbour-' + APP_NAME          
 CONFIG_ETC_DIR = '/etc'

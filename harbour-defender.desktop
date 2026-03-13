@@ -1,14 +1,23 @@
 [Desktop Entry]
 Type=Application
-X-Nemo-Application-Type=silica-qt5
+#X-Nemo-Application-Type=silica-qt5
+#Exec=harbour-defender
+Exec=/usr/bin/sailjail -p harbour-defender.desktop /usr/bin/harbour-defender
 Icon=harbour-defender
-Exec=harbour-defender
 Name=Defender
+
+#[X-Sailjail]
+#Sandboxing=Disabled
 [X-Sailjail]
-Sandboxing=Disabled
+#may suffice: Permissions=Defender;Internet
+Permissions=Defender;Internet;Priviledged;Compatibility
+OrganizationName=leinchen.peter
+ApplicationName=harbour-defender
+
 # translation example:
 # your app name in German locale (de)
 #
 # Remember to comment out the following line, if you do not want to use
 # a different app name in German locale (de).
 #Name[de]=Abwehrer
+

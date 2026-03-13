@@ -1,4 +1,5 @@
 %global shortname defender
+%global shortnameUpper Defender
 %global _unitdir %{_sysconfdir}/systemd/system
 %global _a1configdir /system%{_sysconfdir}
 %global _a2configdir /opt/alien/system%{_sysconfdir}
@@ -10,7 +11,7 @@ Name:       harbour-defender
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Privacy watcher
-Version:    0.7.0
+Version:    0.7.3
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3
@@ -66,6 +67,7 @@ desktop-file-install --delete-original       \
 %attr(0644,root,root) %{_unitdir}/%{name}.timer
 %attr(0644,root,root) %{_unitdir}/%{name}*.path
 %attr(0644,root,root) %{_sysconfdir}/%{shortname}.conf
+%attr(0644,root,root) %{_sysconfdir}/%{shortnameUpper}.permission
 %exclude %{_datadir}/%{name}/qml/python/*.pyc
 %exclude %{_datadir}/%{name}/qml/python/*.pyo
 %exclude %{_datadir}/%{name}/qml/python/python_hosts/*.pyc
