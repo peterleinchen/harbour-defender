@@ -10,7 +10,7 @@ APP_NAME = 'defender'
 
 #CONFIG_HOME_DIR = '/home/nemo/.config/harbour-' + APP_NAME
 if not os.path.isdir("/tmp/defender"):
-    os.path.mkdir("/tmp/defender");
+    os.mkdir("/tmp/defender");
 USER_NAME = os.environ['USER']
 os.system("echo -n '" + USER_NAME + "' > /tmp/defender/usr")
 HOME_DIR = os.environ['HOME']
