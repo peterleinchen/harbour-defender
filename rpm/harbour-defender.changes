@@ -9,11 +9,17 @@
 # - Summary of changes
 # * date Peter Leinchen <peterleinchen@t-online.de> vx.y.z
 
-v0.7.3
+v0.8.0
 - added supporting the sailjail restrictions, hopefully ;)
 A nightmare, and definitely not worth the effort!
 
   
+
+v0.7.3
+- changed the location of error log to ~/Documents/.defender_err.log (needed as sailfi
+sh-browser is always sailfailed now)
+
+ 
 
 v0.7.2
 - fixed the AppSuppot restart service to include the '@user', 
