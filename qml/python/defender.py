@@ -24,7 +24,7 @@ CONFIG_HOME_PATH = CONFIG_HOME_DIR + '/'  + APP_NAME + '.conf'
 UPDATE_FILE_PATH = CONFIG_HOME_DIR + '/' + 'update'
 UPDLOOP_FILE_PATH = CONFIG_HOME_DIR + '/' + 'updLoop'
 ADRESTART_FILE_PATH = CONFIG_HOME_DIR + '/' + 'adRestart'
-ERRLOG_FILE_PATH = CONFIG_HOME_DIR + '/' + 'error.log'
+ERRLOG_FILE_PATH = HOME_DIR + '/Documents/' + '.defender_err.log'
 LOGFILE_LAST = '/var/log/'+ APP_NAME +'_last.json'
 
 cookies_path = HOME_DIR + '/.local/share/org.sailfishos/browser/.mozilla/' + 'cookies.sqlite'

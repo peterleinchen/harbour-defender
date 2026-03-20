@@ -36,7 +36,7 @@ CONFIG_HOME_PATH = CONFIG_HOME_DIR + '/' + APP_NAME + '.conf'
 CONFIG_APP_PATH = APP_DIR + '/' + APP_NAME + '_default.conf'
 
 UPDATE_FILE_PATH = CONFIG_HOME_DIR + '/' + 'update'
-ERRLOG_FILE_PATH = CONFIG_HOME_DIR + '/' + 'error.log'
+ERRLOG_FILE_PATH = HOME_DIR + '/Documents/' + '.defender_err.log'
 
 LOGFILE_LAST = '/var/log/'+ APP_NAME +'_last.json'
 

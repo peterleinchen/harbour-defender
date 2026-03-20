@@ -9,6 +9,11 @@
 # - Summary of changes
 # * date Peter Leinchen <peterleinchen@t-online.de> vx.y.z
 
+v0.7.3
+- changed the location of error log to ~/Documents/.defender_err.log (needed as sailfish-browser is always sailfailed now)
+
+
+
 v0.7.2
 - fixed the AppSuppot restart service to include the '@user',
 and hereby changed the location of /tmp dir and usr file(s)
@@ -16,7 +21,7 @@ and hereby changed the location of /tmp dir and usr file(s)
 
 
 v0.7.1
-- added/fixed the file rights for cookies.sqlite DB amd especially the -shm (and also -wal) additions by newer browser
+- added/fixed the file rights for cookies.sqlite DB and especially the -shm (and also -wal) additions by newer browser
 
   
 
