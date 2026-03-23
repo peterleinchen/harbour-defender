@@ -109,6 +109,7 @@ else
   sed -e 's/WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}-updLoop.path
   fi
 fi
+systemctl daemon-reload
 systemctl start %{name}.timer
 systemctl enable %{name}.timer
 systemctl start %{name}.path
@@ -118,7 +119,6 @@ systemctl start %{name}-adRestart.path
 systemctl enable %{name}-adRestart.path
 systemctl start %{name}-updLoop.path
 systemctl enable %{name}-updLoop.path
-systemctl daemon-reload
 #sed the version number
 sed -e 's/text: \"[0-9]\.[0-9]\.[0-9]\"/text: \"%{version}\"/' -i %{_datadir}/%{name}/qml/pages/DocsPage.qml
 #temporary hack, until Jolla fixes aliendalvik bind mount of /system/etc/hosts
