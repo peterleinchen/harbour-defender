@@ -10,7 +10,7 @@ Name:       harbour-defender
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Privacy watcher
-Version:    0.7.3
+Version:    0.7.4
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3
@@ -118,6 +118,7 @@ systemctl start %{name}-adRestart.path
 systemctl enable %{name}-adRestart.path
 systemctl start %{name}-updLoop.path
 systemctl enable %{name}-updLoop.path
+systemctl daemon-reload
 #sed the version number
 sed -e 's/text: \"[0-9]\.[0-9]\.[0-9]\"/text: \"%{version}\"/' -i %{_datadir}/%{name}/qml/pages/DocsPage.qml
 #temporary hack, until Jolla fixes aliendalvik bind mount of /system/etc/hosts
