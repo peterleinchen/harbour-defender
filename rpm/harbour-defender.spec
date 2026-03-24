@@ -1,6 +1,7 @@
 %global shortname defender
 %global shortnameUpper Defender
 %global _unitdir %{_sysconfdir}/systemd/system
+%global _sailjaildir %{_sysconfdir}/sailjail/permissions
 %global _a1configdir /system%{_sysconfdir}
 %global _a2configdir /opt/alien/system%{_sysconfdir}
 
@@ -11,7 +12,7 @@ Name:       harbour-defender
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Privacy watcher
-Version:    0.7.3
+Version:    0.8.1
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3
@@ -67,7 +68,8 @@ desktop-file-install --delete-original       \
 %attr(0644,root,root) %{_unitdir}/%{name}.timer
 %attr(0644,root,root) %{_unitdir}/%{name}*.path
 %attr(0644,root,root) %{_sysconfdir}/%{shortname}.conf
-%attr(0644,root,root) %{_sysconfdir}/%{shortnameUpper}.permission
+%attr(0644,root,root) %{_sailjaildir}/%{shortname}.profile
+%attr(0644,root,root) %{_sailjaildir}/%{shortnameUpper}.permission
 %exclude %{_datadir}/%{name}/qml/python/*.pyc
 %exclude %{_datadir}/%{name}/qml/python/*.pyo
 %exclude %{_datadir}/%{name}/qml/python/python_hosts/*.pyc
@@ -111,6 +113,7 @@ else
   sed -e 's/WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}-updLoop.path
   fi
 fi
+systemctl daemon-reload
 systemctl start %{name}.timer
 systemctl enable %{name}.timer
 systemctl start %{name}.path
@@ -133,6 +136,8 @@ grep -q '^private-etc.*nsswitch.conf' /etc/sailjail/permissions/Internet.permiss
 if [ 0 != $? ]; then
     sed -e 's/^private-etc /private-etc nsswitch.conf,/' -i /etc/sailjail/permissions/Internet.permission
 fi
+# small fix for sailjail, as /var/log/ and mkfile do not like each other
+touch /var/log/defender_last.json
 # >> install post
 # << install post
 

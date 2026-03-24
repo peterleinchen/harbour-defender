@@ -5,12 +5,13 @@ from stat import S_IREAD, S_IRGRP, S_IROTH, S_IWUSR
 from subprocess import check_output
 import json
 import datetime
+import dbus
 
 APP_NAME = 'defender'
 
 #CONFIG_HOME_DIR = '/home/nemo/.config/harbour-' + APP_NAME
 if not os.path.isdir("/tmp/defender"):
-    os.path.mkdir("/tmp/defender");
+    os.mkdir("/tmp/defender");
 USER_NAME = os.environ['USER']
 os.system("echo -n '" + USER_NAME + "' > /tmp/defender/usr")
 HOME_DIR = os.environ['HOME']
@@ -24,7 +25,8 @@ CONFIG_HOME_PATH = CONFIG_HOME_DIR + '/'  + APP_NAME + '.conf'
 UPDATE_FILE_PATH = CONFIG_HOME_DIR + '/' + 'update'
 UPDLOOP_FILE_PATH = CONFIG_HOME_DIR + '/' + 'updLoop'
 ADRESTART_FILE_PATH = CONFIG_HOME_DIR + '/' + 'adRestart'
-ERRLOG_FILE_PATH = CONFIG_HOME_DIR + '/' + 'error.log'
+
+ERRLOG_FILE_PATH = HOME_DIR + '/Documents/' + '.defender_err.log'
 LOGFILE_LAST = '/var/log/'+ APP_NAME +'_last.json'
 
 cookies_path = HOME_DIR + '/.local/share/org.sailfishos/browser/.mozilla/' + 'cookies.sqlite'
@@ -51,8 +53,6 @@ def merge_source_configs(config1, config2, force=False, enabled='no'):
             source_dict['sourceenabled'] = config2.getboolean(entry, 'SourceEnabled', fallback=config1.getboolean(entry, 'SourceEnabled', fallback=False))
             output.append(source_dict)
     return output
-
-
 
 def load_sources(force=False, enabled='no'):
     config_etc = configparser.ConfigParser()
@@ -128,9 +128,29 @@ def clear_update_loop():
     if os.path.isfile(UPDLOOP_FILE_PATH):
         os.remove(UPDLOOP_FILE_PATH)
 
+def open_browser(url=""):
+    try:
+        bus = dbus.SessionBus()
+        #proxy = bus.get_object('org.sailfishos.browser', '/org/sailfishos/browser')
+        #proxy = bus.get_object('org.sailfishos.browser', '/org/freedesktop/DBus')
+        #proxy = bus.get_object('org.freedesktop.DBus', '/org/freedesktop/DBus')
+        #proxy = bus.get_object('org.sailfishos.urlhandler', '/org/sailfishos/urlhandler')
+        launcher = bus.get_object('org.sailfishos.mapplauncherd', '/org/sailfishos/mapplauncherd')
+        #iface = dbus.Interface(proxy, 'org.sailfishos.browser')
+        #iface = dbus.Interface(proxy, 'org.sailfishos.urlhandler')
+        iface = dbus.Interface(launcher, 'org.sailfishos.mapplauncherd')
+        #iface.openUrl(url)
+        #print("Sent URl to browser: " + url)
+        iface.launcher('browser', 'sailfish-browser', [url], [])
+        print("Started browser with URl: " + url)
+    except Exception as e:
+        print(f"Error: {e}")
+
 def show_error_log():
     if os.path.isfile(ERRLOG_FILE_PATH):
-        os.system("sailfish-browser " + ERRLOG_FILE_PATH + " &")
+        os.system("/usr/bin/sailfish-browser " + ERRLOG_FILE_PATH + " &")
+        #os.system("invoker --type=browser,silica-qt5 -n sailfish-browser " + ERRLOG_FILE_PATH + " &")
+        #open_browser(ERRLOG_FILE_PATH)
 
 def restart_android_support():
     #os.system("systemctl restart aliendalvik")
@@ -268,8 +288,12 @@ def get_stats():
     for src in sources:
         if src['sourceenabled']:
             sources_enabled_count += 1
+    cookies_count, domains_count = [0, 0]
     cur = sqlite3.connect(cookies_path).cursor()
-    cookies_count, domains_count = cur.execute("SELECT COUNT(*) AS cookies_count, COUNT(DISTINCT host) AS domains_count FROM moz_cookies").fetchall()[0]
+    try:
+        cookies_count, domains_count = cur.execute("SELECT COUNT(*) AS cookies_count, COUNT(DISTINCT host) AS domains_count FROM moz_cookies").fetchall()[0]
+    except:
+        print("Warn, could not execute on DB, cookies/domains count set to zero")
     cur.connection.close()
     cookie_bl_count = len(cookie_load_list(blacklist = True))
     if os.path.isfile(LOGFILE_LAST):
@@ -281,4 +305,4 @@ def get_stats():
         last_time = 0
         last_sources = 0
     return {'hosts_lines': hosts_lines, 'hosts_editable_lines': hosts_editable_lines, 'sources_count': sources_count, 'sources_enabled_count': sources_enabled_count, 'cookies_count': cookies_count, 'domains_count': domains_count, 'cookie_bl_count': cookie_bl_count, 'last_time': datetime.datetime.fromtimestamp(int(last_time)), 'last_sources': last_sources}
-    
+

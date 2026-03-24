@@ -21,7 +21,7 @@ Page {
             Label {
                 x: Theme.paddingLarge
                 width: parent.width - 2*x
-                text: "0.0.0"
+                text: "0.6.1"
                 color: Theme.primaryColor
                 wrapMode: Text.Wrap
                 font.pixelSize: Theme.fontSizeMedium
@@ -90,7 +90,7 @@ Page {
             Label {
                 x: Theme.paddingLarge
                 width: parent.width - 2*x
-                text: qsTr("The cookie manager works by editing the $HOME/.local/share/org.sailfishos/browser/.mozilla/ (for SFOS<=3.4: $HOME/.mozilla/mozembed/) cookies.sqlite database. All changes need the browser to be restarted in order to take effect.")
+                text: qsTr("The cookie manager works by editing the $HOME/.local/share/org.sailfishos/browser/.mozilla/ (for SFOS<=3.4: $HOME/.mozilla/mozembed/) cookies.sqlite database. In order to access/work with cookies the browser needs to be closed before opening the cookies section, else you might see an empty window. All changes need the browser to be closed/restarted in order to take effect.")
                 color: Theme.primaryColor
                 wrapMode: Text.Wrap
                 font.pixelSize: Theme.fontSizeMedium

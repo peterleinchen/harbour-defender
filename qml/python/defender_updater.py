@@ -28,7 +28,7 @@ if not os.path.isdir(HOME_DIR):
     ADMIN_USER = 'nemo'
     HOME_DIR = '/home/' + ADMIN_USER
 if not os.path.isdir(HOME_DIR):
-    print("Neither 'nemo' nor 'defaultuser' have a home :(, \n
+    print("Neither 'nemo' nor 'defaultuser' have a home :(, \n \
     please give a new one in qml/python/defender_updater.py (around line: 30)")
     exit(255)
                                         
@@ -40,7 +40,7 @@ CONFIG_HOME_PATH = CONFIG_HOME_DIR + '/' + APP_NAME + '.conf'
 CONFIG_APP_PATH = APP_DIR + '/' + APP_NAME + '_default.conf'
 
 UPDATE_FILE_PATH = CONFIG_HOME_DIR + '/' + 'update'
-ERRLOG_FILE_PATH = CONFIG_HOME_DIR + '/' + 'error.log'
+ERRLOG_FILE_PATH = HOME_DIR + '/Documents/' + '.defender_err.log'
 
 LOGFILE_LAST = '/var/log/'+ APP_NAME +'_last.json'
 

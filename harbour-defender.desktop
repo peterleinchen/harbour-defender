@@ -2,15 +2,15 @@
 Type=Application
 #X-Nemo-Application-Type=silica-qt5
 #Exec=harbour-defender
-Exec=/usr/bin/sailjail -p harbour-defender.desktop /usr/bin/harbour-defender
+Exec=/usr/bin/sailjail -p harbour-defender /usr/bin/harbour-defender
 Icon=harbour-defender
 Name=Defender
 
-#[X-Sailjail]
-#Sandboxing=Disabled
 [X-Sailjail]
-#may suffice: Permissions=Defender;Internet
-Permissions=Defender;Internet;Priviledged;Compatibility
+#Sandboxing=Disabled
+#Permissions=Defender;Internet;Compatibility;Priviledged;Diplay;WebView;Ambience
+Permissions=Defender;xInternet;xDocuments;Compatibility
+CustomContentHandler=org.sailfishos.browser
 OrganizationName=leinchen.peter
 ApplicationName=harbour-defender
 

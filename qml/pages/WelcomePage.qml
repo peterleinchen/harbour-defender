@@ -26,6 +26,7 @@ Page {
         ListElement {
             name: "Adblock Lists"
             image: "image://theme/icon-l-attention"
+            //image: "file://usr/share/themes/sailfish-default/silica/z1.75/icons-monochrome/icon-l-attention.png"
             itemPage: "SourcesPage.qml"
             menuItemSource: "components/SourcesMenuItem.qml"
         }

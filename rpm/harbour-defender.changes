@@ -9,20 +9,40 @@
 # - Summary of changes
 # * date Peter Leinchen <peterleinchen@t-online.de> vx.y.z
 
-v0.7.3
+v0.8.1
+- finalized the sailjailed version
+And that was more than a NIGHTMARE!
+- added comment on cookies doc page regarding browser
+- fixed exception on get_stats when browser is open
+
+ 
+
+v0.8.0
 - added supporting the sailjail restrictions, hopefully ;)
 A nightmare, and definitely not worth the effort!
+
+
+
+v0.7.4
+- added the systemctl daemon-reload after installation (hopefully resolving the strang
+e behaviour after first installation, see @eson)
+
+ 
+
+v0.7.3
+- changed the location of error log to ~/Documents/.defender_err.log (needed as sailfi
+sh-browser is always sailfailed now)
 
   
 
 v0.7.2
-- fixed the AppSuppot restart service to include the '@user', 
+- fixed the AppSupport restart service to include the '@user', 
 and hereby changed the location of /tmp dir and usr file(s)
 
   
 
 v0.7.1
-- added/fixed the file rights for cookies.sqlite DB amd especially the -shm (and also -wal) additions by newer browser
+- added/fixed the file rights for cookies.sqlite DB and especially the -shm (and also -wal) additions by newer browser
 
   
 
