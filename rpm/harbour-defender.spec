@@ -18,8 +18,8 @@ Group:      Qt/Qt
 License:    GPLv3
 URL:        https://github.com/peterleinchen/harbour-defender
 Source0:    %{name}-%{version}.tar.bz2
-Source1:    %{name}.profile
-Source2:    %{shortnameUpper}.permission
+#Source1:    %{name}.profile
+#Source2:    %{shortnameUpper}.permission
 Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   pyotherside-qml-plugin-python3-qt5
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
