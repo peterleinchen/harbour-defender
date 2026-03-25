@@ -46,7 +46,7 @@ Icon: https://raw.githubusercontent.com/peterleinchen/harbour-defender/master/qm
 
 %build
 
-%qtc_qmake5 CONFDIR=%{_sysconfdir} UNITDIR=%{_unitdir}
+%qtc_qmake5 CONFDIR=%{_sysconfdir} UNITDIR=%{_unitdir} SAILJAILDIR=%{_sailjaildir}
 
 %qtc_make %{?_smp_mflags}
 
