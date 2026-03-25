@@ -61,10 +61,11 @@ desktop-file-install --delete-original       \
 
 #nope: install -D -p -m 644 %{name}.profile %{buildroot}/%{_sailjaildir}/
 #nope: install -D -p -m 644 %{name}.profile %{buildroot}/%{_sailjaildir}
-install -D -p -m 644 %{SOURCE1} %{buildroot}/%{_sailjaildir}
+#nope: install -D -p -m 644 %{SOURCE1} %{buildroot}/%{_sailjaildir}
+install -D -p -m 644 ./%{name}.profile %{buildroot}/%{_sailjaildir}
 #also okay: mkdir -p %{buildroot}/%{_sailjaildir}/
 #         : install -p -m 644 %{SOURCE1} %{buildroot}/%{_sailjaildir}/
-install -p -m 644 %{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}/
+install -p -m 644 ./%{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}/
 
 %files
 %defattr(-,root,root,-)
