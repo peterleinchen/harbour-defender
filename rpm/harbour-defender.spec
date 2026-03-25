@@ -18,6 +18,8 @@ Group:      Qt/Qt
 License:    GPLv3
 URL:        https://github.com/peterleinchen/harbour-defender
 Source0:    %{name}-%{version}.tar.bz2
+Source1:    %{name}.profile
+Source2:    %{shortnameUpper}.permission
 Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   pyotherside-qml-plugin-python3-qt5
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
@@ -57,11 +59,12 @@ desktop-file-install --delete-original       \
   --dir %{buildroot}%{_datadir}/applications             \
    %{buildroot}%{_datadir}/applications/*.desktop
 
-#install -D -p -m 644 harbour-defender.profile %{buildroot}/%{_sailjaildir}/
-#install -D -p -m 644 harbour-defender.profile %{buildroot}/%{_sailjaildir}
-mkdir -p %{buildroot}/%{_sailjaildir}/
-install -p -m 644 harbour-defender.profile %{buildroot}/%{_sailjaildir}/
-install -p -m 644 Defender.permission %{buildroot}/%{_sailjaildir}/
+#nope: install -D -p -m 644 %{name}.profile %{buildroot}/%{_sailjaildir}/
+#nope: install -D -p -m 644 %{name}.profile %{buildroot}/%{_sailjaildir}
+install -D -p -m 644 %{SOURCE1} %{buildroot}/%{_sailjaildir}
+#also okay: mkdir -p %{buildroot}/%{_sailjaildir}/
+#         : install -p -m 644 %{SOURCE1} %{buildroot}/%{_sailjaildir}/
+install -p -m 644 %{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}/
 
 %files
 %defattr(-,root,root,-)
