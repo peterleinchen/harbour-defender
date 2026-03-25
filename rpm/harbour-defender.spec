@@ -57,8 +57,8 @@ desktop-file-install --delete-original       \
   --dir %{buildroot}%{_datadir}/applications             \
    %{buildroot}%{_datadir}/applications/*.desktop
 
-mkdir %{buildroot}/%{_sailjaildir}
-install -p -m 644 harbour-defender.profile %{buildroot}/%{_sailjaildir}/
+#mkdir -p %{buildroot}/%{_sailjaildir}
+install -D -p -m 644 harbour-defender.profile %{buildroot}/%{_sailjaildir}/
 install -p -m 644 Defender.permission %{buildroot}/%{_sailjaildir}/
 
 %files
