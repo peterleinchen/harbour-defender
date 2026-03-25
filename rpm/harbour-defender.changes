@@ -9,6 +9,11 @@
 # - Summary of changes
 # * date Peter Leinchen <peterleinchen@t-online.de> vx.y.z
 
+v0.8.2
+- commented out func open_browser (forced a dependency on python-dbus)
+
+ 
+
 v0.8.1
 - finalized the sailjailed version
 And that was more than a NIGHTMARE!

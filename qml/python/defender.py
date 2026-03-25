@@ -5,7 +5,7 @@ from stat import S_IREAD, S_IRGRP, S_IROTH, S_IWUSR
 from subprocess import check_output
 import json
 import datetime
-import dbus
+#import dbus
 
 APP_NAME = 'defender'
 
@@ -128,23 +128,23 @@ def clear_update_loop():
     if os.path.isfile(UPDLOOP_FILE_PATH):
         os.remove(UPDLOOP_FILE_PATH)
 
-def open_browser(url=""):
-    try:
-        bus = dbus.SessionBus()
-        #proxy = bus.get_object('org.sailfishos.browser', '/org/sailfishos/browser')
-        #proxy = bus.get_object('org.sailfishos.browser', '/org/freedesktop/DBus')
-        #proxy = bus.get_object('org.freedesktop.DBus', '/org/freedesktop/DBus')
-        #proxy = bus.get_object('org.sailfishos.urlhandler', '/org/sailfishos/urlhandler')
-        launcher = bus.get_object('org.sailfishos.mapplauncherd', '/org/sailfishos/mapplauncherd')
-        #iface = dbus.Interface(proxy, 'org.sailfishos.browser')
-        #iface = dbus.Interface(proxy, 'org.sailfishos.urlhandler')
-        iface = dbus.Interface(launcher, 'org.sailfishos.mapplauncherd')
-        #iface.openUrl(url)
-        #print("Sent URl to browser: " + url)
-        iface.launcher('browser', 'sailfish-browser', [url], [])
-        print("Started browser with URl: " + url)
-    except Exception as e:
-        print(f"Error: {e}")
+#def open_browser(url=""):
+#    try:
+#        bus = dbus.SessionBus()
+#        #proxy = bus.get_object('org.sailfishos.browser', '/org/sailfishos/browser')
+#        #proxy = bus.get_object('org.sailfishos.browser', '/org/freedesktop/DBus')
+#        #proxy = bus.get_object('org.freedesktop.DBus', '/org/freedesktop/DBus')
+#        #proxy = bus.get_object('org.sailfishos.urlhandler', '/org/sailfishos/urlhandler')
+#        launcher = bus.get_object('org.sailfishos.mapplauncherd', '/org/sailfishos/mapplauncherd')
+#       #iface = dbus.Interface(proxy, 'org.sailfishos.browser')
+#        #iface = dbus.Interface(proxy, 'org.sailfishos.urlhandler')
+#        iface = dbus.Interface(launcher, 'org.sailfishos.mapplauncherd')
+#        #iface.openUrl(url)
+#        #print("Sent URl to browser: " + url)
+#        iface.launcher('browser', 'sailfish-browser', [url], [])
+#        print("Started browser with URl: " + url)
+#    except Exception as e:
+#        print(f"Error: {e}")
 
 def show_error_log():
     if os.path.isfile(ERRLOG_FILE_PATH):
