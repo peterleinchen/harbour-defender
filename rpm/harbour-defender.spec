@@ -64,6 +64,8 @@ desktop-file-install --delete-original       \
 %{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
+%{_sailjaildir}/%{shortname}.profile
+%{_sailjaildir}/%{shortnameUpper}.permission
 %attr(0644,root,root) %{_unitdir}/%{name}*.service
 %attr(0644,root,root) %{_unitdir}/%{name}.timer
 %attr(0644,root,root) %{_unitdir}/%{name}*.path
