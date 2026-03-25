@@ -52,7 +52,7 @@ Icon: https://raw.githubusercontent.com/peterleinchen/harbour-defender/master/qm
 %qtc_make %{?_smp_mflags}
 
 %install
-ls -R .
+ls -R . #debugging only
 rm -rf %{buildroot}
 %qmake5_install
 
@@ -60,14 +60,12 @@ desktop-file-install --delete-original       \
   --dir %{buildroot}%{_datadir}/applications             \
    %{buildroot}%{_datadir}/applications/*.desktop
 
+pwd #debugging only
 #nope: install -D -p -m 644 %{name}.profile %{buildroot}/%{_sailjaildir}/
-#nope: install -D -p -m 644 %{name}.profile %{buildroot}/%{_sailjaildir}
-#nope: install -D -p -m 644 %{SOURCE1} %{buildroot}/%{_sailjaildir}
-pwd
-install -D -p -m 644 ../%{name}.profile %{buildroot}/%{_sailjaildir}
+install -D -p -m 644 %{name}.profile %{buildroot}/%{_sailjaildir}
 #also okay: mkdir -p %{buildroot}/%{_sailjaildir}/
 #         : install -p -m 644 %{name}.profile %{buildroot}/%{_sailjaildir}/
-install -p -m 644 ../%{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}/
+install -p -m 644 ./%{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}/
 
 %files
 %defattr(-,root,root,-)
