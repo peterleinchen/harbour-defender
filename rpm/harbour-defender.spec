@@ -45,7 +45,6 @@ Icon: https://raw.githubusercontent.com/peterleinchen/harbour-defender/master/qm
 %setup -q -n %{name}-%{version}
 
 %build
-
 %qtc_qmake5 CONFDIR=%{_sysconfdir} UNITDIR=%{_unitdir} SAILJAILDIR=%{_sailjaildir}
 
 %qtc_make %{?_smp_mflags}
@@ -58,20 +57,21 @@ desktop-file-install --delete-original       \
   --dir %{buildroot}%{_datadir}/applications             \
    %{buildroot}%{_datadir}/applications/*.desktop
 
+mkdir %{buildroot}/%{_sailjaildir}
+install -p -m 644 harbour-defender.profile %{buildroot}/%{_sailjaildir}/
+install -p -m 644 Defender.permission %{buildroot}/%{_sailjaildir}/
+
 %files
 %defattr(-,root,root,-)
 %{_bindir}/*
 %{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
-%{_sailjaildir}/%{shortname}.profile
-%{_sailjaildir}/%{shortnameUpper}.permission
+%{_sailjaildir}/*
 %attr(0644,root,root) %{_unitdir}/%{name}*.service
 %attr(0644,root,root) %{_unitdir}/%{name}.timer
 %attr(0644,root,root) %{_unitdir}/%{name}*.path
 %attr(0644,root,root) %{_sysconfdir}/%{shortname}.conf
-%attr(0644,root,root) %{_sailjaildir}/%{shortname}.profile
-%attr(0644,root,root) %{_sailjaildir}/%{shortnameUpper}.permission
 %exclude %{_datadir}/%{name}/qml/python/*.pyc
 %exclude %{_datadir}/%{name}/qml/python/*.pyo
 %exclude %{_datadir}/%{name}/qml/python/python_hosts/*.pyc
@@ -146,12 +146,23 @@ touch /var/log/defender_last.json
 %preun
 # in case of removal
 if [ "$1" = "0" ]; then
+    systemctl stop %{name}
+    systemctl disable %{name}
     systemctl stop %{name}.timer
     systemctl disable %{name}.timer
     systemctl stop %{name}.path
     systemctl disable %{name}.path
-    [ -f /home/defaultuser/%{name}/update ] && rm /home/defaultuser/%{name}/update ] || [ -f /home/nemo/%{name}/update ] && rm /home/nemo/%{name}/update || :
+    systemctl stop %{name}-updLoop.path
+    systemctl disable %{name}-updLoop.path
+    systemctl stop %{name}-adRestart.path
+    systemctl disable %{name}-adRestart.path
+    systemctl daemon-reload
+
+    [ -f /home/defaultuser/%{name}/update ] && rm /home/defaultuser/%{name}/update || [ -f /home/nemo/%{name}/update ] && rm /home/nemo/%{name}/update || :
+    [ -f /home/defaultuser/%{name}/Documents/.defender_err.log ] && rm /home/defaultuser/%{name}/Documents/.defender_err.log || [ -f /home/nemo/%{name}/Documents/.defender_err.log ] && rm /home/nemo/%{name}/Documents/.defender_err.log || :
+    [ -f /var/log/defender_last.json ] && rm /var/log/defender_last.json ]
+
     [ -f %{_sysconfdir}/hosts.editable ] && cp %{_sysconfdir}/hosts.editable %{_sysconfdir}/hosts 2>/dev/null || echo "/etc/hosts.editable does not exist"
     [ -f %{_a1configdir}/hosts.editable ] && cp %{_a1configdir}/hosts.editable %{_a1configdir}/hosts 2>/dev/null || echo "%{_a1configdir}/hosts.editable does not exist"
-    [ -f %{_a2configdir}/hosts.editable ] && cp %{_a2configdir}/hosts.editable %{_a2configdir}/hosts 2>/dev/null || echo "%{_a2configdir}/hosts.editable does not exist"
+    [ -f %{_a2configdir}/hosts.editable ] && cp %{_a2configdir}/hosts.editable %{_a2configdir}/hosts 2>/dev/null || echo "%{_a2configdir}/hosts.editable does not exist" 
 fi
