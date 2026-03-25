@@ -62,10 +62,13 @@ desktop-file-install --delete-original       \
 
 pwd #debugging only
 #nope: install -D -p -m 644 %{name}.profile %{buildroot}/%{_sailjaildir}/
-install -D -p -m 644 %{name}.profile %{buildroot}/%{_sailjaildir}
-#also okay: mkdir -p %{buildroot}/%{_sailjaildir}/
-#         : install -p -m 644 %{name}.profile %{buildroot}/%{_sailjaildir}/
-install -p -m 644 ./%{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}/
+#okay: install -D -p -m 644 %{name}.profile %{buildroot}/%{_sailjaildir}
+#but common practice:
+mkdir -p %{buildroot}/%{_sailjaildir}
+#nope: install -p -m 644 %{name}.profile %{buildroot}/%{_sailjaildir}/
+install -p -m 644 %{name}.profile %{buildroot}/%{_sailjaildir}
+#NOPE: install -p -m 644 ./%{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}/
+install -p -m 644 %{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}
 
 %files
 %defattr(-,root,root,-)
@@ -84,7 +87,6 @@ install -p -m 644 ./%{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}/
 %exclude %{_datadir}/%{name}/qml/python/python_hosts/*.pyo
 # >> files
 # << files
-
 
 %post
 [ -f %{_sysconfdir}/hosts ] && echo "/etc/hosts exists" || echo -e "127.0.0.1               localhost.localdomain localhost\n::1             localhost6.localdomain6 localhost6\n" >> %{_sysconfdir}/hosts
