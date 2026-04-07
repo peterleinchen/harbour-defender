@@ -11,7 +11,7 @@ Page {
         anchors.fill: parent
         header: SearchField {
             width: parent.width
-            placeholderText: "Search cookies"
+            placeholderText: qsTr("Search cookies")
             validator: RegExpValidator { regExp: /[0-9A-Za-z]+/ }
 
             EnterKey.onClicked: {
@@ -108,7 +108,7 @@ Page {
                         id: contextMenu
                         ContextMenu {
                             MenuItem {
-                                text: "Remove"
+                                text: qsTr("Remove")
                                 onClicked: remove()
                             }
                             MenuItem {
