@@ -31,7 +31,7 @@ BackgroundItem {
         }
         Label {
             x: Theme.paddingLarge
-            text: "Cookie Manager"
+            text: qsTr("Cookie Manager")
 
             color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
             anchors.horizontalCenter: parent.horizontalCenter
