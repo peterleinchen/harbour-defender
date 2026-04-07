@@ -31,7 +31,7 @@ BackgroundItem {
         }
         Label {
             x: Theme.paddingLarge
-            text: "Adblock Lists"
+            text: qsTr("Adblock Lists")
             color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
             anchors.horizontalCenter: parent.horizontalCenter
         }
