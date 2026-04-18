@@ -46,7 +46,7 @@ Page {
             Label {
                 x: Theme.paddingLarge
                 width: parent.width - 2*x
-                text: qsTr("You can add custom lists by editing the file /etc/"+appName.toLowerCase()+".conf as root (either using the command line or an appropriate editor). See other sections in the config file for inspiration. In the square brackets [] should be a unique id.")
+                text: qsTr("You can add custom lists by editing the file /etc/defender.conf as root (either using the command line or an appropriate editor). See other sections in the config file for inspiration. In the square brackets [] should be a unique id.")
                 color: Theme.primaryColor
                 wrapMode: Text.Wrap
                 font.pixelSize: Theme.fontSizeMedium
@@ -90,7 +90,7 @@ Page {
             Label {
                 x: Theme.paddingLarge
                 width: parent.width - 2*x
-                text: qsTr("The cookie manager works by editing the $HOME/.local/share/org.sailfishos/browser/.mozilla/ (for SFOS<=3.4: $HOME/.mozilla/mozembed/) cookies.sqlite database. In order to access/work with cookies the browser needs to be closed before opening the cookies section, else you might see an empty window. All changes need the browser to be closed/restarted in order to take effect.")
+                text: qsTr("The cookie manager works by editing the -/.local/share/org.sailfishos/browser/.mozilla/ (for SFOS up to 3.4: -/.mozilla/mozembed/) cookies.sqlite database. In order to access/work with cookies the browser needs to be closed before opening the cookies section, else you might see an empty window. All changes need the browser to be closed/restarted in order to take effect.")
                 color: Theme.primaryColor
                 wrapMode: Text.Wrap
                 font.pixelSize: Theme.fontSizeMedium
