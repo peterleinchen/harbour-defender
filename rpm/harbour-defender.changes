@@ -9,6 +9,11 @@
 # - Summary of changes
 # * date Peter Leinchen <peterleinchen@t-online.de> vx.y.z
 
+v0.8.4
+- added translations for SV (courtesy of @eson) and DE (@peterleinchen)
+
+ 
+
 v0.8.3
 - huge debug session with @eson trying to find the culprit why Defender does not start in sailjail on 10 III, unsuccessful :( (missing libui_compat_layer.so)
 - nevertheless updated permission and profile

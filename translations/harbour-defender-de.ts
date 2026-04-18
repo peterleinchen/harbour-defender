@@ -1,143 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="sv">
 <context>
     <name>CookiesMenuItem</name>
     <message>
         <location filename="../qml/pages/components/CookiesMenuItem.qml" line="23"/>
         <source>Cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>Kekse</translation>
     </message>
     <message>
         <location filename="../qml/pages/components/CookiesMenuItem.qml" line="28"/>
         <source>Domains</source>
-        <translation type="unfinished"></translation>
+        <translation>Domänen</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/CookiesMenuItem.qml" line="34"/>
+        <source>Cookie Manager</source>
+        <translation>Kekse-Verwalter</translation>
     </message>
 </context>
 <context>
     <name>CookiesPage</name>
     <message>
+        <location filename="../qml/pages/CookiesPage.qml" line="14"/>
+        <source>Search cookies</source>
+        <translation>Such Kekse</translation>
+    </message>
+    <message>
         <location filename="../qml/pages/CookiesPage.qml" line="29"/>
         <source>Unlock cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>Gib Kekse frei</translation>
     </message>
     <message>
         <location filename="../qml/pages/CookiesPage.qml" line="29"/>
         <source>Lock cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>Sperr Kekse</translation>
     </message>
     <message>
         <location filename="../qml/pages/CookiesPage.qml" line="31"/>
         <source>Unlocking</source>
-        <translation type="unfinished"></translation>
+        <translation>Freigebend</translation>
     </message>
     <message>
         <location filename="../qml/pages/CookiesPage.qml" line="31"/>
         <source>Locking</source>
-        <translation type="unfinished"></translation>
+        <translation>Sperrend</translation>
     </message>
     <message>
         <location filename="../qml/pages/CookiesPage.qml" line="40"/>
         <source>Delete all blacklisted</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösche alle aus der schwarz gelisteten</translation>
     </message>
     <message>
         <location filename="../qml/pages/CookiesPage.qml" line="56"/>
         <source>Delete all not whitelisted</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösche alle nicht weiß gelisteten</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/CookiesPage.qml" line="111"/>
+        <source>Remove</source>
+        <translation>Entferne</translation>
     </message>
     <message>
         <location filename="../qml/pages/CookiesPage.qml" line="115"/>
         <source>Remove from Whitelist</source>
-        <translation type="unfinished"></translation>
+        <translation>Entferne von der Weißliste</translation>
     </message>
     <message>
         <location filename="../qml/pages/CookiesPage.qml" line="115"/>
         <source>Add to Whitelist</source>
-        <translation type="unfinished"></translation>
+        <translation>Füge zur Weißliste hinzu</translation>
     </message>
     <message>
         <location filename="../qml/pages/CookiesPage.qml" line="134"/>
         <source>Remove from Blacklist</source>
-        <translation type="unfinished"></translation>
+        <translation>Entferne von Schwarzliste</translation>
     </message>
     <message>
         <location filename="../qml/pages/CookiesPage.qml" line="134"/>
         <source>Add to Blacklist</source>
-        <translation type="unfinished"></translation>
+        <translation>Füge zur Schwarzliste hinzu</translation>
     </message>
 </context>
 <context>
     <name>DocsPage</name>
     <message>
-        <location filename="../qml/pages/DocsPage.qml" line="19"/>
-        <source>Warning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/DocsPage.qml" line="24"/>
-        <source>The installation and use of this application is solely in the responsibility of the user. The developers/authors are not responsible for the content of ad blocking sources available from the application, therefore you need to be careful when enabling them.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../qml/pages/DocsPage.qml" line="30"/>
-        <source>Adblock Lists</source>
-        <translation type="unfinished"></translation>
+        <source>Warning</source>
+        <translation>Varnung</translation>
     </message>
     <message>
-        <location filename="../qml/pages/DocsPage.qml" line="33"/>
-        <source>How to add custom lists?</source>
-        <translation type="unfinished"></translation>
+        <location filename="../qml/pages/DocsPage.qml" line="35"/>
+        <source>The installation and use of this application is solely in the responsibility of the user. The developers/authors are not responsible for the content of ad blocking sources available from the application, therefore you need to be careful when enabling them.</source>
+	<translation>Die Verantwortung für die Installation und den Gebrauch dieser Anwendung liegt alleine beim Nutzer. Der Entwickler/Autor ist nicht verantwortlich für den Inhalt der Werbeblocker-Quellen, welche in der Anwendung verfügbar sind. Daher müssen Sie behutsam sein, wenn Sie diese aktivieren.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/DocsPage.qml" line="41"/>
+        <source>Adblock Lists</source>
+        <translation>Werbeblocker-Listen</translation>
     </message>
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="44"/>
-        <source>Why can&apos;t I add new sources from the app?</source>
-        <translation type="unfinished"></translation>
+        <source>How to add custom lists?</source>
+        <translation>Wie kann man eigene Listen hinzufügen?</translation>
     </message>
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="49"/>
-        <source>It would be a security threat to allow adding new sources as a normal user (with the current SailfishOS security situation), as any app would be able to add new sources and potentially compromise your device. Even with the default sources, you still make the leap of faith to trust a remote source. If you want to have a source added/removed to/from the defaults, contact the app developer and see if it can be available in the next version.</source>
-        <translation type="unfinished"></translation>
+        <source>You can add custom lists by editing the file /etc/defender.conf as root (either using the command line or an appropriate editor). See other sections in the config file for inspiration. In the square brackets [] should be a unique id.</source>
+	<translation>Sie können eigene Listen hinzufügen, indem Sie die Datei /etc/defender.conf als Root editieren (entweder mittels CLI oder mit Hilfe einer fähigen Editor-Anwendung). Innerhalb der eckigen Klammer [] sollte eine einzigartige Identifikation stehen.</translation>
     </message>
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="55"/>
-        <source>How to add custom entries?</source>
-        <translation type="unfinished"></translation>
+        <source>Why can&apos;t I add new sources from the app?</source>
+        <translation>Warum kann ich keine Quellen in der Anwendung hinzufügen?</translation>
     </message>
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="60"/>
-        <source>You can add your custom hosts entries by editing the file /etc/hosts.editable and treating it as a generic hosts file. Don&apos;t forget to choose &apos;Update Now&apos; in the app to see an immediate effect.</source>
-        <translation type="unfinished"></translation>
+        <source>It would be a security threat to allow adding new sources as a normal user (with the current SailfishOS security situation), as any app would be able to add new sources and potentially compromise your device. Even with the default sources, you still make the leap of faith to trust a remote source. If you want to have a source added/removed to/from the defaults, contact the app developer and see if it can be available in the next version.</source>
+	<translation>Es würde eine Bedrohung der Sicherheit darstellen, innerhalb der Anwendung neue Quellen als normaler Anwender zuzulassen, weil somit jede Anwendung in der Lage wäre, neue Quellen hinzuzufügen und somit potentiell Ihr Gerät kompromittieren könnte. Sogar mit den bereit gestellten Quellen geben Sie einen Vertrauensvorschuss. Falls Sie eine neue Quelle hinzuefügt oder entfernt haben wolln, so kontaktieren Sie bitte den Entwcickler, der schauen wird, dies in der nächsten Ausgabe zu verwirklichen.</translation>
     </message>
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="66"/>
-        <source>Why can&apos;t I add new entries from the app?</source>
-        <translation type="unfinished"></translation>
+        <source>How to add custom entries?</source>
+        <translation>Wie kann man eigene Einträge erstellen?</translation>
     </message>
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="71"/>
-        <source>Again, it would be a security threat (see the answer above), therefore one needs to be root to add/modify hosts file entries.</source>
-        <translation type="unfinished"></translation>
-    </message>
+        <source>You can add your custom hosts entries by editing the file /etc/hosts.editable and treating it as a generic hosts file. Don&apos;t forget to choose &apos;Update Now&apos; in the app to see an immediate effect.</source>
+	<translation>Sie können eigene Hosts Einträge erstellen, indem Sie die Datei /etc/hosts.editable editieren und als generische Hosts Datei behandeln. Vergessen Sie nicht &apos;Update now&apos; in der Anwendung zu wählen, um einen sofortigen Effekt zu sehen.</translation>
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="77"/>
-        <source>Cookies</source>
-        <translation type="unfinished"></translation>
+        <source>Why can&apos;t I add new entries from the app?</source>
+        <translation>Warum kann ich keine neuen Einträge in der Anwendung erstellen?</translation>
     </message>
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="82"/>
-        <source>The cookie manager works by editing the /home/nemo/.mozilla/mozembed/cookies.sqlite database. All changes need the browser to be restarted in order to take effect.</source>
-        <translation type="unfinished"></translation>
+        <source>Again, it would be a security threat (see the answer above), therefore one needs to be root to add/modify hosts file entries.</source>
+	<translation>Noch einmal, es wäre eine Bedrohung der Sicherheit (siehe die Antwort weiter oben). Daher müssen Sie Root sein, um Hosts Einträge anzulegen/modifizieren.</translation>
     </message>
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="88"/>
-        <source>Cookie Locking</source>
-        <translation type="unfinished"></translation>
+        <source>Cookies</source>
+        <translation>Kekse</translation>
     </message>
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="93"/>
+        <source>The cookie manager works by editing the -/.local/share/org.sailfishos/browser/.mozilla/ (for SFOS up to 3.4: -/.mozilla/mozembed/) cookies.sqlite database. In order to access/work with cookies the browser needs to be closed before opening the cookies section, else you might see an empty window. All changes need the browser to be closed/restarted in order to take effect.</source>
+	<translation>Der Kekse Verwalter funktioniert, indem er die Datei ~/.local/share/org.sailfishos/browser/.mozilla/ (for SFOS up to 3.4: ]/.mozilla/mozembed/) cookies.sqlite Datenbank.Damit der Zugriff/Veränderung funktioniert, muss der Browser geschlossen sein Ansonsten sehen Sie ein leeres Fenster. Um alle Änderungen zu aktivieren, muss der Browser neu gestartet werden.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/DocsPage.qml" line="99"/>
+        <source>Cookie Locking</source>
+        <translation>Kekse sperren</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/DocsPage.qml" line="104"/>
         <source>Cookie locking works by making the cookie database read only, therefore its contents stay same between restarting the browser. The effect of this is cookies not being persistent over browser restarts.</source>
-        <translation type="unfinished"></translation>
+	<translation>Das Kekse sperren funktioniert, indem die Kekse Datenbank auf schreibgeschützt gesetzt wird, daher bleibt ihr Inhalt gleich zwischen den Browser Neustarts. Der Effekt ist, dass die Cookies nicht persistiert werden.</translation>
     </message>
 </context>
 <context>
@@ -145,27 +164,27 @@
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="19"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="22"/>
         <source>Clear Cookie Blacklist</source>
-        <translation type="unfinished"></translation>
+        <translation>Leere Kekse Schwarzliste</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="33"/>
         <source>Clear Cookie Whitelist</source>
-        <translation type="unfinished"></translation>
+        <translation>Leere kekse Weßliste</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="44"/>
         <source>WLAN only</source>
-        <translation type="unfinished"></translation>
+        <translation>Nur WLAN</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="45"/>
         <source>Downloads adblock lists only if connected to WLAN (tested only on Jolla phones)</source>
-        <translation type="unfinished"></translation>
+	<translation>Lade Werbeblocker Listen nur herunter, wenn mit WLAN verbunden (getestet nur mit Jolla Gerät).</translation>
     </message>
 </context>
 <context>
@@ -173,22 +192,22 @@
     <message>
         <location filename="../qml/pages/SourceDetailPage.qml" line="15"/>
         <source>Open hosts file URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Öffne hosts Datei URl</translation>
     </message>
     <message>
         <location filename="../qml/pages/SourceDetailPage.qml" line="19"/>
         <source>More information</source>
-        <translation type="unfinished"></translation>
+        <translation>Weitere Informationen</translation>
     </message>
     <message>
         <location filename="../qml/pages/SourceDetailPage.qml" line="43"/>
         <source>Source</source>
-        <translation type="unfinished"></translation>
+        <translation>Quelle</translation>
     </message>
     <message>
         <location filename="../qml/pages/SourceDetailPage.qml" line="47"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Lizenz</translation>
     </message>
 </context>
 <context>
@@ -196,40 +215,60 @@
     <message>
         <location filename="../qml/pages/components/SourcesMenuItem.qml" line="23"/>
         <source>Blocked</source>
-        <translation type="unfinished"></translation>
+        <translation>Geblockt</translation>
     </message>
     <message>
         <location filename="../qml/pages/components/SourcesMenuItem.qml" line="28"/>
         <source>Lists</source>
-        <translation type="unfinished"></translation>
+        <translation>Listen</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SourcesMenuItem.qml" line="34"/>
+        <source>Adblock Lists</source>
+        <translation>Werbeblocker Listen</translation>
     </message>
 </context>
 <context>
     <name>SourcesPage</name>
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="13"/>
-        <source>Disable</source>
-        <translation type="unfinished"></translation>
+        <source>Disable all</source>
+        <translation>Deaktiviere alle</translation>
     </message>
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="21"/>
+        <source>Cancel/clear update loop</source>
+	<translation>Abbruch/Löschen der Update Schleife</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SourcesPage.qml" line="29"/>
+        <source>Show error log (just in case ;)</source>
+        <translation>Zeige das Fehler Log (nur für den Fall ;)</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SourcesPage.qml" line="37"/>
+        <source>Restart Android support</source>
+	<translation>Neustart des Android/AppSupports</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SourcesPage.qml" line="45"/>
         <source>Update now</source>
-        <translation type="unfinished"></translation>
+        <translation>Jetzt auffrischen</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SourcesPage.qml" line="32"/>
+        <location filename="../qml/pages/SourcesPage.qml" line="56"/>
         <source>Sources</source>
-        <translation type="unfinished"></translation>
+        <translation>Quellen</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SourcesPage.qml" line="38"/>
+        <location filename="../qml/pages/SourcesPage.qml" line="62"/>
         <source>Updating...</source>
-        <translation type="unfinished"></translation>
+        <translation>Am Auffrischen dran sein tun...</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SourcesPage.qml" line="44"/>
+        <location filename="../qml/pages/SourcesPage.qml" line="68"/>
         <source>Update in progress. This may take a while, but you can safely close the application and the update will finish in the background.</source>
-        <translation type="unfinished"></translation>
+	<translation>Auffrischen läuft. Dies kann eine Weile dauern, aber Sie können die Anwendung sicher schließen und die Auffrischung wird im Hintergrund weiter laufen.</translation>
     </message>
 </context>
 <context>
@@ -237,7 +276,20 @@
     <message>
         <location filename="../qml/harbour-defender.qml" line="13"/>
         <source>Defender</source>
-        <translation type="unfinished"></translation>
+        <translation>Abwehrer</translation>
+    </message>
+</context>
+<context>
+    <name>WelcomePage</name>
+    <message>
+        <location filename="../qml/pages/WelcomePage.qml" line="40"/>
+        <source>Documentation</source>
+        <translation>Dokumentation</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/WelcomePage.qml" line="46"/>
+        <source>Settings</source>
+        <translation>Einstellungen</translation>
     </message>
 </context>
 </TS>

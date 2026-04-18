@@ -277,7 +277,7 @@
     <message>
         <location filename="../qml/harbour-defender.qml" line="13"/>
         <source>Defender</source>
-        <translation>Defender</translation>
+        <translation>Försvarare</translation>
     </message>
 </context>
 <context>
