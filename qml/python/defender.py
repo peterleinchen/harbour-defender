@@ -26,8 +26,9 @@ UPDATE_FILE_PATH = CONFIG_HOME_DIR + '/' + 'update'
 UPDLOOP_FILE_PATH = CONFIG_HOME_DIR + '/' + 'updLoop'
 ADRESTART_FILE_PATH = CONFIG_HOME_DIR + '/' + 'adRestart'
 
-ERRLOG_FILE_PATH = HOME_DIR + '/Documents/' + '.defender_err.log'
 LOGFILE_LAST = '/var/log/'+ APP_NAME +'_last.json'
+#ERRLOG_FILE_PATH = HOME_DIR + '/Documents/' + '.defender_err.log'
+ERRLOG_FILE_PATH = '/var/log/' + APP_NAME + '_err.log'
 
 cookies_path = HOME_DIR + '/.local/share/org.sailfishos/browser/.mozilla/' + 'cookies.sqlite'
 if not os.path.isfile(cookies_path):
@@ -147,7 +148,7 @@ def clear_update_loop():
 #        print(f"Error: {e}")
 
 def show_error_log():
-    if os.path.isfile(ERRLOG_FILE_PATH):
+    if os.path.isfile(ERRLOG_FILE_PATH) and (os.path.getsize(ERRLOG_FILE_PATH) > 0):
         os.system("/usr/bin/sailfish-browser " + ERRLOG_FILE_PATH + " &")
         #os.system("invoker --type=browser,silica-qt5 -n sailfish-browser " + ERRLOG_FILE_PATH + " &")
         #open_browser(ERRLOG_FILE_PATH)

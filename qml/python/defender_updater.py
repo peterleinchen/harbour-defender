@@ -40,9 +40,10 @@ CONFIG_HOME_PATH = CONFIG_HOME_DIR + '/' + APP_NAME + '.conf'
 CONFIG_APP_PATH = APP_DIR + '/' + APP_NAME + '_default.conf'
 
 UPDATE_FILE_PATH = CONFIG_HOME_DIR + '/' + 'update'
-ERRLOG_FILE_PATH = HOME_DIR + '/Documents/' + '.defender_err.log'
 
-LOGFILE_LAST = '/var/log/'+ APP_NAME +'_last.json'
+LOGFILE_LAST_PATH = '/var/log/'+ APP_NAME +'_last.json'
+#ERRLOG_FILE_PATH = HOME_DIR + '/Documents/' + '.defender_err.log'
+ERRLOG_FILE_PATH = '/var/log/' + APP_NAME + '_err.log'
 
 whitelist = []
 urls = []
@@ -182,8 +183,10 @@ def update(remote_sources = urls):
     Main update function - takes a list of remote source URLs, writes all available hosts and returns 0.
     """
     hosts = Hosts(path=tmp_hosts)
-    if os.path.isfile(ERRLOG_FILE_PATH):
-        os.remove(ERRLOG_FILE_PATH)
+    #if os.path.isfile(ERRLOG_FILE_PATH):
+    #    os.remove(ERRLOG_FILE_PATH)
+    if os.path.isfile(ERRLOG_FILE_PATH) and (os.path.getsize(ERRLOG_FILE_PATH) > 0):
+        os.system("echo -n '' > " + ERRLOG_FILE_PATH);
     
     # Adding remote sources
     for remote_source in remote_sources:
@@ -197,11 +200,15 @@ def update(remote_sources = urls):
     write_all(hosts)
     if os.path.isfile(tmp_hosts):
         os.remove(tmp_hosts)
+    
+    #flush the DNS cache
+    os.system("systemctl restart connman")
+    
     data = {
         'time': time.time(),
         'sources': len(remote_sources)
         }
-    with open(LOGFILE_LAST, 'w') as outfile:
+    with open(LOGFILE_LAST_PATH, 'w') as outfile:
         json.dump(data, outfile)
     return 0
 

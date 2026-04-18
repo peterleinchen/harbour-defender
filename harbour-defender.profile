@@ -23,4 +23,6 @@ read-write ${HOME}/.config/harbour-defender/
 
 #includes
 #include /etc/sailjail/permissions/booster-browser.profile
+#include /etc/sailjail/permissions/booster-silica-qt5.profile
+
 include /etc/sailjail/permissions/Defender.permission

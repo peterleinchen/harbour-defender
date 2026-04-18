@@ -9,15 +9,16 @@ Name=Defender
 [X-Sailjail]
 #Sandboxing=Disabled
 #Permissions=Defender;Internet;Compatibility;Priviledged;Diplay;WebView;Ambience
-Permissions=Defender;xInternet;xDocuments;Compatibility
+Permissions=Defender;Internet;xCompatibility
 CustomContentHandler=org.sailfishos.browser
 OrganizationName=leinchen.peter
 ApplicationName=harbour-defender
 
 # translation example:
 # your app name in German locale (de)
-#
-# Remember to comment out the following line, if you do not want to use
-# a different app name in German locale (de).
 #Name[de]=Abwehrer
-
+#
+# Remember to comment out the following line(s), if you do not want to use
+# a different app name in other locale(s).
+Name[de]=Abwehrer
+Name[sv]=Försvarare

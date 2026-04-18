@@ -9,6 +9,15 @@
 # - Summary of changes
 # * date Peter Leinchen <peterleinchen@t-online.de> vx.y.z
 
+v0.8.3
+- huge debug session with @eson trying to find the culprit why Defender does not start in sailjail on 10 III, unsuccessful :( (missing libui_compat_layer.so)
+- nevertheless updated permission and profile
+- got rid of Documents.permission by moving errlog file to /var/log/defender_err.log
+- added auomatic re-calculation of sources and cookies count
+- added restart of connman after update (to flush DNS cache)
+
+ 
+
 v0.8.2
 - commented out func open_browser (forced a dependency on python-dbus)
 

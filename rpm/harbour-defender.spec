@@ -12,7 +12,7 @@ Name:       harbour-defender
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Privacy watcher
-Version:    0.8.2
+Version:    0.8.3
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3
@@ -102,27 +102,29 @@ if [ -d "%{_a2configdir}" ]; then
   [ -f %{_a2configdir}/hosts ] && echo "%{_a2configdir}/hosts exists" || echo -e "127.0.0.1                   localhost\n" >> %{_a2configdir}/hosts
   [ -f %{_a2configdir}/hosts.editable ] && echo "%{_a2configdir}/hosts.editable exists" || cp %{_a2configdir}/hosts %{_a2configdir}/hosts.editable 2>/dev/null || :
 fi
+
 if [ -f /usr/lib/systemd/system/sailfish-unlock-agent.service ]; then
-  #exchange the path unit's WantedBy in case of ENrypted devices, 
-  #normally the default for X.. devices and SW >= 3.3 flashed
-  sed -e 's/WantedBy=.*/WantedBy=sailfish-unlock-agent.service/' -i /etc/systemd/system/%{name}.path
-  sed -e 's/WantedBy=.*/WantedBy=sailfish-unlock-agent.service/' -i /etc/systemd/system/%{name}-adRestart.path
-  sed -e 's/WantedBy=.*/WantedBy=sailfish-unlock-agent.service/' -i /etc/systemd/system/%{name}-updLoop.path
+  #exchange the path unit's WantedBy in case of ENcrypted devices, 
+  #normally the default for X.. (and 10) devices and/or SW >= 3.3 flashed
+  sed -e 's/^WantedBy=.*/WantedBy=sailfish-unlock-agent.service/' -i /etc/systemd/system/%{name}.path
+  sed -e 's/^WantedBy=.*/WantedBy=sailfish-unlock-agent.service/' -i /etc/systemd/system/%{name}-adRestart.path
+  sed -e 's/^WantedBy=.*/WantedBy=sailfish-unlock-agent.service/' -i /etc/systemd/system/%{name}-updLoop.path
 else if [ -f /usr/lib/systemd/system/decrypt-home_encrypted.service ]; then
   #exchange the path unit's WantedBy in case of ENrypted devices, 
   #normally the default for X.. devices and SW >= 3.3 flashed
   #but different for community portss
-  sed -e 's/WantedBy=.*/WantedBy=decrypt-home_encrypted.service/' -i /etc/systemd/system/%{name}.path
-  sed -e 's/WantedBy=.*/WantedBy=decrypt-home_encrypted.service/' -i /etc/systemd/system/%{name}-adRestart.path
-  sed -e 's/WantedBy=.*/WantedBy=decrypt-home_encrypted.service/' -i /etc/systemd/system/%{name}-updLoop.path
+  sed -e 's/^WantedBy=.*/WantedBy=decrypt-home_encrypted.service/' -i /etc/systemd/system/%{name}.path
+  sed -e 's/^WantedBy=.*/WantedBy=decrypt-home_encrypted.service/' -i /etc/systemd/system/%{name}-adRestart.path
+  sed -e 's/^WantedBy=.*/WantedBy=decrypt-home_encrypted.service/' -i /etc/systemd/system/%{name}-updLoop.path
 else
   # exchange the path unit's WantedBy in case of NOT encrypted devices, 
   # for older devices not supporting or having activated  encryption
-  sed -e 's/WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}.path
-  sed -e 's/WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}-adRestart.path
-  sed -e 's/WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}-updLoop.path
+  sed -e 's/^WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}.path
+  sed -e 's/^WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}-adRestart.path
+  sed -e 's/^WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}-updLoop.path
   fi
 fi
+
 systemctl daemon-reload
 systemctl start %{name}.timer
 systemctl enable %{name}.timer
@@ -133,21 +135,26 @@ systemctl start %{name}-adRestart.path
 systemctl enable %{name}-adRestart.path
 systemctl start %{name}-updLoop.path
 systemctl enable %{name}-updLoop.path
+
 #sed the version number
 sed -e 's/text: \"[0-9]\.[0-9]\.[0-9]\"/text: \"%{version}\"/' -i %{_datadir}/%{name}/qml/pages/DocsPage.qml
+
 #temporary hack, until Jolla fixes aliendalvik bind mount of /system/etc/hosts
 grep -q '^lxc\.mount\.entry.=./system/etc/hosts system/etc/hosts' /var/lib/lxc/aliendalvik/extra_config
 if [ 0 != $? ]; then
     echo "lxc.mount.entry = /system/etc/hosts system/etc/hosts none bind,ro 0 0" >> /var/lib/lxc/aliendalvik/extra_config
 fi
+
 #temporary hack, until Jolla fixes nsswitch.conf problematic
 #if [ 0 != `grep -q '^private-etc.*nsswitch.conf' /etc/sailjail/permissions/Internet.permission` ]; then
 grep -q '^private-etc.*nsswitch.conf' /etc/sailjail/permissions/Internet.permission
 if [ 0 != $? ]; then
     sed -e 's/^private-etc /private-etc nsswitch.conf,/' -i /etc/sailjail/permissions/Internet.permission
 fi
+
 # small fix for sailjail, as /var/log/ and mkfile do not like each other
 touch /var/log/defender_last.json
+touch /var/log/defender_err.log
 # >> install post
 # << install post
 
@@ -165,11 +172,12 @@ if [ "$1" = "0" ]; then
     systemctl stop %{name}-adRestart.path
     systemctl disable %{name}-adRestart.path
     systemctl daemon-reload
-
-    [ -f /home/defaultuser/%{name}/update ] && rm /home/defaultuser/%{name}/update || [ -f /home/nemo/%{name}/update ] && rm /home/nemo/%{name}/update || :
-    [ -f /home/defaultuser/%{name}/Documents/.defender_err.log ] && rm /home/defaultuser/%{name}/Documents/.defender_err.log || [ -f /home/nemo/%{name}/Documents/.defender_err.log ] && rm /home/nemo/%{name}/Documents/.defender_err.log || :
+    
     [ -f /var/log/defender_last.json ] && rm /var/log/defender_last.json ]
-
+    [ -f /var/log/defender_err.log ] && rm /var/log/defender_err.log ]
+    # line below not needed anymore, as using /var/log/ (but kept as example for nemo/defaultuser)
+    [ -f /home/defaultuser/%{name}/Documents/.defender_err.log ] && rm /home/defaultuser/%{name}/Documents/.defender_err.log || [ -f /home/nemo/%{name}/Documents/.defender_err.log ] && rm /home/nemo/%{name}/Documents/.defender_err.log || :
+    
     [ -f %{_sysconfdir}/hosts.editable ] && cp %{_sysconfdir}/hosts.editable %{_sysconfdir}/hosts 2>/dev/null || echo "/etc/hosts.editable does not exist"
     [ -f %{_a1configdir}/hosts.editable ] && cp %{_a1configdir}/hosts.editable %{_a1configdir}/hosts 2>/dev/null || echo "%{_a1configdir}/hosts.editable does not exist"
     [ -f %{_a2configdir}/hosts.editable ] && cp %{_a2configdir}/hosts.editable %{_a2configdir}/hosts 2>/dev/null || echo "%{_a2configdir}/hosts.editable does not exist" 
