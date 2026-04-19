@@ -76,8 +76,8 @@ install -p -m 644 %{name}.profile %{buildroot}/%{_sailjaildir}
 install -p -m 644 %{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}
 #
 #translations
-mkdir -p %{buildroot}/%{name}/translations
-install -p -m 644 translations/%{name}*.ts %{buildroot}/%{name}/translations
+mkdir -p %{buildroot}/%{_datadir}/%{name}/translations
+install -p -m 644 translations/%{name}*.qm %{buildroot}/%{_datadir}/%{name}/translations
 
 %files
 %defattr(-,root,root,-)
