@@ -92,7 +92,7 @@ install -p -m 644 translations/*.ts %{buildroot}/%{name}/translations
 %attr(0644,root,root) %{_unitdir}/%{name}*.path
 %attr(0644,root,root) %{_sysconfdir}/%{shortname}.conf
 %exclude %{_datadir}/%{name}/qml/python/*.pyc
-yy%exclude %{_datadir}/%{name}/qml/python/*.pyo
+%exclude %{_datadir}/%{name}/qml/python/*.pyo
 %exclude %{_datadir}/%{name}/qml/python/python_hosts/*.pyc
 %exclude %{_datadir}/%{name}/qml/python/python_hosts/*.pyo
 # >> files
