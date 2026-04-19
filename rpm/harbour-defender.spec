@@ -77,13 +77,13 @@ install -p -m 644 %{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}
 #
 #translations
 mkdir -p %{buildroot}/%{name}/translations
-install -p -m 644 translations/*.ts %{buildroot}/%{name}/translations
+install -p -m 644 translations/%{name}*.ts %{buildroot}/%{name}/translations
 
 %files
 %defattr(-,root,root,-)
 %{_bindir}/*
 %{_datadir}/%{name}
-%{_datadir}/%{name}/translations/*.qm
+%{_datadir}/%{name}/translations/*
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
 %{_sailjaildir}/*
