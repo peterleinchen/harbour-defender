@@ -8,7 +8,7 @@
 %{!?qtc_qmake:%define qtc_qmake %qmake}
 %{!?qtc_qmake5:%define qtc_qmake5 %qmake5}
 %{!?qtc_make:%define qtc_make make}
-%{!?qtc_lrelease-qt5:%define qtc_lrelease-qt5 lrelease-qt5}
+%{!?qtc_lrelease:%define qtc_lrelease lrelease}
 #
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 
