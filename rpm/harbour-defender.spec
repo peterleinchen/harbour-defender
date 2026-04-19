@@ -50,7 +50,7 @@ Icon: https://raw.githubusercontent.com/peterleinchen/harbour-defender/master/qm
 
 %build
 #translations
-%qtc_lrelease-qt5 translations/*.ts
+%qtc_lrelease translations/*.ts
 #dirs
 %qtc_qmake5 CONFDIR=%{_sysconfdir} UNITDIR=%{_unitdir} SAILJAILDIR=%{_sailjaildir}
 #make
