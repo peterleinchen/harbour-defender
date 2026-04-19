@@ -5,14 +5,16 @@
 %global _a1configdir /system%{_sysconfdir}
 %global _a2configdir /opt/alien/system%{_sysconfdir}
 
-Name:       harbour-defender
-
 %{!?qtc_qmake:%define qtc_qmake %qmake}
 %{!?qtc_qmake5:%define qtc_qmake5 %qmake5}
 %{!?qtc_make:%define qtc_make make}
+%{!?qtc_lrelease-qt5:%define qtc_lrelease-qt5 lrelease-qt5}
+#
 %{?qtc_builddir:%define _builddir %qtc_builddir}
-Summary:    Privacy watcher
-Version:    0.8.3
+
+Name:       harbour-defender
+Summary:    Privacy guard or SFOS
+Version:    0.8.4
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3
@@ -47,8 +49,11 @@ Icon: https://raw.githubusercontent.com/peterleinchen/harbour-defender/master/qm
 %setup -q -n %{name}-%{version}
 
 %build
+#translations
+%qtc_lrelease-qt5 translations/*.ts
+#dirs
 %qtc_qmake5 CONFDIR=%{_sysconfdir} UNITDIR=%{_unitdir} SAILJAILDIR=%{_sailjaildir}
-
+#make
 %qtc_make %{?_smp_mflags}
 
 %install
@@ -69,11 +74,16 @@ mkdir -p %{buildroot}/%{_sailjaildir}
 install -p -m 644 %{name}.profile %{buildroot}/%{_sailjaildir}
 #NOPE: install -p -m 644 ./%{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}/
 install -p -m 644 %{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}
+#
+#translations
+mkdir -p %{buildroot}/%{name}/tanslations
+install -p -m 644 translations/*.ts %{buildroot}/%{name}/translations
 
 %files
 %defattr(-,root,root,-)
 %{_bindir}/*
 %{_datadir}/%{name}
+%{_datadir}/%{name}/translations/*.qm
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
 %{_sailjaildir}/*
@@ -82,7 +92,7 @@ install -p -m 644 %{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}
 %attr(0644,root,root) %{_unitdir}/%{name}*.path
 %attr(0644,root,root) %{_sysconfdir}/%{shortname}.conf
 %exclude %{_datadir}/%{name}/qml/python/*.pyc
-%exclude %{_datadir}/%{name}/qml/python/*.pyo
+yy%exclude %{_datadir}/%{name}/qml/python/*.pyo
 %exclude %{_datadir}/%{name}/qml/python/python_hosts/*.pyc
 %exclude %{_datadir}/%{name}/qml/python/python_hosts/*.pyo
 # >> files
