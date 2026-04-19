@@ -127,7 +127,8 @@
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="71"/>
         <source>You can add your custom hosts entries by editing the file /etc/hosts.editable and treating it as a generic hosts file. Don&apos;t forget to choose &apos;Update Now&apos; in the app to see an immediate effect.</source>
-	<translation>Sie können eigene Hosts Einträge erstellen, indem Sie die Datei /etc/hosts.editable editieren und als generische Hosts Datei behandeln. Vergessen Sie nicht &apos;Update now&apos; in der Anwendung zu wählen, um einen sofortigen Effekt zu sehen.</translation>
+	<translation>Sie können eigene Hosts Einträge erstellen, indem Sie die Datei /etc/hosts.editable editieren und als generische Hosts Datei behandeln. Vergessen Sie nicht &apos;Jetzt auffrischen&apos; in der Anwendung zu wählen, um einen sofortigen Effekt zu sehen.</translation>
+    </message>
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="77"/>
         <source>Why can&apos;t I add new entries from the app?</source>
