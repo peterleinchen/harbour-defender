@@ -83,7 +83,8 @@ install -p -m 644 translations/%{name}*.qm %{buildroot}/%{_datadir}/%{name}/tran
 %defattr(-,root,root,-)
 %{_bindir}/*
 %{_datadir}/%{name}
-%{_datadir}/%{name}/translations/*
+#not needed explicitly (included already above)
+#%{_datadir}/%{name}/translations/*
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
 %{_sailjaildir}/*
