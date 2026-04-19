@@ -13,6 +13,7 @@ https://sailfishos-chum.github.io/apps/harbour-defender
 
 Assets, outdated:
 https://openrepos.net/content/peterleinchen/defender-ii-updated-encrypted-devices-originated-nodevel
+https://openrepos.net/content/nodevel/defender
 
 -- 
 
