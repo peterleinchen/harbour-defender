@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="">
+<TS version="2.1">
 <context>
     <name>CookiesMenuItem</name>
     <message>
@@ -14,7 +14,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesMenuItem.qml" line="34"/>
+        <location filename="../qml/pages/components/CookiesMenuItem.qml" line="34"/>
         <source>Cookie Manager</source>
         <translation type="unfinished"></translation>
     </message>
@@ -52,6 +52,14 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../qml/pages/CookiesPage.qml" line="42"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="58"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="83"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="162"/>
+        <source>Deleting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qml/pages/CookiesPage.qml" line="56"/>
         <source>Delete all not whitelisted</source>
         <translation type="unfinished"></translation>
@@ -84,6 +92,11 @@
 </context>
 <context>
     <name>DocsPage</name>
+    <message>
+        <location filename="../qml/pages/DocsPage.qml" line="19"/>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="30"/>
         <source>Warning</source>
@@ -173,6 +186,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="25"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="36"/>
+        <source>Clearing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qml/pages/SettingsPage.qml" line="33"/>
         <source>Clear Cookie Whitelist</source>
         <translation type="unfinished"></translation>
@@ -224,7 +243,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SourcesMenuItem.qml" line="34"/>
+        <location filename="../qml/pages/components/SourcesMenuItem.qml" line="34"/>
         <source>Adblock Lists</source>
         <translation type="unfinished"></translation>
     </message>
@@ -237,8 +256,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../qml/pages/SourcesPage.qml" line="15"/>
+        <source>Preparing disable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qml/pages/SourcesPage.qml" line="21"/>
         <source>Cancel/clear update loop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SourcesPage.qml" line="23"/>
+        <source>Preparing cancel/clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -247,13 +276,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../qml/pages/SourcesPage.qml" line="31"/>
+        <source>Pulling up error.log (only if exists)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qml/pages/SourcesPage.qml" line="37"/>
-        <source>Restart Android support</source>
+        <source>Restart Android/App Support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SourcesPage.qml" line="39"/>
+        <source>Preparing Android restart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="45"/>
         <source>Update now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SourcesPage.qml" line="47"/>
+        <source>Preparing update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -273,15 +317,17 @@
     </message>
 </context>
 <context>
-    <name>harbour-defender</name>
+    <name>WelcomePage</name>
     <message>
-        <location filename="../qml/harbour-defender.qml" line="13"/>
-        <source>Defender</source>
+        <location filename="../qml/pages/WelcomePage.qml" line="27"/>
+        <source>Adblock Lists</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>WelcomePage</name>
+    <message>
+        <location filename="../qml/pages/WelcomePage.qml" line="34"/>
+        <source>Cookies</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="../qml/pages/WelcomePage.qml" line="40"/>
         <source>Documentation</source>
@@ -290,6 +336,14 @@
     <message>
         <location filename="../qml/pages/WelcomePage.qml" line="46"/>
         <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>harbour-defender</name>
+    <message>
+        <location filename="../qml/harbour-defender.qml" line="13"/>
+        <source>Defender</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

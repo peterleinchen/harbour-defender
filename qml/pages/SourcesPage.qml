@@ -12,7 +12,7 @@ Page {
             MenuItem {
                 text: qsTr("Disable all")
                 onClicked: {
-                    remorse.execute("Preparing disable", function() {
+                    remorse.execute(qsTr("Preparing disable"), function() {
                         disableAll()
                     })
                 }
@@ -20,7 +20,7 @@ Page {
             MenuItem {
                 text: qsTr("Cancel/clear update loop")
                 onClicked: {
-                    remorse.execute("Preparing cancel/clear", function() {
+                    remorse.execute(qsTr("Preparing cancel/clear"), function() {
                         clearUpdateLoop()
                     })
                 }
@@ -28,15 +28,15 @@ Page {
             MenuItem {
                 text: qsTr("Show error log (just in case ;)")
                 onClicked: {
-                    remorse.execute("Pulling up error.log (only if exists)", function() {
+                    remorse.execute(qsTr("Pulling up error.log (only if exists)"), function() {
                         showErrorLog()
                     })
                 }
             }
             MenuItem {
-                text: qsTr("Restart Android support")
+                text: qsTr("Restart Android/App Support")
                 onClicked: {
-                    remorse.execute("Preparing Android restart", function() {
+                    remorse.execute(qsTr("Preparing Android restart"), function() {
                         restartAndroidSupport()
                     })
                 }
@@ -44,7 +44,7 @@ Page {
             MenuItem {
                 text: qsTr("Update now")
                 onClicked: {
-                    remorse.execute("Preparing update", function() {
+                    remorse.execute(qsTr("Preparing update"), function() {
                         updateNow()
                     })
                 }

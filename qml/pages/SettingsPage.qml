@@ -22,7 +22,7 @@ Page {
                 text: qsTr("Clear Cookie Blacklist")
                 anchors.horizontalCenter: parent.horizontalCenter
                 onClicked: {
-                    remorse.execute("Clearing", function() {
+                    remorse.execute(qsTr("Clearing"), function() {
                         py.call(appname+'.change_config', ['SETTINGS', 'DomainBlacklist', ''], function(result) {
                             cookieBlacklist = []
                         })
@@ -33,7 +33,7 @@ Page {
                 text: qsTr("Clear Cookie Whitelist")
                 anchors.horizontalCenter: parent.horizontalCenter
                 onClicked: {
-                    remorse.execute("Clearing", function() {
+                    remorse.execute(qsTr("Clearing"), function() {
                         py.call(appname+'.change_config', ['SETTINGS', 'DomainWhitelist', ''], function(result) {
                             cookieWhitelist = []
                         })
