@@ -30,7 +30,20 @@ if not os.path.isdir(HOME_DIR):
 if not os.path.isdir(HOME_DIR):
     print("Neither 'nemo' nor 'defaultuser' have a home :(, \n \
     please give a new one in qml/python/defender_updater.py (around line: 30)")
+    #getent /etc/passwd 100000 | cut -f1 -d:'' 
+    with open("/tmp/defender/usr", "r") as file:
+        ADMIN_USER = file.read()
+        close(f)
+    #getent /etc/passwd 100000 | cut -f6 -d:'' 
+    with open("/tmp/defender/dir", "r") as file:
+        HOME_DIR = file.read()
+        close(f)
+if not os.path.isdir(HOME_DIR):
+    write_err_log("Neither 'nemo' nor 'defaultuser' \n \
+    NOR '" + ADMIN_USER + "' with '" + HOME_DIR + "' are valid, \n \
+    cannot continue!")
     exit(255)
+                                        
                                         
 CONFIG_HOME_DIR = HOME_DIR + '/.config/harbour-' + APP_NAME          
 CONFIG_ETC_DIR = '/etc'
