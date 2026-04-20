@@ -14,7 +14,7 @@
 
 Name:       harbour-defender
 Summary:    Privacy guard or SFOS
-Version:    0.8.4
+Version:    0.8.5
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3
@@ -187,9 +187,22 @@ if [ "$1" = "0" ]; then
     [ -f /var/log/defender_last.json ] && rm /var/log/defender_last.json ]
     [ -f /var/log/defender_err.log ] && rm /var/log/defender_err.log ]
     # line below not needed anymore, as using /var/log/ (but kept as example for nemo/defaultuser)
-    [ -f /home/defaultuser/%{name}/Documents/.defender_err.log ] && rm /home/defaultuser/%{name}/Documents/.defender_err.log || [ -f /home/nemo/%{name}/Documents/.defender_err.log ] && rm /home/nemo/%{name}/Documents/.defender_err.log || :
+    #[ -f /home/defaultuser/%{name}/Documents/.defender_err.log ] && rm /home/defaultuser/%{name}/Documents/.defender_err.log || [ -f /home/nemo/%{name}/Documents/.defender_err.log ] && rm /home/nemo/%{name}/Documents/.defender_err.log || :
     
+    #copy back manually created entries to hosts
     [ -f %{_sysconfdir}/hosts.editable ] && cp %{_sysconfdir}/hosts.editable %{_sysconfdir}/hosts 2>/dev/null || echo "/etc/hosts.editable does not exist"
     [ -f %{_a1configdir}/hosts.editable ] && cp %{_a1configdir}/hosts.editable %{_a1configdir}/hosts 2>/dev/null || echo "%{_a1configdir}/hosts.editable does not exist"
     [ -f %{_a2configdir}/hosts.editable ] && cp %{_a2configdir}/hosts.editable %{_a2configdir}/hosts 2>/dev/null || echo "%{_a2configdir}/hosts.editable does not exist" 
+
+    # disable sailjail for all older SFOS versions 
+    # was introduced with 4.0.1 (Koli), became mandarory on 4.4.0 (Vanha Rauma) 
+    # and only fully working since 4.6.0.15 (Sauna), the last version supporting 
+    # the Tablet and the X
+    # So for easing, we only sailjail from SFOS 5.0 onwards ;)
+    if [ $(grep VERSION_ID /etc/os-release  | cut -f2 -d'=' | cut -f1 -d'.') -lt 5 ]; then;
+        sed -i 's/^#X-Nemo-Application/X-Nemo-Application/' /usr/share/applications/harbour-defender.desktop
+        sed -i 's/^#Exec=harbour-defender/Exec=harbour-defender/' /usr/share/applications/harbour-defender.desktop
+        sed -i 's/^Exec=\/usr\/bin\/sailjail/#Exec=\/usr\/bin\/sailjail/' /usr/share/applications/harbour-defender.desktop
+        sed -i 's/^#Sandboxing=Disabled/Sandboxing=Disabled/' /usr/share/applications/harbour-defender.desktop
+    fi
 fi
