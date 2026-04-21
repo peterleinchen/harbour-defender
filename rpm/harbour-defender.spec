@@ -14,7 +14,7 @@
 
 Name:       harbour-defender
 Summary:    Privacy guard or SFOS
-Version:    0.8.5
+Version:    0.8.6
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3

@@ -9,6 +9,11 @@
 # - Summary of changes
 # * date Peter Leinchen <peterleinchen@t-online.de> vx.y.z
 
+v0.8.6
+- updated translations (all remorse popups)
+- moved the ApppName translation tags to the correct section in desktop file
+
+ 
 v0.8.5
 - added support for all other user names (besides nemo and defaultuser) and even for different home directory
 - disabled sailjail for all SFOS versions below 5.0
