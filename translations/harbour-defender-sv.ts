@@ -57,7 +57,7 @@
         <location filename="../qml/pages/CookiesPage.qml" line="83"/>
         <location filename="../qml/pages/CookiesPage.qml" line="162"/>
         <source>Deleting</source>
-        <translation type="unfinished"></translation>
+        <translation>Tar bort</translation>
     </message>
     <message>
         <location filename="../qml/pages/CookiesPage.qml" line="56"/>
@@ -95,7 +95,7 @@
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="19"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Version</translation>
     </message>
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="30"/>
@@ -189,7 +189,7 @@
         <location filename="../qml/pages/SettingsPage.qml" line="25"/>
         <location filename="../qml/pages/SettingsPage.qml" line="36"/>
         <source>Clearing</source>
-        <translation type="unfinished"></translation>
+        <translation>Rensar</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="33"/>
@@ -258,7 +258,7 @@
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="15"/>
         <source>Preparing disable</source>
-        <translation type="unfinished"></translation>
+        <translation>Förbereder borttagning</translation>
     </message>
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="21"/>
@@ -268,7 +268,7 @@
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="23"/>
         <source>Preparing cancel/clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Förbereder stopp/rensning</translation>
     </message>
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="29"/>
@@ -278,7 +278,7 @@
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="31"/>
         <source>Pulling up error.log (only if exists)</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppnar fellog (endast om den finns)</translation>
     </message>
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="37"/>
@@ -288,7 +288,7 @@
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="39"/>
         <source>Preparing Android restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Förbereder Android-omstart</translation>
     </message>
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="45"/>
@@ -298,7 +298,7 @@
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="47"/>
         <source>Preparing update</source>
-        <translation type="unfinished"></translation>
+        <translation>Förbereder uppdatering</translation>
     </message>
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="56"/>
@@ -321,12 +321,12 @@
     <message>
         <location filename="../qml/pages/WelcomePage.qml" line="27"/>
         <source>Adblock Lists</source>
-        <translation type="unfinished">Blocklistor</translation>
+        <translation>Blocklistor</translation>
     </message>
     <message>
         <location filename="../qml/pages/WelcomePage.qml" line="34"/>
         <source>Cookies</source>
-        <translation type="unfinished">Cookies</translation>
+        <translation>Cookies</translation>
     </message>
     <message>
         <location filename="../qml/pages/WelcomePage.qml" line="40"/>
