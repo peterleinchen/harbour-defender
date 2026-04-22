@@ -31,12 +31,12 @@ if not os.path.isdir(HOME_DIR):
     print("Neither 'nemo' nor 'defaultuser' have a home :(, \n \
     please give a new one in qml/python/defender_updater.py (around line: 30)")
     #getent /etc/passwd 100000 | cut -f1 -d:'' 
-    with open("/tmp/defender/usr", "r") as file:
-        ADMIN_USER = file.read()
+    with open("/tmp/defender/usr", "r") as f:
+        ADMIN_USER = f.read()
         close(f)
     #getent /etc/passwd 100000 | cut -f6 -d:'' 
-    with open("/tmp/defender/dir", "r") as file:
-        HOME_DIR = file.read()
+    with open("/tmp/defender/dir", "r") as f:
+        HOME_DIR = f.read()
         close(f)
 if not os.path.isdir(HOME_DIR):
     write_err_log("Neither 'nemo' nor 'defaultuser' \n \
