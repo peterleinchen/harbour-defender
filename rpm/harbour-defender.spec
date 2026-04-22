@@ -13,7 +13,7 @@
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 
 Name:       harbour-defender
-Summary:    Privacy guard or SFOS
+Summary:    Privacy guard for SFOS
 Version:    0.8.6
 Release:    1
 Group:      Qt/Qt
