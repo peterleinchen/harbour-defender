@@ -170,19 +170,24 @@ read-only /usr/lib64/*
 # @eson, try changing / commenting out/in from here on only, please: 
 # on the search why *libui_compat_layer.so os not found when running in sailjail
 # and app does not start on 10 III
-#whitelist /system/lib/*
-#whitelist /system/lib64/*
-#whitelist /vendor/lib/*
-#whitelist /vendor/lib64/*
-#whitelist /odm/lib/*
-#whitelist /odm/lib64/*
-#whitelist /opt/appsupport/vendor/lib/*
-#whitelist /opt/appsupport/vendor/lib64/*
-#??? whitelist /apex/com.android.media.swcodec/lib64/libion.so*
-#whitelist /apex/com.android.vndk.v30/lib/*
-#whitelist /apex/com.android.vndk.v30/lib64/*
+whitelist /system/lib/*
+whitelist /system/lib/hw/*
+whitelist /system/lib64/*
+whitelist /system/lib64/hw*
+whitelist /vendor/lib/*
+whitelist /vendor/lib/hw/*
+whitelist /vendor/lib64/*
+whitelist /vendor/lib64/hw/*
+whitelist /odm/lib/*
+whitelist /odm/lib/hw/*
+whitelist /odm/lib64/*
+whitelist /odm/lib64/hw/*
+whitelist /apex/com.android.vndk.v30/lib/*
+whitelist /apex/com.android.vndk.v30/lib/hw/*
+whitelist /apex/com.android.vndk.v30/lib64/*
+whitelist /apex/com.android.vndk.v30/lib64/hw/*
 #
-# end of test section, nothing helped to geg Defender start on sailjailed 10 III
+# end of test section, nothing helped to get Defender start on sailjailed 10 III
 
 whitelist ${HOME}/.cache/harbour-defender
 whitelist ${HOME}/.config/harbour-defender
