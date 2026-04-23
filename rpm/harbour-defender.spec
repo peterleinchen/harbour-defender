@@ -168,7 +168,7 @@ fi
 # and only fully working since 4.6.0.15 (Sauna), the last version supporting 
 # the Tablet and the X
 # So for easing, we only sailjail from SFOS 5.0 onwards ;)
-if [ $(grep VERSION_ID /etc/os-release  | cut -f2 -d'=' | cut -f1 -d'.') -lt 5 ]; then;
+if [ $(grep VERSION_ID /etc/os-release  | cut -f2 -d'=' | cut -f1 -d'.') -lt 5 ]; then
     sed -i 's/^#X-Nemo-Application/X-Nemo-Application/' /usr/share/applications/harbour-defender.desktop
     sed -i 's/^#Exec=harbour-defender/Exec=harbour-defender/' /usr/share/applications/harbour-defender.desktop
     sed -i 's/^Exec=\/usr\/bin\/sailjail/#Exec=\/usr\/bin\/sailjail/' /usr/share/applications/harbour-defender.desktop
