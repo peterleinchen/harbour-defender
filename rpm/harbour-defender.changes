@@ -12,6 +12,7 @@
 v0.8.8
 - with profile of 0.8.7 Defender starts on 10 III :), 
 still bickering about some libs, so continuing testing whitelistings...
+- added to restart hotspot if it was enabled before (connman, flush DNS)
 
  
 

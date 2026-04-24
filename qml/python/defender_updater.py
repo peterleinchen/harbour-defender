@@ -215,7 +215,12 @@ def update(remote_sources = urls):
         os.remove(tmp_hosts)
     
     #flush the DNS cache
+    hsStatus = os.system("dbus-send --system --print-reply --dest=net.connman/net/connman/technology/wifi net.connman.Technology.GetProperties | grep \"Tethering\" -A1 | grep boolean  | grep true ")
     os.system("systemctl restart connman")
+    print("Connman restarted, flush DNS")
+    if 0 == hsState: # hotspot was enabled
+        os.system("dbus-send --system --print-reply --dest=net.connman /net/connman/technology/wifi net.connman.Technology.SetProperty string:Tethering variant:boolean:true ")
+        print("Hotspot enabled again")
     
     data = {
         'time': time.time(),
