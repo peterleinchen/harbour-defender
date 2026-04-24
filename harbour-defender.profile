@@ -193,12 +193,12 @@ whitelist /usr/lib64/*
 read-only /usr/lib64/*
 # on the search why *libui_compat_layer.so os not found when running in sailjail
 # and app does not start on 10 III
-#whitelist /odm/lib/*
-#read-only /odm/lib/*
-#whitelist /odm/lib/egl/*
-#read-only /odm/lib/egl/*
-#whitelist /odm/lib/hw/*
-#read-only /odm/lib/hw/*
+whitelist /odm/lib/*
+read-only /odm/lib/*
+whitelist /odm/lib/egl/*
+read-only /odm/lib/egl/*
+whitelist /odm/lib/hw/*
+read-only /odm/lib/hw/*
 whitelist /odm/lib64/*
 read-only /odm/lib64/*
 whitelist /odm/lib64/egl/*
@@ -206,34 +206,34 @@ read-only /odm/lib64/egl/*
 whitelist /odm/lib64/hw/*
 read-only /odm/lib64//hw/*
 #
-#whitelist /system/lib/*
-#read-only /system/lib/*
-#whitelist /system/lib/hw/*
-#read-only /system/lib/hw/*
+whitelist /system/lib/*
+read-only /system/lib/*
+whitelist /system/lib/hw/*
+read-only /system/lib/hw/*
 whitelist /system/lib64/*
 read-only /system/lib64/*
 whitelist /system/lib64/hw/*
 read-only /system/lib64/hw/*
 #
-#whitelist /system/vendor/lib/*
-#read-only /system/vendor/lib/*
-#whitelist /system/vendor/lib/egl/*
-#read-only /system/vendor/lib/egl/*
-#whitelist /system/vendor/lib/hw/*
-#read-only /system/vendor/lib/hw/*
+whitelist /system/vendor/lib/*
+read-only /system/vendor/lib/*
+whitelist /system/vendor/lib/egl/*
+read-only /system/vendor/lib/egl/*
+whitelist /system/vendor/lib/hw/*
+read-only /system/vendor/lib/hw/*
 whitelist /system/vendor/lib64/*
 read-only /system/vendor/lib64/*
 whitelist /system/vendor/lib64/egl/*
 read-only /system/vendor/lib64/egl/*
 whitelist /system/vendor/lib64/hw/*
 read-only /system/vendor/lib64/hw/*
-#
-#whitelist /vendor/lib/*
-#read-only /vendor/lib/*
-#whitelist /vendor/lib/egl/*
-#read-only /vendor/lib/egl/*
-#whitelist /vendor/lib/hw/*
-#read-only /vendor/lib/hw/*
+# 
+whitelist /vendor/lib/*
+read-only /vendor/lib/*
+whitelist /vendor/lib/egl/*
+read-only /vendor/lib/egl/*
+whitelist /vendor/lib/hw/*
+read-only /vendor/lib/hw/*
 whitelist /vendor/lib64/*
 read-only /vendor/lib64/*
 whitelist /vendor/lib64/egl/*
@@ -254,12 +254,24 @@ read-only /apex/com.android.vndk.v30/lib64/egl/*
 whitelist /apex/com.android.vndk.v30/lib64/hw/*
 read-only /apex/com.android.vndk.v30/lib64/hw/*
 #
+whitelist /usr/libexec/droid-hybris/system/lib/*
+read-only /usr/libexec/droid-hybris/system/lib/*
+whitelist /usr/libexec/droid-hybris/system/lib/egl/*
+read-only /usr/libexec/droid-hybris/system/lib/egl/*
+whitelist /usr/libexec/droid-hybris/system/lib/hw/*
+read-only /usr/libexec/droid-hybris/system/lib/hw/*
 whitelist /usr/libexec/droid-hybris/system/lib64/*
 read-only /usr/libexec/droid-hybris/system/lib64/*
 whitelist /usr/libexec/droid-hybris/system/lib64/egl/*
 read-only /usr/libexec/droid-hybris/system/lib64/egl/*
 whitelist /usr/libexec/droid-hybris/system/lib64/hw/*
 read-only /usr/libexec/droid-hybris/system/lib64/hw/*
+whitelist /usr/libexec/droid-hybris/system/vendor/lib/*
+read-only /usr/libexec/droid-hybris/system/vendor/lib/*
+whitelist /usr/libexec/droid-hybris/system/vendor/lib/egl/*
+read-only /usr/libexec/droid-hybris/system/vendor/lib/egl/*
+whitelist /usr/libexec/droid-hybris/system/vendor/lib/hw/*
+read-only /usr/libexec/droid-hybris/system/vendor/lib/hw/*
 whitelist /usr/libexec/droid-hybris/system/vendor/lib64/*
 read-only /usr/libexec/droid-hybris/system/vendor/lib64/*
 whitelist /usr/libexec/droid-hybris/system/vendor/lib64/egl/*
