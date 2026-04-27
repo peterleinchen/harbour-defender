@@ -13,8 +13,8 @@
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 
 Name:       harbour-defender
-Summary:    Privacy guard for SFOS
-Version:    0.8.8
+Summary:    A privacy guard for SFOS
+Version:    0.8.9
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3
@@ -71,7 +71,7 @@ pwd #debugging only
 #but common practice:
 mkdir -p %{buildroot}/%{_sailjaildir}
 #nope: install -p -m 644 %{name}.profile %{buildroot}/%{_sailjaildir}/
-install -p -m 644 %{name}.profile %{buildroot}/%{_sailjaildir}
+install -p -m 644 %{name}.profile* %{buildroot}/%{_sailjaildir}
 #NOPE: install -p -m 644 ./%{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}/
 install -p -m 644 %{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}
 #
@@ -175,9 +175,17 @@ if [ $(grep VERSION_ID /etc/os-release  | cut -f2 -d'=' | cut -f1 -d'.') -lt 5 ]
     sed -i 's/^#Sandboxing=Disabled/Sandboxing=Disabled/' /usr/share/applications/harbour-defender.desktop
 fi
 
+# for 10 III we need a LOT more libs in sailjailed environment
+# causing the app to take >35sec to start
+if [ $(grep 'NAME=' /etc/hw-release | grep '10 III'; echo $?) -eq 0 ]; then
+    cat /etc/sailjail/permissions/harbour-defender.profile.partial.10III >> /etc/sailjail/permissions/harbour-defender.profile 
+fi
+rm /etc/sailjail/permissions/harbour-defender.profile.partial*
+
 # small fix for sailjail, as /var/log/ and mkfile do not like each other
 touch /var/log/defender_last.json
 touch /var/log/defender_err.log
+chmod o+w /var/log/defender_*
 # >> install post
 # << install post
 
@@ -195,7 +203,7 @@ if [ "$1" = "0" ]; then
     systemctl disable %{name}-updLoop.path
     systemctl stop %{name}-adRestart.path
     systemctl disable %{name}-adRestart.path
-    systemctl daemon-reload
+    #systemctl daemon-reload
     
     # remove temporary files
     [ -f /var/log/defender_last.json ] && rm /var/log/defender_last.json ]

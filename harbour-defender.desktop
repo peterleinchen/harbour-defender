@@ -5,8 +5,7 @@ Type=Application
 Exec=/usr/bin/sailjail -p harbour-defender /usr/bin/harbour-defender
 Icon=harbour-defender
 Name=Defender
-# translation example:
-# your app name in German locale (de)
+# translation example, your app name in German locale (de)
 #Name[de]=Abwehrer
 # Remember to comment out the following line(s), if you do not want to use
 # a different app name in other locale(s).
@@ -17,7 +16,7 @@ Name[sv]=Försvarare
 [X-Sailjail]
 #Sandboxing=Disabled
 #Permissions=Defender;Internet;Compatibility;Priviledged;Diplay;WebView;Ambience
-Permissions=Defender;Internet;xCompatibility
+Permissions=Defender;xCompatibility;Internet
 CustomContentHandler=org.sailfishos.browser
 OrganizationName=leinchen.peter
 ApplicationName=harbour-defender

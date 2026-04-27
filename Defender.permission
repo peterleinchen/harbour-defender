@@ -10,10 +10,3 @@
 
 ### PERMISSIONS
 
-include /etc/sailjail/permissions/Compatibility.permission
-include /etc/sailjail/permissions/Internet.permission
-
-#
-#DOH!!! include /etc/sailjail/permissions/harbour-defender.profile
-# do not include profiles in permissions, but only permissions in profles
-

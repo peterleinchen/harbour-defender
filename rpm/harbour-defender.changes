@@ -9,6 +9,16 @@
 # - Summary of changes
 # * date Peter Leinchen <peterleinchen@t-online.de> vx.y.z
 
+v0.8.9
+- reorganized profile/permission (to the better?)
+- fixed bug introduced with hotspot restart
+- fixed re-calculation of cookies after manual deletion
+- added sailjail enabling only for devices running SFOS >= 5
+- for 10 III only: created a sub-division of lib whitelistings, merged only for this device
+- introduced again error log visibility problem for browser in sailjail
+
+ 
+
 v0.8.8
 - with profile of 0.8.7 Defender starts on 10 III :), 
 still bickering about some libs, so continuing testing whitelistings...
