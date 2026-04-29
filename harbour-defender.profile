@@ -18,20 +18,26 @@
 #ignore seccomp
 
 ###
-# before including other permissions...
+# before including NOT Base and other permissions...
 ###
 
-## bin
+## var
 #
-#ignore private-bin
-noblacklist /bin/
-noblacklist /usr/bin/
+noblacklist /var/log/
+writable-var-log
+noblacklist /var/log/defender_*
+whitelist /var/log/defender_*
 
 
-## etc
-##
-ignore private-etc
-noblacklist /etc/
+## usr/share
+#
+noblacklist /usr/share/themes
+
+
+## tmp
+#
+ignore private-tmp
+noblacklist /tmp/
 
 
 ## lib
@@ -56,22 +62,18 @@ noblacklist /apex/com.android.vndk.v30/lib/
 noblacklist /apex/com.android.vndk.v30/lib64/
 
 
-## tmp
+## etc
+##
+ignore private-etc
+noblacklist /etc/
+
+
+## bin
 #
-ignore private-tmp
-noblacklist /tmp/
+#ignore private-bin
+noblacklist /bin/
+noblacklist /usr/bin/
 
-
-## usr/share
-#
-noblacklist /usr/share/themes
-
-
-## var
-#
-noblacklist /var/log/
-writable-var-log
-noblacklist /var/log/defender_*
 #####
 
 
@@ -79,6 +81,7 @@ noblacklist /var/log/defender_*
 ###
 # Including NOT Base and other permissions...
 ###
+
 #include /etc/sailjail/permissions/booster-browser.profile
 #include /etc/sailjail/permissions/booster-silica-qt5.profile
 #
@@ -89,12 +92,13 @@ include /etc/sailjail/permissions/Internet.permission
 #
 #DOH!!! include /etc/sailjail/permissions/defender.profile
 # do not include profiles in permissions, but only permissions in profles
+
 #####
 
 
 
 ###
-# After including Base and others...
+# After including NOT Base and others...
 ###
 
 # TRYing to scale the panel size (worked before before found /etc/dconf - themes://silica whitelisting)
@@ -121,7 +125,6 @@ dbus-user.talk org.sailfishos.mapplauncherd
 
 
 ## whitelistings
-
 # cookies
 whitelist ${HOME}/.mozilla/mozembed/
 whitelist ${HOME}/.mozilla/mozembed/cookies.sqlite*
@@ -244,7 +247,7 @@ whitelist /usr/lib64/*
 read-only /usr/lib64/*
 # END OF LIB section for Jolla devices
 #
-# for 10 III libs see at end of file 
+### for 10 III libs see at end of file 
 #
 
 ## tmp
@@ -274,7 +277,6 @@ whitelist /var/log/defender_err.log
 read-write /var/log/defender_err.log
 whitelist /var/log/defender_last.json
 read-write /var/log/defender_last.json
-
 
 
 ## usr/share
@@ -313,7 +315,8 @@ whitelist ${HOME}/.cache/harbour-defender
 whitelist ${HOME}/.config/harbour-defender
 whitelist ${HOME}/.local/share/harbour-defender
 
-##
+
+###
 # DOH!!! include /etc/sailjail/permissions/defender.profile
 # do not include profiles in permissions, but only permissions in profiles
 #####

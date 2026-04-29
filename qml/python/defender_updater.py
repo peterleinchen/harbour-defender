@@ -22,22 +22,23 @@ import socket
 
 #CONFIG_HOME_DIR = '/home/nemo/.config/harbour-' + APP_NAME
 #doh, root: HOME_DIR = os.environ['HOME']
-ADMIN_USER = 'defaultuser'
-HOME_DIR = '/home/' + ADMIN_USER
-if not os.path.isdir(HOME_DIR):
-    ADMIN_USER = 'nemo'
-    HOME_DIR = '/home/' + ADMIN_USER
-if not os.path.isdir(HOME_DIR):
-    print("Neither 'nemo' nor 'defaultuser' have a home :(, \n \
-    please give a new one in qml/python/defender_updater.py (around line: 30)")
-    #getent /etc/passwd 100000 | cut -f1 -d:'' 
-    with open("/tmp/defender/usr", "r") as f:
-        ADMIN_USER = f.read()
-        close(f)
-    #getent /etc/passwd 100000 | cut -f6 -d:'' 
-    with open("/tmp/defender/dir", "r") as f:
-        HOME_DIR = f.read()
-        close(f)
+#ADMIN_USER = 'nemo'
+#HOME_DIR = '/home/' + ADMIN_USER
+#if not os.path.isdir(HOME_DIR):
+#    ADMIN_USER = 'defaultuser'
+#    HOME_DIR = '/home/' + ADMIN_USER
+#if not os.path.isdir(HOME_DIR):
+#    print("Neither 'nemo' nor 'defaultuser' have a home :(, \n \
+#    please give a new one in qml/python/defender_updater.py (around line: 30)")
+
+# getent /etc/passwd 100000 | cut -f1 -d':'
+with open("/tmp/defender/usr", "r") as f:
+    ADMIN_USER = f.read()
+    f.close()
+# getent /etc/passwd 100000 | cut -f6 -d':'
+with open("/tmp/defender/dir", "r") as f:
+    HOME_DIR = f.read()
+    f.close()
 if not os.path.isdir(HOME_DIR):
     write_err_log("Neither 'nemo' nor 'defaultuser' \n \
     NOR '" + ADMIN_USER + "' with '" + HOME_DIR + "' are valid, \n \
@@ -133,8 +134,8 @@ def add_default_entry(hosts, native = False):
 
 def write_error_log(errlog=None):
     print(errlog)
-    oserrlog1 = "echo -e \"" + "--\n$(date)" + "\" >> " + ERRLOG_FILE_PATH + " | su - " + ADMIN_USER
-    oserrlog2 = "echo    \"" + errlog        + "\" >> " + ERRLOG_FILE_PATH + " | su - " + ADMIN_USER
+    oserrlog1 = "echo 'echo -e \"" + "--\n$(date)" + "\" >> " + ERRLOG_FILE_PATH + "' | su - " + ADMIN_USER
+    oserrlog2 = "echo 'echo    \"" + errlog        + "\" >> " + ERRLOG_FILE_PATH + "' | su - " + ADMIN_USER
     os.system(oserrlog1)
     os.system(oserrlog2)
 
@@ -196,6 +197,7 @@ def update(remote_sources = urls):
     Main update function - takes a list of remote source URLs, writes all available hosts and returns 0.
     """
     hosts = Hosts(path=tmp_hosts)
+    # clear errlog
     #if os.path.isfile(ERRLOG_FILE_PATH):
     #    os.remove(ERRLOG_FILE_PATH)
     if os.path.isfile(ERRLOG_FILE_PATH) and (os.path.getsize(ERRLOG_FILE_PATH) > 0):
@@ -214,11 +216,13 @@ def update(remote_sources = urls):
     if os.path.isfile(tmp_hosts):
         os.remove(tmp_hosts)
     
-    #flush the DNS cache
+    # remember the hotspot status
     hsStatus = os.system("dbus-send --system --print-reply --dest=net.connman/net/connman/technology/wifi net.connman.Technology.GetProperties | grep \"Tethering\" -A1 | grep boolean  | grep true ")
+    # flush the DNS cache
     os.system("systemctl restart connman")
     print("Connman restarted, flush DNS")
-    if 0 == hsState: # hotspot was enabled
+    if 0 == hsStatus:
+        # hotspot was enabled
         os.system("dbus-send --system --print-reply --dest=net.connman /net/connman/technology/wifi net.connman.Technology.SetProperty string:Tethering variant:boolean:true ")
         print("Hotspot enabled again")
     

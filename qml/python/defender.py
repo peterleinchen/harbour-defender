@@ -148,10 +148,17 @@ def clear_update_loop():
 #        print(f"Error: {e}")
 
 def show_error_log():
-    if os.path.isfile(ERRLOG_FILE_PATH) and (os.path.getsize(ERRLOG_FILE_PATH) > 0):
-        os.system("/usr/bin/sailfish-browser " + ERRLOG_FILE_PATH + " &")
-        #os.system("invoker --type=browser,silica-qt5 -n sailfish-browser " + ERRLOG_FILE_PATH + " &")
-        #open_browser(ERRLOG_FILE_PATH)
+    try:
+        print(ERRLOG_FILE_PATH)
+        print(os.path.isfile(ERRLOG_FILE_PATH))
+        print(os.path.getsize(ERRLOG_FILE_PATH))
+        if os.path.isfile(ERRLOG_FILE_PATH) and (os.path.getsize(ERRLOG_FILE_PATH) > 0):
+            print("/usr/bin/sailfish-browser " + ERRLOG_FILE_PATH + " &")
+            os.system("/usr/bin/sailfish-browser " + ERRLOG_FILE_PATH + " &")
+            #os.system("invoker --type=browser,silica-qt5 -n sailfish-browser " + ERRLOG_FILE_PATH + " &")
+            #open_browser(ERRLOG_FILE_PATH)
+    except Exception as e:
+        print(e)
 
 def restart_android_support():
     #os.system("systemctl restart aliendalvik")
