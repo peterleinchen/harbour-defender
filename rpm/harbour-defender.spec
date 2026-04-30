@@ -177,7 +177,7 @@ fi
 
 # for 10 III we need a LOT more libs in sailjailed environment
 # causing the app to take >35sec to start
-if [ $(grep 'NAME=' /etc/hw-release | grep '10 III'; echo $?) -eq 0 ]; then
+if [ $(grep 'NAME=' /etc/hw-release | grep -q '10 III'; echo $?) -eq 0 ]; then
     cat /etc/sailjail/permissions/harbour-defender.profile.partial.10III >> /etc/sailjail/permissions/harbour-defender.profile 
 fi
 rm /etc/sailjail/permissions/harbour-defender.profile.partial*

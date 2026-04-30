@@ -10,7 +10,8 @@ ApplicationWindow
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: Orientation.All
     _defaultPageOrientations: Orientation.All
-    property string appName: qsTr("Defender")
+    //oops: property string appName: qsTr("Defender")
+    property string appName: "Defender"
     property string appname: appName.toLowerCase()
     property date last_update
 
