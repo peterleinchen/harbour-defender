@@ -16,7 +16,8 @@ v0.8.9
 - added sailjail enabling only for devices running SFOS >= 5
 - for 10 III only: created a sub-division of lib whitelistings, merged only for this device
 - introduced again error log visibility problem for browser in sailjail
-
+-- added profile.partial to the repo and fixed bug "grep -q" in spec
+-- corrected translation for appname (python calls) in harbour-defender.qml
  
 
 v0.8.8
