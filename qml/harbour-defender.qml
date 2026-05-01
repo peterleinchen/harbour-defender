@@ -11,8 +11,10 @@ ApplicationWindow
     allowedOrientations: Orientation.All
     _defaultPageOrientations: Orientation.All
     property string appName: qsTr("Defender")
+    property string appNameRaw: "Defender"
+    property string appNameFull: appName + " [" + appNameRaw + "]"
     //oops: property string appname: appName.toLowerCase()
-    property string appname: "Defender".toLowerCase()
+    property string appname: appNameRaw.toLowerCase()
     property date last_update
 
     property bool updating: true

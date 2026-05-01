@@ -39,6 +39,9 @@ with open("/tmp/defender/usr", "r") as f:
 with open("/tmp/defender/dir", "r") as f:
     HOME_DIR = f.read()
     f.close()
+if not ADMIN_USER == "nemo" and not ADMIN_USER == "defaultuser":
+    write_err_log("Warning, neither 'nemo' nor 'defaultuser' \n \
+    have been used with '" + HOME_DIR + "' - might be invalid!")
 if not os.path.isdir(HOME_DIR):
     write_err_log("Neither 'nemo' nor 'defaultuser' \n \
     NOR '" + ADMIN_USER + "' with '" + HOME_DIR + "' are valid, \n \
@@ -56,7 +59,8 @@ CONFIG_APP_PATH = APP_DIR + '/' + APP_NAME + '_default.conf'
 UPDATE_FILE_PATH = CONFIG_HOME_DIR + '/' + 'update'
 
 LOGFILE_LAST_PATH = '/var/log/'+ APP_NAME +'_last.json'
-#ERRLOG_FILE_PATH = HOME_DIR + '/Documents/' + '.defender_err.log'
+#
+#ERRLOG_FILE_PATH = HOME_DIR + '/Public/' + APP_NAME + '_err.log'
 ERRLOG_FILE_PATH = '/var/log/' + APP_NAME + '_err.log'
 
 whitelist = []
@@ -134,8 +138,10 @@ def add_default_entry(hosts, native = False):
 
 def write_error_log(errlog=None):
     print(errlog)
-    oserrlog1 = "echo 'echo -e \"" + "--\n$(date)" + "\" >> " + ERRLOG_FILE_PATH + "' | su - " + ADMIN_USER
-    oserrlog2 = "echo 'echo    \"" + errlog        + "\" >> " + ERRLOG_FILE_PATH + "' | su - " + ADMIN_USER
+    oserrlog1 = "echo -e \"" + "--\n$(date)" + "\" >> " + ERRLOG_FILE_PATH
+    oserrlog2 = "echo    \"" + errlog        + "\" >> " + ERRLOG_FILE_PATH
+    oserrlog1 = "echo '" + oserrlog1 + "' | su - " + ADMIN_USER
+    oserrlog2 = "echo '" + oserrlog2 + "' | su - " + ADMIN_USER
     os.system(oserrlog1)
     os.system(oserrlog2)
 
@@ -197,6 +203,7 @@ def update(remote_sources = urls):
     Main update function - takes a list of remote source URLs, writes all available hosts and returns 0.
     """
     hosts = Hosts(path=tmp_hosts)
+    
     # clear errlog
     #if os.path.isfile(ERRLOG_FILE_PATH):
     #    os.remove(ERRLOG_FILE_PATH)
@@ -264,3 +271,4 @@ if __name__ == '__main__':
             update(urls)
     if os.path.isfile(UPDATE_FILE_PATH):
         os.remove(UPDATE_FILE_PATH)
+    print("Done with updating.")

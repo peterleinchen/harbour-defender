@@ -12,11 +12,12 @@ Name=Defender
 Name[de]=Abwehrer
 Name[es]=Defensor
 Name[sv]=Försvarare
+X-Desktop-File-Install-Version=0.26
 
 [X-Sailjail]
 #Sandboxing=Disabled
 #Permissions=Defender;Internet;Compatibility;Priviledged;Diplay;WebView;Ambience
-Permissions=Defender;xCompatibility;Internet
+Permissions=Defender;Internet;PublicDir;xCompatibility
 CustomContentHandler=org.sailfishos.browser
 OrganizationName=leinchen.peter
 ApplicationName=harbour-defender

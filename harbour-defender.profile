@@ -23,10 +23,14 @@
 
 ## var
 #
-noblacklist /var/log/
 writable-var-log
-noblacklist /var/log/defender_*
-whitelist /var/log/defender_*
+noblacklist /var/log/
+noblacklist /var/log/defender_err.log
+whitelist /var/log/defender_err.log
+read-write /var/log/defender_err.log
+noblacklist /var/log/defender_last.json
+whitelist /var/log/defender_last.json
+read-write /var/log/defender_last.json
 
 
 ## usr/share
@@ -89,6 +93,7 @@ include /etc/sailjail/permissions/Defender.permission
 #include /etc/sailjail/permissions/Base.permission
 include /etc/sailjail/permissions/Compatibility.permission
 include /etc/sailjail/permissions/Internet.permission
+include /etc/sailjail/permissions/PublicDir.permission
 #
 #DOH!!! include /etc/sailjail/permissions/defender.profile
 # do not include profiles in permissions, but only permissions in profles
@@ -151,7 +156,7 @@ noblacklist /usr/bin/sh
 noblacklist /usr/bin/busybox
 noblacklist /usr/bin/sailfish-browser # this does also not work, NEED private-bin
 #private-bin busybox,echo,grep,ps,sh,sleep,touch,wc,sailfish-browser
-private-bin busybox,echo,grep,ps,sh,sleep,touch,wc,sailfish-browser,invoker
+private-bin busybox,cp,echo,grep,ls,ps,sh,sleep,touch,wc,sailfish-browser,invoker
 
 
 ## etc
@@ -263,7 +268,9 @@ mkfile /tmp/hosts
 whitelist /tmp/hosts
 read-write /tmp/hosts
 #
+#mkdir -m 755 /tmp/defender/
 mkdir /tmp/defender/
+noblacklist /tmp/defender/
 whitelist /tmp/defender/
 read-write /tmp/defender/
 
@@ -271,10 +278,10 @@ read-write /tmp/defender/
 ## var/log
 noblacklist /var/log/
 #doh: mkfile /var/log/defender_last.json
-noblacklist /var/log/defender_*
-whitelist /var/log/defender_*
+noblacklist /var/log/defender_err.log
 whitelist /var/log/defender_err.log
 read-write /var/log/defender_err.log
+noblacklist /var/log/defender_last.json
 whitelist /var/log/defender_last.json
 read-write /var/log/defender_last.json
 

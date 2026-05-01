@@ -16,7 +16,7 @@
     <message>
         <location filename="../qml/pages/components/CookiesMenuItem.qml" line="34"/>
         <source>Cookie Manager</source>
-        <translation>Kekse-Verwalter</translation>
+        <translation>Keks-Verwalter</translation>
     </message>
 </context>
 <context>
@@ -24,32 +24,32 @@
     <message>
         <location filename="../qml/pages/CookiesPage.qml" line="14"/>
         <source>Search cookies</source>
-        <translation>Such Kekse</translation>
+        <translation>Kekse suchen</translation>
     </message>
     <message>
         <location filename="../qml/pages/CookiesPage.qml" line="29"/>
         <source>Unlock cookies</source>
-        <translation>Gib Kekse frei</translation>
+        <translation>Kekse freigeben</translation>
     </message>
     <message>
         <location filename="../qml/pages/CookiesPage.qml" line="29"/>
         <source>Lock cookies</source>
-        <translation>Sperr Kekse</translation>
+        <translation>Kekse sperren</translation>
     </message>
     <message>
         <location filename="../qml/pages/CookiesPage.qml" line="31"/>
         <source>Unlocking</source>
-        <translation>Freigebend</translation>
+        <translation>Am Freigeben dran sein tun...</translation>
     </message>
     <message>
         <location filename="../qml/pages/CookiesPage.qml" line="31"/>
         <source>Locking</source>
-        <translation>Sperrend</translation>
+        <translation>Am Sperren dran sein tun...</translation>
     </message>
     <message>
         <location filename="../qml/pages/CookiesPage.qml" line="40"/>
         <source>Delete all blacklisted</source>
-        <translation>Lösche alle aus der schwarz gelisteten</translation>
+        <translation>Lösche alle schwarz gelisteten</translation>
     </message>
     <message>
         <location filename="../qml/pages/CookiesPage.qml" line="42"/>
@@ -57,7 +57,7 @@
         <location filename="../qml/pages/CookiesPage.qml" line="83"/>
         <location filename="../qml/pages/CookiesPage.qml" line="162"/>
         <source>Deleting</source>
-	<translation>Am Löschen dran...</translation>
+	<translation>Am Löschen dran sein tun...</translation>
     </message>
     <message>
         <location filename="../qml/pages/CookiesPage.qml" line="56"/>
@@ -100,7 +100,7 @@
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="30"/>
         <source>Warning</source>
-        <translation>Varnung</translation>
+        <translation>Warnung</translation>
     </message>
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="35"/>
@@ -120,7 +120,7 @@
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="49"/>
         <source>You can add custom lists by editing the file /etc/defender.conf as root (either using the command line or an appropriate editor). See other sections in the config file for inspiration. In the square brackets [] should be a unique id.</source>
-        <translation>Sie können eigene Listen hinzufügen, indem Sie die Datei /etc/defender.conf als Root editieren (entweder mittels CLI oder mit Hilfe einer fähigen Editor-Anwendung). Innerhalb der eckigen Klammer [] sollte eine einzigartige Identifikation stehen.</translation>
+        <translation>Sie können eigene Listen hinzufügen, indem Sie die Datei /etc/defender.conf als Root editieren (entweder mittels CLI oder mit Hilfe einer fähigen Editor-Anwendung). Innerhalb der eckigen Klammern [] sollte eine einzigartige Identifikation stehen.</translation>
     </message>
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="55"/>
@@ -130,7 +130,7 @@
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="60"/>
         <source>It would be a security threat to allow adding new sources as a normal user (with the current SailfishOS security situation), as any app would be able to add new sources and potentially compromise your device. Even with the default sources, you still make the leap of faith to trust a remote source. If you want to have a source added/removed to/from the defaults, contact the app developer and see if it can be available in the next version.</source>
-        <translation>Es würde eine Bedrohung der Sicherheit darstellen, innerhalb der Anwendung neue Quellen als normaler Anwender zuzulassen, weil somit jede Anwendung in der Lage wäre, neue Quellen hinzuzufügen und somit potentiell Ihr Gerät kompromittieren könnte. Sogar mit den bereit gestellten Quellen geben Sie einen Vertrauensvorschuss. Falls Sie eine neue Quelle hinzuefügt oder entfernt haben wolln, so kontaktieren Sie bitte den Entwcickler, der schauen wird, dies in der nächsten Ausgabe zu verwirklichen.</translation>
+        <translation>Es würde eine Bedrohung der Sicherheit darstellen, innerhalb der Anwendung neue Quellen als normaler Anwender zuzulassen, weil somit jede Anwendung in der Lage wäre, neue Quellen hinzuzufügen und somit potentiell Ihr Gerät kompromittieren könnte. Sogar mit den bereit gestellten Quellen geben Sie einen Vertrauensvorschuss. Falls Sie eine neue Quelle hinzugefügt oder entfernt haben wollen, so kontaktieren Sie bitte den Entwcickler, der schauen wird, dies in der nächsten Ausgabe zu verwirklichen.</translation>
     </message>
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="66"/>
@@ -140,7 +140,7 @@
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="71"/>
         <source>You can add your custom hosts entries by editing the file /etc/hosts.editable and treating it as a generic hosts file. Don&apos;t forget to choose &apos;Update Now&apos; in the app to see an immediate effect.</source>
-        <translation>Sie können eigene Hosts Einträge erstellen, indem Sie die Datei /etc/hosts.editable editieren und als generische Hosts Datei behandeln. Vergessen Sie nicht &apos;Jetzt auffrischen&apos; in der Anwendung zu wählen, um einen sofortigen Effekt zu sehen.</translation>
+        <translation>Sie können eigene Hosts Einträge erstellen, indem Sie die Datei /etc/hosts.editable editieren und als generische Hosts Datei behandeln. Vergessen Sie nicht, &apos;Jetzt auffrischen&apos; in der Anwendung zu wählen, um einen sofortigen Effekt zu sehen.</translation>
     </message>
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="77"/>
@@ -160,7 +160,7 @@
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="93"/>
         <source>The cookie manager works by editing the -/.local/share/org.sailfishos/browser/.mozilla/ (for SFOS up to 3.4: -/.mozilla/mozembed/) cookies.sqlite database. In order to access/work with cookies the browser needs to be closed before opening the cookies section, else you might see an empty window. All changes need the browser to be closed/restarted in order to take effect.</source>
-        <translation>Der Kekse Verwalter funktioniert, indem er die Datei ~/.local/share/org.sailfishos/browser/.mozilla/ (for SFOS up to 3.4: ]/.mozilla/mozembed/) cookies.sqlite Datenbank.Damit der Zugriff/Veränderung funktioniert, muss der Browser geschlossen sein Ansonsten sehen Sie ein leeres Fenster. Um alle Änderungen zu aktivieren, muss der Browser neu gestartet werden.</translation>
+        <translation>Der Keks-Verwalter funktioniert, indem er die Datei ~/.local/share/org.sailfishos/browser/.mozilla/ (for SFOS up to 3.4: ]/.mozilla/mozembed/) cookies.sqlite Datenbank. Damit der Zugriff/die Veränderung funktioniert, muss der Browser geschlossen sein. Ansonsten sehen Sie ein leeres Fenster. Um alle Änderungen zu aktivieren, muss der Browser neu gestartet werden.</translation>
     </message>
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="99"/>
@@ -170,7 +170,7 @@
     <message>
         <location filename="../qml/pages/DocsPage.qml" line="104"/>
         <source>Cookie locking works by making the cookie database read only, therefore its contents stay same between restarting the browser. The effect of this is cookies not being persistent over browser restarts.</source>
-        <translation>Das Kekse sperren funktioniert, indem die Kekse Datenbank auf schreibgeschützt gesetzt wird, daher bleibt ihr Inhalt gleich zwischen den Browser Neustarts. Der Effekt ist, dass die Cookies nicht persistiert werden.</translation>
+        <translation>Das Kekse sperren funktioniert, indem die Keks-Datenbank auf schreibgeschützt gesetzt wird. Daher bleibt ihr Inhalt gleich zwischen Browser Neustarts. Der Effekt ist, dass die Cookies nicht persistiert werden.</translation>
     </message>
 </context>
 <context>
@@ -183,7 +183,7 @@
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="22"/>
         <source>Clear Cookie Blacklist</source>
-        <translation>Leere Kekse Schwarzliste</translation>
+        <translation>Leere Keks-Schwarzliste</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="25"/>
@@ -194,7 +194,7 @@
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="33"/>
         <source>Clear Cookie Whitelist</source>
-        <translation>Leere kekse Weßliste</translation>
+        <translation>Leere Keks-Weißliste</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="44"/>
@@ -245,7 +245,7 @@
     <message>
         <location filename="../qml/pages/components/SourcesMenuItem.qml" line="34"/>
         <source>Adblock Lists</source>
-        <translation>Werbeblocker Listen</translation>
+        <translation>Werbeblocker-Listen</translation>
     </message>
 </context>
 <context>
@@ -263,7 +263,7 @@
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="21"/>
         <source>Cancel/clear update loop</source>
-        <translation>Abbruch/Löschen der Update Schleife</translation>
+        <translation>Abbruch/Löschen der Update-Schleife</translation>
     </message>
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="23"/>
@@ -273,12 +273,12 @@
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="29"/>
         <source>Show error log (just in case ;)</source>
-        <translation>Zeige das Fehler Log (nur für den Fall ;)</translation>
+        <translation>Zeige das Fehler-Log (nur für den Fall ;)</translation>
     </message>
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="31"/>
         <source>Pulling up error.log (only if exists)</source>
-        <translation>Zieh das Logfile (nur falls existierend)</translation>
+        <translation>Zieh das Logfile hervor (nur falls existierend)</translation>
     </message>
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="37"/>
@@ -298,7 +298,7 @@
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="47"/>
         <source>Preparing update</source>
-	<translation>"In Vorbereitung zur Auffrischung...</translation>
+	<translation>In Vorbereitung zur Auffrischung...</translation>
     </message>
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="56"/>
@@ -321,7 +321,7 @@
     <message>
         <location filename="../qml/pages/WelcomePage.qml" line="27"/>
         <source>Adblock Lists</source>
-	<translation>"Werbeblocker Listen</translation>
+	<translation>"Werbeblocker-Listen</translation>
     </message>
     <message>
         <location filename="../qml/pages/WelcomePage.qml" line="34"/>
