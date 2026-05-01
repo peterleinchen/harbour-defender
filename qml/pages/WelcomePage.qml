@@ -9,7 +9,8 @@ Page {
         model: menuModel
         anchors.fill: parent
         header: PageHeader {
-            title: appName
+            //title: appName
+            title: appNameFull
         }
         cellWidth: width / 2
         cellHeight: Theme.itemSizeHuge * 2
