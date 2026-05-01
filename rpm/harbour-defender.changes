@@ -9,6 +9,13 @@
 # - Summary of changes
 # * date Peter Leinchen <peterleinchen@t-online.de> vx.y.z
 
+v0.8.10
+- moved error log again to (now Pblic) dir
+- corrected some typos in German translation
+- bit of code review
+
+ 
+
 v0.8.9
 - reorganized profile/permission (to the better?)
 - fixed bug introduced with hotspot restart
