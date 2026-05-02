@@ -117,7 +117,7 @@ def disable_all():
 
 def clear_update_loop():
     #os.system("ps aux | grep -v grep | grep defender_updater.py | tr -s ' ' | cut -d' ' -f2 | xargs kill")
-    COMMAND = """if [ $(ps aux | grep -v grep | grep -q 'defender_updater.py' | echo $?) -eq 0 ]; then 
+    updCommand = """if [ $(ps aux | grep -v grep | grep -q 'defender_updater.py' | echo $?) -eq 0 ]; then 
         echo '--' >> """ + ERRLOG_FILE_PATH + """; 
         echo 'INFO: update was still running - cancelled' >> """ + ERRLOG_FILE_PATH + """; 
         #systemctl stop harbour-defender; 
@@ -125,8 +125,8 @@ def clear_update_loop():
         # possibly via service/path unit harbour-defender-updLoop: 
         touch """ + UPDLOOP_FILE_PATH + """; sleep 1; 
     fi;"""
-    print(COMMAND)
-    print(os.system(COMMAND))
+    print(updCommand)
+    print(os.system(updCommand))
     show_error_log()
     if os.path.isfile(UPDATE_FILE_PATH):
         os.remove(UPDATE_FILE_PATH)
