@@ -211,7 +211,7 @@ if [ "$1" = "0" ]; then
     # remove temporary files
     [ -f /var/log/defender_last.json ] && rm /var/log/defender_last.json ]
     [ -f /var/log/defender_err.log ] && rm /var/log/defender_err.log ]
-    [ -f /home/defaultuser/Public/defender_err.log ] && rm /home/defaultuser/Public/defender_err.log || [ -f /home/nemo/Public/defender_err.log ] && rm /home/nemo/Public/defender_err.log || :
+    [ -f /home/defaultuser/Public/.defender_err.log ] && rm /home/defaultuser/Public/.defender_err.log || [ -f /home/nemo/Public/.defender_err.log ] && rm /home/nemo/Public/.defender_err.log || :
     
     #copy back manually created entries to hosts
     [ -f %{_sysconfdir}/hosts.editable ] && cp %{_sysconfdir}/hosts.editable %{_sysconfdir}/hosts 2>/dev/null || echo "/etc/hosts.editable does not exist"
