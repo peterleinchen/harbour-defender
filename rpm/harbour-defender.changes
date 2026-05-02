@@ -9,6 +9,14 @@
 # - Summary of changes
 # * date Peter Leinchen <peterleinchen@t-online.de> vx.y.z
 
+v0.8.11
+- added unlock cookies DB on uninstall (in case cookies were locked and would keep...)
+- added cleanup for new errlog lcation (Public) on uninstall
+- added that the errlog is now pulled up automatically, in case something went wrong 
+(will also be done on scheduled updates)
+
+ 
+
 v0.8.10
 - moved error log again to (now Pblic) dir
 - corrected some typos in German translation

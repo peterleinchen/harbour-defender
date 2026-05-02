@@ -30,7 +30,7 @@ LOGFILE_LAST = '/var/log/'+ APP_NAME +'_last.json'
 #
 ERRLOG_FILE = APP_NAME + '_err.log'
 ERRLOG_FILE_PATH = '/var/log/' + ERRLOG_FILE
-TMP_ERRLOG_FILE_PATH = HOME_DIR + '/Public/' + ERRLOG_FILE
+TMP_ERRLOG_FILE_PATH = HOME_DIR + '/Public/.' + ERRLOG_FILE
 
 cookies_path = HOME_DIR + '/.local/share/org.sailfishos/browser/.mozilla/' + 'cookies.sqlite'
 if not os.path.isfile(cookies_path):

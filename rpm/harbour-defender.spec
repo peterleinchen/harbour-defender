@@ -14,7 +14,7 @@
 
 Name:       harbour-defender
 Summary:    A privacy guard for SFOS
-Version:    0.8.10
+Version:    0.8.11
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3
@@ -205,11 +205,13 @@ if [ "$1" = "0" ]; then
     systemctl disable %{name}-adRestart.path
     #systemctl daemon-reload
     
+    # unlock cookies (in case of cookies locked on uninstall)
+    [ -f /home/defaultuser/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite ] && chmod u+w /home/defaultuser/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite || [ -f /home/nemo/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite ] && chmod u+w /home/nemo/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite
+    
     # remove temporary files
     [ -f /var/log/defender_last.json ] && rm /var/log/defender_last.json ]
     [ -f /var/log/defender_err.log ] && rm /var/log/defender_err.log ]
-    # line below not needed anymore, as using /var/log/ (but kept as example for nemo/defaultuser)
-    #[ -f /home/defaultuser/%{name}/Documents/.defender_err.log ] && rm /home/defaultuser/%{name}/Documents/.defender_err.log || [ -f /home/nemo/%{name}/Documents/.defender_err.log ] && rm /home/nemo/%{name}/Documents/.defender_err.log || :
+    [ -f /home/defaultuser/Public/defender_err.log ] && rm /home/defaultuser/Public/defender_err.log || [ -f /home/nemo/Public/defender_err.log ] && rm /home/nemo/Public/defender_err.log || :
     
     #copy back manually created entries to hosts
     [ -f %{_sysconfdir}/hosts.editable ] && cp %{_sysconfdir}/hosts.editable %{_sysconfdir}/hosts 2>/dev/null || echo "/etc/hosts.editable does not exist"

@@ -60,8 +60,8 @@ UPDATE_FILE_PATH = CONFIG_HOME_DIR + '/' + 'update'
 
 LOGFILE_LAST_PATH = '/var/log/'+ APP_NAME +'_last.json'
 #
-#ERRLOG_FILE_PATH = HOME_DIR + '/Public/' + APP_NAME + '_err.log'
 ERRLOG_FILE_PATH = '/var/log/' + APP_NAME + '_err.log'
+TMP_ERRLOG_FILE_PATH = HOME_DIR + '/Public/.' + APP_NAME + '_err.log'
 
 whitelist = []
 urls = []
@@ -244,6 +244,18 @@ def update(remote_sources = urls):
 def reset_hosts():
     return update(remote_sources = [])
 
+def show_error_log():
+    try:
+        if os.path.isfile(ERRLOG_FILE_PATH) and (os.path.getsize(ERRLOG_FILE_PATH) > 0):
+            print("cp " + ERRLOG_FILE_PATH + " " + TMP_ERRLOG_FILE_PATH)
+            os.system("cp " + ERRLOG_FILE_PATH + " " + TMP_ERRLOG_FILE_PATH)
+            command="/usr/bin/sailfish-browser " + TMP_ERRLOG_FILE_PATH + " &"
+            print(command)
+            os.system("echo '" + command + "' | su - " + ADMIN_USER)
+            #os.system("invoker --type=browser,silica-qt5 -n sailfish-browser " + ERRLOG_FILE_PATH + " &")
+            #open_browser(ERRLOG_FILE_PATH)
+    except Exception as e:
+        print(e)
 
 
 if __name__ == '__main__':
@@ -271,4 +283,5 @@ if __name__ == '__main__':
             update(urls)
     if os.path.isfile(UPDATE_FILE_PATH):
         os.remove(UPDATE_FILE_PATH)
+    show_error_log()
     print("Done with updating.")
