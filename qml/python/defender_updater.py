@@ -224,14 +224,20 @@ def update(remote_sources = urls):
         os.remove(tmp_hosts)
     
     # remember the hotspot status
-    hsStatus = os.system("dbus-send --system --print-reply --dest=net.connman/net/connman/technology/wifi net.connman.Technology.GetProperties | grep \"Tethering\" -A1 | grep boolean  | grep true ")
+    hsStatus = os.system("dbus-send --system --print-reply --dest=net.connman /net/connman/technology/wifi net.connman.Technology.GetProperties | grep \"Tethering\" -A1 | grep boolean  | grep -q true")
     # flush the DNS cache
     os.system("systemctl restart connman")
     print("Connman restarted, flush DNS")
     if 0 == hsStatus:
         # hotspot was enabled
-        hsCommand = "dbus-send --system --print-reply --dest=net.connman /net/connman/technology/wifi net.connman.Technology.SetProperty string:Tethering variant:boolean:true "
-        os.system("echo '" + hsCommand + "' | su - " + ADMIN_USER)
+        hsCommand1 = "dbus-send --system --print-reply --dest=net.connman /net/connman/technology/wifi net.connman.Technology.SetProperty string:\"Powered\" variant:boolean:false"
+        hsCommand2 = "dbus-send --system --print-reply --dest=net.connman /net/connman/technology/wifi net.connman.Technology.SetProperty string:\"Powered\" variant:boolean:true"
+        hsCommand3 = "dbus-send --system --print-reply --dest=net.connman /net/connman/technology/wifi net.connman.Technology.SetProperty string:\"Tethering\" variant:boolean:true"
+        #os.system("echo '" + hsCommand + "' | su - " + ADMIN_USER)
+        print(os.system(hsCommand1))
+        print(os.system(hsCommand2))
+        os.system("sleep 1")
+        print(os.system(hsCommand3))
         print("Hotspot enabled again")
     
     data = {

@@ -92,6 +92,7 @@ noblacklist /usr/bin/
 include /etc/sailjail/permissions/Defender.permission
 #include /etc/sailjail/permissions/Base.permission
 include /etc/sailjail/permissions/Compatibility.permission
+include /etc/sailjail/permissions/Connman.permission
 include /etc/sailjail/permissions/Internet.permission
 include /etc/sailjail/permissions/PublicDir.permission
 #

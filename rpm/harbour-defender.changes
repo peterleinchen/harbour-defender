@@ -9,6 +9,11 @@
 # - Summary of changes
 # * date Peter Leinchen <peterleinchen@t-online.de> vx.y.z
 
+v0.8.12
+- fixed the restart of hotspot after updating
+
+ 
+
 v0.8.11
 - added unlock cookies DB on uninstall (in case cookies were locked and would keep...)
 - added cleanup for new errlog lcation (Public) on uninstall
