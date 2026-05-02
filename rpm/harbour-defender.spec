@@ -206,7 +206,7 @@ if [ "$1" = "0" ]; then
     #systemctl daemon-reload
     
     # unlock cookies (in case of cookies locked on uninstall)
-    [ -f /home/defaultuser/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite ] && chmod u+w /home/defaultuser/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite || [ -f /home/nemo/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite ] && chmod u+w /home/nemo/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite
+    [ -f /home/defaultuser/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite ] && chmod u+w /home/defaultuser/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite* || [ -f /home/nemo/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite ] && chmod u+w /home/nemo/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite*
     
     # remove temporary files
     [ -f /var/log/defender_last.json ] && rm /var/log/defender_last.json ]

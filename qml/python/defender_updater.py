@@ -230,7 +230,7 @@ def update(remote_sources = urls):
     print("Connman restarted, flush DNS")
     if 0 == hsStatus:
         # hotspot was enabled
-        hsCommand="dbus-send --system --print-reply --dest=net.connman /net/connman/technology/wifi net.connman.Technology.SetProperty string:Tethering variant:boolean:true"
+        hsCommand = "dbus-send --system --print-reply --dest=net.connman /net/connman/technology/wifi net.connman.Technology.SetProperty string:Tethering variant:boolean:true "
         os.system("echo '" + hsCommand + "' | su - " + ADMIN_USER)
         print("Hotspot enabled again")
     
@@ -250,7 +250,7 @@ def show_error_log():
         if os.path.isfile(ERRLOG_FILE_PATH) and (os.path.getsize(ERRLOG_FILE_PATH) > 0):
             print("cp " + ERRLOG_FILE_PATH + " " + TMP_ERRLOG_FILE_PATH)
             os.system("cp " + ERRLOG_FILE_PATH + " " + TMP_ERRLOG_FILE_PATH)
-            sfbCommand="/usr/bin/sailfish-browser " + TMP_ERRLOG_FILE_PATH + " &"
+            sfbCommand = "/usr/bin/sailfish-browser " + TMP_ERRLOG_FILE_PATH + " &"
             print(sfbCommand)
             os.system("echo '" + sfbCommand + "' | su - " + ADMIN_USER)
             #os.system("invoker --type=browser,silica-qt5 -n sailfish-browser " + ERRLOG_FILE_PATH + " &")
