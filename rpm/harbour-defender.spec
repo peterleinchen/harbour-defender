@@ -96,6 +96,7 @@ install -p -m 644 translations/%{name}*.qm %{buildroot}/%{_datadir}/%{name}/tran
 %exclude %{_datadir}/%{name}/qml/python/*.pyo
 %exclude %{_datadir}/%{name}/qml/python/python_hosts/*.pyc
 %exclude %{_datadir}/%{name}/qml/python/python_hosts/*.pyo
+#%ghost %config ${HOME}/.config/nemo/%{shortname}.conf
 # >> files
 # << files
 

@@ -4,7 +4,7 @@
 
 # x-sailjail-translation-catalog = sailjail-permissions
 # x-sailjail-translation-key-description = permission-la-defender
-# x-sailjail-description = Defender, privacy guard and ad-blocker (Internet, /etc/hosts, cookies.sqlite)
+# x-sailjail-description = Defender (/etc/hosts, cookies.sqlite)
 # x-sailjail-translation-key-long-description = permission-la-defender_description
 # x-sailjail-long-description = Fetches ad-block lists from configured internet sources, writes tehm to hosts fil(s), works also for AlienDalvik/AppSupport. Also includes Internet permission.
 

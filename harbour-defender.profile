@@ -5,7 +5,7 @@
 
 # x-sailjail-translation-catalog = sailjail-permissions
 # # x-sailjail-translation-key-description = permission-la-defender
-# # x-sailjail-description = Defender profile (Internet, /etc/hosts, cookies.sqlite)
+# # x-sailjail-description = Defender profile (/etc/hosts, cookies.sqlite, Connman, Internet, PublicDir)
 # # x-sailjail-translation-key-long-description = permission-la-defender_description
 # # x-sailjail-long-description = Defender, a privacy guard and ad-blocker. Fetches ad-block lists from pre-configured internet sources, writes them to hosts file(s), works also for AlienDalvik/AppSupport. Lets you decide which cookies to white- or blacklist  or even freeze them. Needs (of course ;) Internet permission.
 
