@@ -9,6 +9,11 @@
 # - Summary of changes
 # * date Peter Leinchen <peterleinchen@t-online.de> vx.y.z
 
+v0.8.13
+- after getting feedback that not only the 10 III is affected (but also 10 II and hereby assuming all 10 devices), enabled the very looong whitelisting for all "Sony Xperia 10"
+
+ 
+
 v0.8.12
 - fixed the restart of hotspot after updating
 - fixed some decriptive texts in sailjail and spec files
