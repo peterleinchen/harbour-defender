@@ -14,7 +14,7 @@
 
 Name:       harbour-defender
 Summary:    A privacy guard for SFOS
-Version:    0.8.12
+Version:    0.8.13
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3
@@ -176,9 +176,9 @@ if [ $(grep VERSION_ID /etc/os-release  | cut -f2 -d'=' | cut -f1 -d'.') -lt 5 ]
     sed -i 's/^#Sandboxing=Disabled/Sandboxing=Disabled/' /usr/share/applications/harbour-defender.desktop
 fi
 
-# for 10 III we need a LOT more libs in sailjailed environment
+# for Xperia 10 devices we need a LOT more libs in sailjailed environment
 # causing the app to take >35sec to start
-if [ $(grep 'NAME=' /etc/hw-release | grep -q '10 III'; echo $?) -eq 0 ]; then
+if [ $(grep 'NAME=' /etc/hw-release | grep -q 'Xperia 10'; echo $?) -eq 0 ]; then
     cat /etc/sailjail/permissions/harbour-defender.profile.partial.10III >> /etc/sailjail/permissions/harbour-defender.profile 
 fi
 rm /etc/sailjail/permissions/harbour-defender.profile.partial*
