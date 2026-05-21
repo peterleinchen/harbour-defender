@@ -1,0 +1,8 @@
+<services>
+  <service name="tar_git">
+  <param name="url">https://github.com/peterleinchen/harbour-defender.git</param>
+  <param name="revision">v0.8.12</param>
+  <param name="debian">N</param>
+  <param name="dumb">N</param>
+ </service>
+</services>
