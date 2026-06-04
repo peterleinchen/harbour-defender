@@ -344,7 +344,7 @@
     <message>
         <location filename="../qml/harbour-defender.qml" line="13"/>
         <source>Defender</source>
-        <translation>Defender</translation>
+        <translation>Forsvarer</translation>
     </message>
 </context>
 </TS>
