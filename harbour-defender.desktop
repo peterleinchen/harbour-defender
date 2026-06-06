@@ -1,8 +1,14 @@
 [Desktop Entry]
 Type=Application
-#X-Nemo-Application-Type=silica-qt5
-#Exec=harbour-defender
-Exec=/usr/bin/sailjail -p harbour-defender /usr/bin/harbour-defender
+### original bin
+###X-Nemo-Application-Type=silica-qt5
+###Exec=harbour-defender
+## sailjailed bin
+## #nope: X-Nemo-Application-Type=silica-qt5
+##Exec=/usr/bin/sailjail -p harbour-defender /usr/bin/harbour-defender
+# sailjailed qml, 
+# CLI: /usr/bin/sailjail -p harbour-desktop -- /usr/bin/sailfish-qml harbour-defender
+Exec=sailfish-qml harbour-defender
 Icon=harbour-defender
 Name=Defender
 # translation example, your app name in German locale (de)
@@ -22,4 +28,3 @@ Permissions=Defender;Internet;PublicDir;xCompatibility
 CustomContentHandler=org.sailfishos.browser
 OrganizationName=leinchen.peter
 ApplicationName=harbour-defender
-
