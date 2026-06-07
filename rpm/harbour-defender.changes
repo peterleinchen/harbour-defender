@@ -9,6 +9,18 @@
 # - Summary of changes
 # * date Peter Leinchen <peterleinchen@t-online.de> vx.y.z
 
+v0.9.1
+first step for a "harbourization"
+- changed .config/ to .config/leinchen.peter/
+- removed usage of /var/log (--> .local/share/leinchen.peter/), but kept /tmp
+- changed all systemd units to reflect new storage (.cache)
+- adapted the python scripts touse new storage locations
+- commented out not really needed whitelists in profile
+- swtiched from binary to noarch
+- changeg the spec file accordingly
+
+ 
+
 v0.8.15
 - Norwegian translation for "Defender" in qml and app icon
 

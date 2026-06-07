@@ -1,13 +1,13 @@
 # -*- mode: sh -*-
 
 # Firejail profile for harbour-defender
-# #Permissions=Defender;xBase;xCompatibility;xInternet
+# #Permissions=Defender;Internet;PublicDir
 
 # x-sailjail-translation-catalog = sailjail-permissions
 # # x-sailjail-translation-key-description = permission-la-defender
 # # x-sailjail-description = Defender profile (/etc/hosts, cookies.sqlite, Connman, Internet, PublicDir)
 # # x-sailjail-translation-key-long-description = permission-la-defender_description
-# # x-sailjail-long-description = Defender, a privacy guard and ad-blocker. Fetches ad-block lists from pre-configured internet sources, writes them to hosts file(s), works also for AlienDalvik/AppSupport. Lets you decide which cookies to white- or blacklist  or even freeze them. Needs (of course ;) Internet permission.
+# # x-sailjail-long-description = Defender, a privacy guard and ad-blocker for.SFOS. Fetches ad-block lists from pre-configured internet sources, writes them to hosts file(s), works also for AlienDalvik/AppSupport. Lets you decide which cookies to white- or black-list or even freeze them. Also needs Internet and PublicDir permissions.
 
 ### PERMISSIONS
 
@@ -23,19 +23,19 @@
 
 ## var
 #
-writable-var-log
-noblacklist /var/log/
-noblacklist /var/log/defender_err.log
-whitelist /var/log/defender_err.log
-read-write /var/log/defender_err.log
-noblacklist /var/log/defender_last.json
-whitelist /var/log/defender_last.json
-read-write /var/log/defender_last.json
+#writable-var-log
+#noblacklist /var/log/
+#noblacklist /var/log/defender_err.log
+#whitelist /var/log/defender_err.log
+#read-write /var/log/defender_err.log
+#noblacklist /var/log/defender_last.json
+#whitelist /var/log/defender_last.json
+#read-write /var/log/defender_last.json
 
 
 ## usr/share
 #
-noblacklist /usr/share/themes
+#noblacklist /usr/share/themes
 
 
 ## tmp
@@ -201,45 +201,45 @@ read-write /system/etc/hosts.editable
 
 ## lib...
 # non-sense the libs here, but just kept anyway
-whitelist /usr/lib/qt5/qml/io/thp/pyotherside/libpyothersideplugin.so*
-whitelist /usr/lib/libsailfishapp.so*
-whitelist /usr/lib/libmdeclarativecache5.so*
-whitelist /usr/lib/libmlite5.so*
-whitelist /usr/lib/libQt5Quick.so*
-whitelist /usr/lib/libQt5Gui.so*
-whitelist /usr/lib/libQt5Qml.so*
-whitelist /usr/lib/libQt5Core.so*
-whitelist /usr/lib/libstdc++.so*
-whitelist /usr/lib/libQt5Network.so*
-whitelist /usr/lib/libGLESv2.so*
-whitelist /usr/lib/libdconf.so*
-whitelist /usr/lib/libgobject-2.0.so*
-whitelist /usr/lib/libglib-2.0.so*
-whitelist /usr/lib/libQt5DBus.so*
-whitelist /usr/lib/libz.so* 
-whitelist /usr/lib/libpng16.so*
-whitelist /usr/lib/libicuuc.so*
-whitelist /usr/lib/libicui18n.so*
-whitelist /usr/lib/libpcre16.so*
-whitelist /usr/lib/libsystemd.so*
-whitelist /usr/lib/libproxy.so*
-whitelist /usr/lib/libssl.so*
-whitelist /usr/lib/libcrypto.so*
-whitelist /usr/lib/libhybris-common.so*
-whitelist /usr/lib/libgio-2.0.so*
-whitelist /usr/lib/libffi.so*
-whitelist /usr/lib/libpcre2-8.so*
-whitelist /usr/lib/libdbus-1.so*
-whitelist /usr/lib/libicudata.so*
-whitelist /usr/lib/liblzma.so*
-whitelist /usr/lib/libcap.so*
-whitelist /usr/lib/libmount.so*
-whitelist /usr/lib/libgcrypt.so*
-whitelist /usr/lib/libgmodule-2.0.so*
-whitelist /usr/lib/libselinux.so*
-whitelist /usr/lib/libblkid.so*
-whitelist /usr/lib/libgpg-error.so*
-whitelist /usr/lib/libpcre.so*
+#whitelist /usr/lib/qt5/qml/io/thp/pyotherside/libpyothersideplugin.so*
+#whitelist /usr/lib/libsailfishapp.so*
+#whitelist /usr/lib/libmdeclarativecache5.so*
+#whitelist /usr/lib/libmlite5.so*
+#whitelist /usr/lib/libQt5Quick.so*
+#whitelist /usr/lib/libQt5Gui.so*
+#whitelist /usr/lib/libQt5Qml.so*
+#whitelist /usr/lib/libQt5Core.so*
+#whitelist /usr/lib/libstdc++.so*
+#whitelist /usr/lib/libQt5Network.so*
+#whitelist /usr/lib/libGLESv2.so*
+#whitelist /usr/lib/libdconf.so*
+#whitelist /usr/lib/libgobject-2.0.so*
+#whitelist /usr/lib/libglib-2.0.so*
+#whitelist /usr/lib/libQt5DBus.so*
+#whitelist /usr/lib/libz.so* 
+#whitelist /usr/lib/libpng16.so*
+#whitelist /usr/lib/libicuuc.so*
+#whitelist /usr/lib/libicui18n.so*
+#whitelist /usr/lib/libpcre16.so*
+#whitelist /usr/lib/libsystemd.so*
+#whitelist /usr/lib/libproxy.so*
+#whitelist /usr/lib/libssl.so*
+#whitelist /usr/lib/libcrypto.so*
+#whitelist /usr/lib/libhybris-common.so*
+#whitelist /usr/lib/libgio-2.0.so*
+#whitelist /usr/lib/libffi.so*
+#whitelist /usr/lib/libpcre2-8.so*
+#whitelist /usr/lib/libdbus-1.so*
+#whitelist /usr/lib/libicudata.so*
+#whitelist /usr/lib/liblzma.so*
+#whitelist /usr/lib/libcap.so*
+#whitelist /usr/lib/libmount.so*
+#whitelist /usr/lib/libgcrypt.so*
+#whitelist /usr/lib/libgmodule-2.0.so*
+#whitelist /usr/lib/libselinux.so*
+#whitelist /usr/lib/libblkid.so*
+#whitelist /usr/lib/libgpg-error.so*
+#whitelist /usr/lib/libpcre.so*
 # end of nosense for fun, below is enough:
 #DOH! whitelist /lib
 whitelist /lib/*
@@ -253,7 +253,7 @@ whitelist /usr/lib64/*
 read-only /usr/lib64/*
 # END OF LIB section for Jolla devices
 #
-### for 10 III libs see at end of file 
+### for 10 devices' libs sectiom, see at end of file 
 #
 
 ## tmp
@@ -277,40 +277,40 @@ read-write /tmp/defender/
 
 
 ## var/log
-noblacklist /var/log/
-#doh: mkfile /var/log/defender_last.json
-noblacklist /var/log/defender_err.log
-whitelist /var/log/defender_err.log
-read-write /var/log/defender_err.log
-noblacklist /var/log/defender_last.json
-whitelist /var/log/defender_last.json
-read-write /var/log/defender_last.json
+#noblacklist /var/log/
+##doh: mkfile /var/log/defender_last.json
+#noblacklist /var/log/defender_err.log
+#whitelist /var/log/defender_err.log
+#read-write /var/log/defender_err.log
+#noblacklist /var/log/defender_last.json
+#whitelist /var/log/defender_last.json
+#read-write /var/log/defender_last.json
 
 
 ## usr/share
 ## non-sense regarding themes://silica, but kept anymway
-#doh: whitelist /usr/share/
-#read-only /usr/share/
-noblacklist /usr/share/themes/
-whitelist /usr/share/themes/
-read-only /usr/share/themes/
-whitelist /usr/share/themes//silica/
-read-only /usr/share/themes//silica/
-whitelist /usr/share/themes/sailfish-default/
-read-only /usr/share/themes/sailfish-default/
-whitelist /usr/share/themes/sailfish-default/silica/
-read-only /usr/share/themes/sailfish-default/silica/
-whitelist /usr/share/themes/sailfish-default/silica/z1.75/
-read-only /usr/share/themes/sailfish-default/silica/z1.75/
-whitelist /usr/share/themes/sailfish-default/silica/z1.75/icons-monochrome/
-read-only /usr/share/themes/sailfish-default/silica/z1.75/icons-monochrome/
-whitelist /usr/share/ambience/
-read-only /usr/share/ambience/
-whitelist /usr/share/icons/
-read-only /usr/share/icons/
-#
-whitelist /usr/share/fonts/
-read-only /usr/share/fonts/
+##doh: whitelist /usr/share/
+##read-only /usr/share/
+#noblacklist /usr/share/themes/
+#whitelist /usr/share/themes/
+#read-only /usr/share/themes/
+#whitelist /usr/share/themes//silica/
+#read-only /usr/share/themes//silica/
+#whitelist /usr/share/themes/sailfish-default/
+#read-only /usr/share/themes/sailfish-default/
+#whitelist /usr/share/themes/sailfish-default/silica/
+#read-only /usr/share/themes/sailfish-default/silica/
+#whitelist /usr/share/themes/sailfish-default/silica/z1.75/
+#read-only /usr/share/themes/sailfish-default/silica/z1.75/
+#whitelist /usr/share/themes/sailfish-default/silica/z1.75/icons-monochrome/
+#read-only /usr/share/themes/sailfish-default/silica/z1.75/icons-monochrome/
+#whitelist /usr/share/ambience/
+#read-only /usr/share/ambience/
+#whitelist /usr/share/icons/
+#read-only /usr/share/icons/
+##
+#whitelist /usr/share/fonts/
+#read-only /usr/share/fonts/
 
 
 ## python
@@ -319,9 +319,10 @@ read-only /usr/share/harbour-defender/qml/python/
 
 
 ## default
-whitelist ${HOME}/.cache/harbour-defender
 whitelist ${HOME}/.config/harbour-defender
-whitelist ${HOME}/.local/share/harbour-defender
+whitelist ${HOME}/.cache/leinchen.peter/harbour-defender
+whitelist ${HOME}/.config/leinchen.peter/harbour-defender
+whitelist ${HOME}/.local/share/leinchen.peter/harbour-defender
 
 
 ###
