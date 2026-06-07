@@ -4,7 +4,7 @@ Description=Restart AppSupport/Aliendalvik serice on request from Defender
 [Service]
 Type=oneshot
 ExecStart=/bin/sh -c "AppS_USER=`cat /tmp/defender/usr`; \
-                      FILE_PATH=`cat /tmp/defender/dir`/.config/harbour-defender; \
+                      FILE_PATH=`cat /tmp/defender/dir`/.cache/leinchen.peter/harbour-defender; \
                       systemctl restart aliendalvik; \
                       systemctl restart appsupport@$AppS_USER; \
                       rm -f $FILE_PATH/adRestart;"

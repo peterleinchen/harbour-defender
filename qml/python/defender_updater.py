@@ -3,6 +3,8 @@
 
 APP_NAME = 'defender'
 APP_DIR = '/usr/share/harbour-' + APP_NAME + '/qml/python'
+app_name = 'harbour-' + APP_NAME
+organization = 'leinchen.peter'
 
 import sys
 sys.path.insert(0, APP_DIR)
@@ -22,47 +24,94 @@ import socket
 
 #CONFIG_HOME_DIR = '/home/nemo/.config/harbour-' + APP_NAME
 #doh, root: HOME_DIR = os.environ['HOME']
-#ADMIN_USER = 'nemo'
-#HOME_DIR = '/home/' + ADMIN_USER
+#NON_ADMIN_USER = 'nemo'
+#HOME_DIR = '/home/' + NON_ADMIN_USER
 #if not os.path.isdir(HOME_DIR):
-#    ADMIN_USER = 'defaultuser'
-#    HOME_DIR = '/home/' + ADMIN_USER
+#    NON_ADMIN_USER = 'defaultuser'
+#    HOME_DIR = '/home/' + NON_ADMIN_USER
 #if not os.path.isdir(HOME_DIR):
 #    print("Neither 'nemo' nor 'defaultuser' have a home :(, \n \
 #    please give a new one in qml/python/defender_updater.py (around line: 30)")
+USER_NAME = os.environ['USER']
+TMP_DIR = '/tmp/' + APP_NAME
 
 # getent /etc/passwd 100000 | cut -f1 -d':'
-with open("/tmp/defender/usr", "r") as f:
-    ADMIN_USER = f.read()
+with open(TMP_DIR + '/usr', 'r') as f:
+    NON_ADMIN_USER = f.read()
     f.close()
 # getent /etc/passwd 100000 | cut -f6 -d':'
-with open("/tmp/defender/dir", "r") as f:
+with open(TMP_DIR + '/dir', 'r') as f:
     HOME_DIR = f.read()
     f.close()
-if not ADMIN_USER == "nemo" and not ADMIN_USER == "defaultuser":
-    write_err_log("Warning, neither 'nemo' nor 'defaultuser' \n \
-    have been used with '" + HOME_DIR + "' - might be invalid!")
-if not os.path.isdir(HOME_DIR):
-    write_err_log("Neither 'nemo' nor 'defaultuser' \n \
-    NOR '" + ADMIN_USER + "' with '" + HOME_DIR + "' are valid, \n \
-    cannot continue!")
-    exit(255)
-                                        
-                                        
-CONFIG_HOME_DIR = HOME_DIR + '/.config/harbour-' + APP_NAME          
-CONFIG_ETC_DIR = '/etc'
 
-CONFIG_ETC_PATH = CONFIG_ETC_DIR + '/' + APP_NAME + '.conf'
+config_dirpart = '/.config/' + organization + '/' + app_name
+cache_dir_part = '/.cache/' + organization + '/' + app_name
+data_dir_part = '/.local/share/' + organization + '/' app_name
+#CONFIG_HOME_DIR = HOME_DIR + '/.config/harbour-' + APP_NAME          
+CONFIG_HOME_DIR = HOME_DIR + config_dir_part
 CONFIG_HOME_PATH = CONFIG_HOME_DIR + '/' + APP_NAME + '.conf'
+
+CONFIG_ETC_DIR = '/etc'
+CONFIG_ETC_PATH = CONFIG_ETC_DIR + '/' + APP_NAME + '.conf'
+
 CONFIG_APP_PATH = APP_DIR + '/' + APP_NAME + '_default.conf'
 
-UPDATE_FILE_PATH = CONFIG_HOME_DIR + '/' + 'update'
+#UPDATE_FILE_PATH = CONFIG_HOME_DIR + '/' + 'update'
+UPDATE_FILE_PATH = HOME_DIR + '/' + cache_dir_part + '/' + 'update'
 
-LOGFILE_LAST_PATH = '/var/log/'+ APP_NAME +'_last.json'
+#LOGFILE_LAST_PATH = '/var/log/'+ APP_NAME +'_last.json'
+LOGFILE_LAST_PATH = HOME_DIR + '/' + data_dir_part + '/' + APP_NAME +'_last.json'
 #
-ERRLOG_FILE_PATH = '/var/log/' + APP_NAME + '_err.log'
+#ERRLOG_FILE_PATH = '/var/log/' + APP_NAME + '_err.log'
+ERRLOG_FILE_PATH = HOME_DIR + '/' + data_dir + '/' + APP_NAME + '_err.log'
 TMP_ERRLOG_FILE_PATH = HOME_DIR + '/Public/.' + APP_NAME + '_err.log'
 
+def write_error_log(errlog=None):
+    print(errlog)
+    oserrlog1 = "echo -e \"" + "--\n$(date)" + "\" >> " + ERRLOG_FILE_PATH
+    oserrlog2 = "echo    \"" + errlog        + "\" >> " + ERRLOG_FILE_PATH
+    oserrlog1 = "echo '" + oserrlog1 + "' | su - " + NON_ADMIN_USER
+    oserrlog2 = "echo '" + oserrlog2 + "' | su - " + NON_ADMIN_USER
+    os.system(oserrlog1)
+    os.system(oserrlog2)
+
+def show_error_log():
+    try:
+        if os.path.isfile(ERRLOG_FILE_PATH) and (os.path.getsize(ERRLOG_FILE_PATH) > 0):
+            print("cp " + ERRLOG_FILE_PATH + " " + TMP_ERRLOG_FILE_PATH)
+            os.system("cp " + ERRLOG_FILE_PATH + " " + TMP_ERRLOG_FILE_PATH)
+            sfbCommand = "/usr/bin/sailfish-browser " + TMP_ERRLOG_FILE_PATH + " &"
+            print(sfbCommand)
+            os.system("echo '" + sfbCommand + "' | su - " + NON_ADMIN_USER)
+            #os.system("invoker --type=browser,silica-qt5 -n sailfish-browser " + ERRLOG_FILE_PATH + " &")
+            #open_browser(ERRLOG_FILE_PATH)
+    except Exception as e:
+        print(e)
+
+if USER_NAME != 'root':
+    write_err_log(f"DOH: You do NEED to run me (the {APP_NAME}_updater.py) as root!")
+    exit(2)
+
+if NON_ADMIN_USER == 'root':
+    write_err_log(f"""DOH: SOMEHOW you managed to spoil it up, by running {APP_NAME}(.py) as root?! \n
+Please restart the app, I will clean up the mess...""")
+    show_error_log()
+    #cleaning up
+    os.system("chown " + NON_ADMIN_USER + ":" + NON_ADMIN_USER + " " + TMP_DIR + "/*")
+    os.system("chown " + NON_ADMIN_USER + ":" + NON_ADMIN_USER + " " + HOME_DIR + "/" + config_dir_part + "/*")
+    os.system("chown " + NON_ADMIN_USER + ":" + NON_ADMIN_USER + " " + HOME_DIR + "/" + cache_dir_part + "/*")
+    os.system("chown " + NON_ADMIN_USER + ":" + NON_ADMIN_USER + " " + HOME_DIR + "/" + data_dir_part + "/*")
+    exit(3)
+
+if not NON_ADMIN_USER == "nemo" and not NON_ADMIN_USER == "defaultuser":
+    write_err_log("Warning: Neither 'nemo' nor 'defaultuser' \n \
+    have been used with '" + HOME_DIR + "' - might be invalid!")
+if not os.path.isdir(HOME_DIR):
+    write_err_log("ERROR: Neither 'nemo' nor 'defaultuser' \n \
+    NOR '" + NON_ADMIN_USER + "' with '" + HOME_DIR + "' are valid, \n \
+    cannot continue!")
+    exit(4)
+                                        
 whitelist = []
 urls = []
 whitelist_priority = True # whether the whitelist should surpass the blacklist in .editable files
@@ -85,7 +134,6 @@ config_etc = configparser.ConfigParser()
 config_etc.read(CONFIG_ETC_PATH)
 config_home = configparser.ConfigParser()
 config_home.read(CONFIG_HOME_PATH)
-
 
 def load_sources():
     urls = []
@@ -135,15 +183,6 @@ def add_default_entry(hosts, native = False):
                         address = '127.0.0.1', names = ['localhost.localdomain', 'localhost'])
         ])
     return 0
-
-def write_error_log(errlog=None):
-    print(errlog)
-    oserrlog1 = "echo -e \"" + "--\n$(date)" + "\" >> " + ERRLOG_FILE_PATH
-    oserrlog2 = "echo    \"" + errlog        + "\" >> " + ERRLOG_FILE_PATH
-    oserrlog1 = "echo '" + oserrlog1 + "' | su - " + ADMIN_USER
-    oserrlog2 = "echo '" + oserrlog2 + "' | su - " + ADMIN_USER
-    os.system(oserrlog1)
-    os.system(oserrlog2)
 
 def write_hosts(hosts, remote_entries=None, path=None, editable_path=None, whitelist=whitelist, android=False):
     # Insert entries
@@ -233,7 +272,7 @@ def update(remote_sources = urls):
         hsCommand1 = "dbus-send --system --print-reply --dest=net.connman /net/connman/technology/wifi net.connman.Technology.SetProperty string:\"Powered\" variant:boolean:false"
         hsCommand2 = "dbus-send --system --print-reply --dest=net.connman /net/connman/technology/wifi net.connman.Technology.SetProperty string:\"Powered\" variant:boolean:true"
         hsCommand3 = "dbus-send --system --print-reply --dest=net.connman /net/connman/technology/wifi net.connman.Technology.SetProperty string:\"Tethering\" variant:boolean:true"
-        #os.system("echo '" + hsCommand + "' | su - " + ADMIN_USER)
+        #os.system("echo '" + hsCommand + "' | su - " + NON_ADMIN_USER)
         print(os.system(hsCommand1))
         print(os.system(hsCommand2))
         os.system("sleep 1")
@@ -250,19 +289,6 @@ def update(remote_sources = urls):
 
 def reset_hosts():
     return update(remote_sources = [])
-
-def show_error_log():
-    try:
-        if os.path.isfile(ERRLOG_FILE_PATH) and (os.path.getsize(ERRLOG_FILE_PATH) > 0):
-            print("cp " + ERRLOG_FILE_PATH + " " + TMP_ERRLOG_FILE_PATH)
-            os.system("cp " + ERRLOG_FILE_PATH + " " + TMP_ERRLOG_FILE_PATH)
-            sfbCommand = "/usr/bin/sailfish-browser " + TMP_ERRLOG_FILE_PATH + " &"
-            print(sfbCommand)
-            os.system("echo '" + sfbCommand + "' | su - " + ADMIN_USER)
-            #os.system("invoker --type=browser,silica-qt5 -n sailfish-browser " + ERRLOG_FILE_PATH + " &")
-            #open_browser(ERRLOG_FILE_PATH)
-    except Exception as e:
-        print(e)
 
 
 if __name__ == '__main__':
@@ -292,3 +318,4 @@ if __name__ == '__main__':
         os.remove(UPDATE_FILE_PATH)
     show_error_log()
     print("Done with updating.")
+

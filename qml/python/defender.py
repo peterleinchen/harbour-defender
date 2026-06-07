@@ -8,34 +8,73 @@ import datetime
 #import dbus
 
 APP_NAME = 'defender'
+app_name = 'harbour-' + APP_NAME
+organization = 'leinchen.peter'
 
-#CONFIG_HOME_DIR = '/home/nemo/.config/harbour-' + APP_NAME
-if not os.path.isdir("/tmp/defender"):
-    os.mkdir("/tmp/defender");
 USER_NAME = os.environ['USER']
-os.system("echo -n '" + USER_NAME + "' > /tmp/defender/usr")
 HOME_DIR = os.environ['HOME']
-os.system("echo -n '" + HOME_DIR + "' > /tmp/defender/dir")
-CONFIG_HOME_DIR = HOME_DIR + '/.config/harbour-' + APP_NAME
-CONFIG_ETC_DIR = '/etc'
 
-CONFIG_ETC_PATH = CONFIG_ETC_DIR + '/'  + APP_NAME + '.conf'
+# SailJail populates these when running sandboxed. If empty or absent, we use standard Linux fallbacks.
+config_dir = os.environ.get('XDG_CONFIG_HOME') or None
+cache_dir = os.environ.get('XDG_CACHE_HOME') or None
+data_dir = os.environ.get('XDG_DATA_HOME') or None
+#                                            
+if not config_dir:
+    config_dir = HOME_DIR + '/.config/' +  organization + '/' + app_name
+if not cache_dir:
+    cache_dir = HOME_DIR + '/.cache/' + organization + '/' + app_name
+if not data_dir:
+    data_dir = HOME_DIR + '.local/share/' +  organization + '/' + app_name
+print(config_dir)
+print(cache_dir)
+print(data_dir)
+
+#if not os.path.isdir("/tmp/defender"):
+#    os.mkdir("/tmp/defender");
+#os.system("echo -n '" + USER_NAME + "' > /tmp/defender/usr")
+#os.system("echo -n '" + HOME_DIR + "' > /tmp/defender/dir")
+TMP_DIR = '/tmp/' + APP_NAME
+os.system("echo -n '" + USER_NAME + "' > " + TMP_DIR + "/usr")
+os.system("echo -n '" + HOME_DIR + "' > " + TMP_DIR + "/dir")
+
+###CONFIG_HOME_DIR = '/home/nemo/.config/harbour-' + APP_NAME
+#CONFIG_HOME_DIR = HOME_DIR + '/.config/harbour-' + APP_NAME
+CONFIG_HOME_DIR = config_dir
 CONFIG_HOME_PATH = CONFIG_HOME_DIR + '/'  + APP_NAME + '.conf'
 
-UPDATE_FILE_PATH = CONFIG_HOME_DIR + '/' + 'update'
-UPDLOOP_FILE_PATH = CONFIG_HOME_DIR + '/' + 'updLoop'
-ADRESTART_FILE_PATH = CONFIG_HOME_DIR + '/' + 'adRestart'
+CONFIG_ETC_DIR = '/etc'
+CONFIG_ETC_PATH = CONFIG_ETC_DIR + '/'  + APP_NAME + '.conf'
 
-LOGFILE_LAST = '/var/log/'+ APP_NAME +'_last.json'
+#UPDATE_FILE_PATH = CONFIG_HOME_DIR + '/' + 'update'
+UPDATE_FILE_PATH = cache_dir + '/' + 'update'
+#UPDLOOP_FILE_PATH = CONFIG_HOME_DIR + '/' + 'updLoop'
+UPDLOOP_FILE_PATH = cache_dir + '/' + 'updLoop'
+#ADRESTART_FILE_PATH = CONFIG_HOME_DIR + '/' + 'adRestart'
+ADRESTART_FILE_PATH = cache_dir + '/' + 'adRestart'
+
+LOG_DIR = data_dir
+#LOGFILE_LAST = '/var/log/'+ APP_NAME +'_last.json'
+LOGFILE_LAST = LOG_DIR + '/' + APP_NAME + '_last.json'
 #
 ERRLOG_FILE = APP_NAME + '_err.log'
-ERRLOG_FILE_PATH = '/var/log/' + ERRLOG_FILE
+ERRLOG_FILE_PATH = LOG_DIR + '/' + ERRLOG_FILE
 TMP_ERRLOG_FILE_PATH = HOME_DIR + '/Public/.' + ERRLOG_FILE
 
 cookies_path = HOME_DIR + '/.local/share/org.sailfishos/browser/.mozilla/' + 'cookies.sqlite'
 if not os.path.isfile(cookies_path):
     cookies_path = HOME_DIR + '/.mozilla/mozembed/' + 'cookies.sqlite'
 #nope, cookies_path += '?immutable=1'
+
+def write_error_log(errlog=None):
+    print(errlog)
+    oserrlog1 = "echo -e \"" + "--\n$(date)" + "\" >> " + ERRLOG_FILE_PATH
+    oserrlog2 = "echo    \"" + errlog        + "\" >> " + ERRLOG_FILE_PATH
+    os.system(oserrlog1)
+    os.system(oserrlog2)
+
+if USER_NAME == 'root':
+    write_err_log("DOH, do NOT run me as root!")
+    exit(1)
 
 def initialize():
     if not os.path.isdir(CONFIG_HOME_DIR):
@@ -275,8 +314,8 @@ def cookie_locker(lock = False):
         os.chmod(cookies_path, S_IREAD|S_IRGRP|S_IROTH)
     else:
         os.chmod(cookies_path, S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
-        os.chmod(cookies_path + "-shm", S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
-        os.chmod(cookies_path + "-wal", S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
+        os.chmod(cookies_path + '-shm', S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
+        os.chmod(cookies_path + '-wal', S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
     return 0
 
 def cookie_is_locked():
