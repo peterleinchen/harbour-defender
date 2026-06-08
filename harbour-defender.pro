@@ -75,3 +75,4 @@ DISTFILES += \
     qml/pages/components/CookiesMenuItem.qml \
     qml/pages/components/GeneralMenuItem.qml \
     qml/pages/components/SourcesMenuItem.qml
+DISTFILES += icons/*
