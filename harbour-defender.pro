@@ -22,6 +22,9 @@ TARGET = harbour-defender
 #TEMPLATE = subdirs
 #SUBDIRS =
 TEMPLATE = aux
+desktop.files = harbour-defender.desktop
+desktop.path = /usr/sare/applications
+INSTALLS += desktop
 # end noarch
 
 OTHER_FILES += qml/harbour-defender.qml \
