@@ -13,15 +13,14 @@
 # The name of your application
 TARGET = harbour-defender
 
-CONFIG += sailfishapp
-
 # for binary copilation, use:
+#CONFIG += sailfishapp
 #SOURCES += src/harbour-defender.cpp
 # but as from 2026-06 we build as BuildArch: noarch
 # start noarch sailfish-qml, so there is no need to build, see build section in spec: 
-SOURCES -= src/harbour-defender.cpp
+#SOURCES -= src/harbour-defender.cpp
 TEMPLATES = subdirs
-SUBDIRS =
+SUBDIRS = 
 # end noarch
 
 OTHER_FILES += qml/harbour-defender.qml \
