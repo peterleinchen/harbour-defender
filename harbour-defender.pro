@@ -18,10 +18,10 @@ TARGET = harbour-defender
 #SOURCES += src/harbour-defender.cpp
 # but as from 2026-06 we build as BuildArch: noarch
 # start noarch sailfish-qml, so there is no need to build, see build section in spec: 
-SOURCES -= src/harbour-defender.cpp
-#TEMPLATE = aux
-TEMPLATE = subdirs
-SUBDIRS = 
+#SOURCES -= src/harbour-defender.cpp
+#TEMPLATE = subdirs
+#SUBDIRS =
+TEMPLATE = aux
 # end noarch
 
 OTHER_FILES += qml/harbour-defender.qml \
