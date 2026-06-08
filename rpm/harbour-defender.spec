@@ -54,8 +54,9 @@ Icon: https://raw.githubusercontent.com/peterleinchen/harbour-defender/master/qm
 # dirs
 %qtc_qmake5 CONFDIR=%{_sysconfdir} UNITDIR=%{_unitdir} SAILJAILDIR=%{_sailjaildir}
 # make
-# as we use noarch sailfish-qml, no need to build: 
-# %%qtc_make %%{?_smp_mflags}
+%qtc_make %{?_smp_mflags}
+# as we use noarch sailfish-qml, there is no need to build, but we keep above: 
+# so please see section in .pro file
 
 %install
 ls -R . # debugging only

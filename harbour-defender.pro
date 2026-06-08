@@ -8,13 +8,21 @@
 #   - desktop filename must be changed
 #   - icon definition filename in desktop file must be changed
 #   - translation filenames have to be changed
+#   - sailjail profile name and calls with parameter -p must be changed
 
 # The name of your application
 TARGET = harbour-defender
 
 CONFIG += sailfishapp
 
-SOURCES += src/harbour-defender.cpp
+# for binary copilation, use:
+#SOURCES += src/harbour-defender.cpp
+# but as from 2026-06 we build as BuildArch: noarch
+# start noarch sailfish-qml, so there is no need to build, see build section in spec: 
+SOURCES -= src/harbour-defender.cpp
+TEMPLATES = subdirs
+SUBDIRS =
+# end noarch
 
 OTHER_FILES += qml/harbour-defender.qml \
     qml/cover/CoverPage.qml \
@@ -47,11 +55,12 @@ INSTALLS += conf
 # following CONFIG line
 CONFIG += sailfishapp_i18n
 
-# German translation is enabled as an example. If you aren't
+# German translation is enabled as an example. If you are not
 # planning to localize your app, remember to comment out the
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
-TRANSLATIONS += translations/harbour-defender-de.ts
+#TRANSLATIONS += translations/harbour-defender-de.ts
+TRANSLATIONS += translations/harbour-defender-*.ts
 
 DISTFILES += \
     qml/pages/CookiesPage.qml \
