@@ -28,17 +28,19 @@ TEMPLATE = aux
 # the desktop file
 desktop_file.files = harbour-defender.desktop
 desktop_file.path = $$PREFIX/share/applications
+INSTALLS += desktop_file
 # the icons directories
 #icons_dirs.files = $$FILES(icons/*)
 #icons_dirs.path = $$PREFIX/share/icons/hicolor
+#INSTALLS += icons_dirs
 for(res, SAILFISHAPP_ICONS) {
   # dyamically create an installation var for each resolution loop
   icons_$${res}.files = icons/$${res}/*.png
   # map it to the standard Sailfish hicolor path structure
   icons_$${res}.path = $${PREFIX}/share/icons/hicolor/$${res}/apps
   # append the dynamic rule to the installation engine queue
+  INSTALLS += icons_$${res}
 }
-INSTALLS += desktop_file icons_dirs
 # end noarch
 
 OTHER_FILES += qml/harbour-defender.qml \
