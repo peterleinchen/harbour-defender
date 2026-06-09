@@ -26,10 +26,10 @@ TEMPLATE = aux
 # the desktop file
 desktop_file.files = harbour-defender.desktop
 desktop_file.path = $$PREFIX/share/applications
-# the icons directory
-icons_dir.files = icons
-icons_dir.path = $$PREFIX/share
-INSTALLS += desktop_file icons_dir
+# the icons directories
+icons_dirs.files = $$FILES(icons/*)
+icons_dirs.path = $$PREFIX/share/icons/hicolor
+INSTALLS += desktop_file icons_dirs
 # end noarch
 
 OTHER_FILES += qml/harbour-defender.qml \
