@@ -49,25 +49,27 @@ Icon: https://raw.githubusercontent.com/peterleinchen/harbour-defender/master/qm
 %setup -q -n %{name}-%{version}
 
 %build
-# translations
-%qtc_lrelease translations/*.ts
 # dirs
 %qtc_qmake5 CONFDIR=%{_sysconfdir} UNITDIR=%{_unitdir} SAILJAILDIR=%{_sailjaildir}
 # make
 %qtc_make %{?_smp_mflags}
 # as we use noarch sailfish-qml, there is no need to build, but we keep above: 
 # so please see section in .pro file
+# translations, should already be handled with pro file
+%qtc_lrelease translations/*.ts
 
 %install
 ls -R . # debugging only
+#
 rm -rf %{buildroot}
 %qmake5_install
+#
+pwd # debugging only
 
 desktop-file-install --delete-original       \
   --dir %{buildroot}%{_datadir}/applications             \
    %{buildroot}%{_datadir}/applications/*.desktop
 
-pwd # debugging only
 # nope, no trailing slash:
 # install -D -p -m 644 %%{name}.profile %%{buildroot}/%%{_sailjaildir}/
 # would be okay:            
@@ -76,10 +78,10 @@ pwd # debugging only
 mkdir -p %{buildroot}/%{_sailjaildir}
 install -p -m 644 %{name}.profile* %{buildroot}/%{_sailjaildir}
 install -p -m 644 %{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}
-#
-# translations
-mkdir -p %{buildroot}/%{_datadir}/%{name}/translations
-install -p -m 644 translations/%{name}*.qm %{buildroot}/%{_datadir}/%{name}/translations
+
+# translations, should already be handled within pro file
+#mkdir -p %{buildroot}/%{_datadir}/%{name}/translations
+#install -p -m 644 translations/%{name}*.qm %{buildroot}/%{_datadir}/%{name}/translations
 
 %files
 %defattr(-,root,root,-)
@@ -99,7 +101,8 @@ install -p -m 644 translations/%{name}*.qm %{buildroot}/%{_datadir}/%{name}/tran
 %exclude %{_datadir}/%{name}/qml/python/*.pyo
 %exclude %{_datadir}/%{name}/qml/python/python_hosts/*.pyc
 %exclude %{_datadir}/%{name}/qml/python/python_hosts/*.pyo
-# %ghost %config ${HOME}/.config/leinchen.peter/%{Name}/%{shortname}.conf
+# %%ghost %%config ${HOME}/.config/%%{organization}/%%{Name}/%%{shortname}.conf
+%ghost %config $home_dir}/.config/%{orgnization}/%%{Name}/%{shortname}.conf
 # >> files
 # << files
 
