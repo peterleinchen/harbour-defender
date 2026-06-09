@@ -22,9 +22,14 @@ TARGET = harbour-defender
 #TEMPLATE = subdirs
 #SUBDIRS =
 TEMPLATE = aux
-the_desktop_file.files = harbour-defender.desktop
-the_desktop_file.path = $$PREFIX/share/applications
-INSTALLS += the_desktop_file
+# and we need to take care of (else done by qmake5)
+# the desktop file
+desktop_file.files = harbour-defender.desktop
+desktop_file.path = $$PREFIX/share/applications
+# the icons directory
+icons.files = icons
+icons.path = $$PREFIX/share
+INSTALLS += desktop_file icons 
 # end noarch
 
 OTHER_FILES += qml/harbour-defender.qml \
@@ -75,4 +80,3 @@ DISTFILES += \
     qml/pages/components/CookiesMenuItem.qml \
     qml/pages/components/GeneralMenuItem.qml \
     qml/pages/components/SourcesMenuItem.qml
-DISTFILES += icons/*
