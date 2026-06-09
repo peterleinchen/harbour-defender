@@ -13,6 +13,8 @@
 # The name of your application
 TARGET = harbour-defender
 
+SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
+
 # for binary copilation, use:
 #CONFIG += sailfishapp
 #SOURCES += src/harbour-defender.cpp
@@ -27,8 +29,15 @@ TEMPLATE = aux
 desktop_file.files = harbour-defender.desktop
 desktop_file.path = $$PREFIX/share/applications
 # the icons directories
-icons_dirs.files = $$FILES(icons/*)
-icons_dirs.path = $$PREFIX/share/icons/hicolor
+#icons_dirs.files = $$FILES(icons/*)
+#icons_dirs.path = $$PREFIX/share/icons/hicolor
+for(res, SAILFISHAPP_ICONS) {
+  # dyamically create an installation var for each resolution loop
+  icons_$${res}.files = icons/$${res}/*.png
+  # map it to the standard Sailfish hicolor path structure
+  icons_$${res}.path = $${PREFIX}/share/icons/hicolor/$${res}/apps
+  # append the dynamic rule to the installation engine queue
+}
 INSTALLS += desktop_file icons_dirs
 # end noarch
 
@@ -39,7 +48,6 @@ OTHER_FILES += qml/harbour-defender.qml \
     translations/*.ts \
     harbour-defender.desktop
 
-SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
 
 # Installs
 units.files = \
