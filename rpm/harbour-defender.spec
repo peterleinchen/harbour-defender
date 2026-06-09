@@ -102,7 +102,7 @@ install -p -m 644 %{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}
 %exclude %{_datadir}/%{name}/qml/python/python_hosts/*.pyc
 %exclude %{_datadir}/%{name}/qml/python/python_hosts/*.pyo
 # %%ghost %%config ${HOME}/.config/%%{organization}/%%{Name}/%%{shortname}.conf
-%ghost %config $home_dir}/.config/%{orgnization}/%%{Name}/%{shortname}.conf
+%ghost %config ${_home_dir}/.config/%{organization}/%%{Name}/%{shortname}.conf
 # >> files
 # << files
 
