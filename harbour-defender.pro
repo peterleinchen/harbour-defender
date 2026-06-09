@@ -27,9 +27,9 @@ TEMPLATE = aux
 desktop_file.files = harbour-defender.desktop
 desktop_file.path = $$PREFIX/share/applications
 # the icons directory
-icons.files = icons
-icons.path = $$PREFIX/share
-INSTALLS += desktop_file icons 
+icons_dir.files = icons
+icons_dir.path = $$PREFIX/share
+INSTALLS += desktop_file icons_dir
 # end noarch
 
 OTHER_FILES += qml/harbour-defender.qml \
