@@ -101,8 +101,10 @@ install -p -m 644 %{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}
 %exclude %{_datadir}/%{name}/qml/python/*.pyo
 %exclude %{_datadir}/%{name}/qml/python/python_hosts/*.pyc
 %exclude %{_datadir}/%{name}/qml/python/python_hosts/*.pyo
+# a ghost config to not have it somehow overwritten, both cannot work. user dirs not allow
 # %%ghost %%config ${HOME}/.config/%%{organization}/%%{Name}/%%{shortname}.conf
-%ghost %config %{_home_dir}/.config/%{organization}/%%{Name}/%{shortname}.conf
+#%ghost %config %{_home_dir}/.config/%{organization}/%%{Name}/%{shortname}.conf
+
 # >> files
 # << files
 
@@ -153,7 +155,7 @@ else
   sed -e 's/^WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}-updLoop.path
   fi
 fi
-
+#
 systemctl daemon-reload
 systemctl disable --now %{name}.path; # this one may be needed on upgrade
 systemctl enable --now %{name}.path
