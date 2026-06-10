@@ -120,13 +120,13 @@ install -p -m 644 %{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}
 # << install pre
 
 %post
-[ -f %{_sysconfdir}/hosts ] && echo "/etc/hosts exists" || echo -e "127.0.0.1               localhost.localdomain localhost\n::1             localhost6.localdomain6 localhost6\n" >> %{_sysconfdir}/hosts
-[ -f %{_sysconfdir}/hosts.editable ] && echo "/etc/hosts.editable exists" || cp %{_sysconfdir}/hosts %{_sysconfdir}/hosts.editable 2>/dev/null || :
+[ -f %{_sysconfdir}/hosts ] && echo "Info: /etc/hosts exists" || echo -e "127.0.0.1               localhost.localdomain localhost\n::1             localhost6.localdomain6 localhost6\n" >> %{_sysconfdir}/hosts
+[ -f %{_sysconfdir}/hosts.editable ] && echo "Info: /etc/hosts.editable exists" || cp %{_sysconfdir}/hosts %{_sysconfdir}/hosts.editable 2>/dev/null || :
 # Android files
 if [ -d "%{_a1configdir}" ]; then
   # Only if the dir exists
-  [ -f %{_a1configdir}/hosts ] && echo "%{_a1configdir}/hosts exists" || echo -e "127.0.0.1                   localhost\n" >> %{_a1configdir}/hosts
-  [ -f %{_a1configdir}/hosts.editable ] && echo "%{_a1configdir}/hosts.editable exists" || cp %{_a1configdir}/hosts %{_a1configdir}/hosts.editable 2>/dev/null || :
+  [ -f %{_a1configdir}/hosts ] && echo "Info: %{_a1configdir}/hosts exists" || echo -e "127.0.0.1                   localhost\n" >> %{_a1configdir}/hosts
+  [ -f %{_a1configdir}/hosts.editable ] && echo "Info: %{_a1configdir}/hosts.editable exists" || cp %{_a1configdir}/hosts %{_a1configdir}/hosts.editable 2>/dev/null || :
 fi
 if [ -d "%{_a2configdir}" ]; then
   # Only if the dir exists
@@ -203,7 +203,7 @@ fi
 if [ $(grep 'NAME=' /etc/hw-release | grep -q 'Xperia 10'; echo $?) -eq 0 ]; then
     cat /etc/sailjail/permissions/%{name}.profile.partial_Xperia10 >> /etc/sailjail/permissions/%{name}.profile 
 fi
-rm /etc/sailjail/permissions/%{name}.profile.partial* 2&> /dev/null
+rm /etc/sailjail/permissions/%{name}.profile.partial* 2&>/dev/null
 
 ## small fix for sailjail, as /var/log/ and mkfile do not like each other
 #touch /var/log/defender_last.json
@@ -246,15 +246,15 @@ if [ "$1" = "0" ]; then
         [ -d "${data_dir}" ] && rm -fr "${data_dir}"
         # backup the personal config
         [ -d /home/$xuser ] && [ -d "$config_bak" ] || echo "mkdir -p $config_bak" | su - $xuser
-        cp -ar "${config_dir}/*" "${config_bak}/"
+        cp -ar "${config_dir}/*" "${config_bak}/" 2&>/dev/null
         
         # public dir errlog file
         [ -f /home/${xuser}/Public/.%{shortname}_err.log ] && rm /home/${xuser}/Public/.%{shortname}_err.log ] :
     done
     
     # copy back manually created entries to hosts
-    [ -f %{_sysconfdir}/hosts.editable ] && cp %{_sysconfdir}/hosts.editable %{_sysconfdir}/hosts 2>/dev/null || echo "/etc/hosts.editable does not exist"
-    [ -f %{_a1configdir}/hosts.editable ] && cp %{_a1configdir}/hosts.editable %{_a1configdir}/hosts 2>/dev/null || echo "%{_a1configdir}/hosts.editable does not exist"
-    [ -f %{_a2configdir}/hosts.editable ] && cp %{_a2configdir}/hosts.editable %{_a2configdir}/hosts 2>/dev/null || echo "%{_a2configdir}/hosts.editable does not exist" 
+    [ -f %{_sysconfdir}/hosts.editable ] && cp %{_sysconfdir}/hosts.editable %{_sysconfdir}/hosts 2>/dev/null || echo "Info: %{_sysconfdir}/hosts.editable does not exist"
+    [ -f %{_a1configdir}/hosts.editable ] && cp %{_a1configdir}/hosts.editable %{_a1configdir}/hosts 2>/dev/null || echo "Info: %{_a1configdir}/hosts.editable does not exist"
+    [ -f %{_a2configdir}/hosts.editable ] && cp %{_a2configdir}/hosts.editable %{_a2configdir}/hosts 2>/dev/null || echo "Info: %{_a2configdir}/hosts.editable does not exist" 
 fi
 
