@@ -110,7 +110,7 @@ install -p -m 644 %{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}
 
 %pre
 %if "%{?vendor}" == "harbour"
-  version_id=grep VERSION_ID /etc/os-release | cut -f2 -d'='
+  version_id=$(grep VERSION_ID /etc/os-release | cut -f2 -d'=')
   if [ $($version_id | cut -f1 -d'.') -le 4  && $($versionid | cut -f2 -d'.') -lt 6 ]; then
     echo 'ERROR: Installation of Defender from Jolla store not supported below SFOS 4.6.0.15!' >&2
     exit 1
