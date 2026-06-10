@@ -102,8 +102,8 @@ install -p -m 644 %{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}
 %exclude %{_datadir}/%{name}/qml/python/python_hosts/*.pyc
 %exclude %{_datadir}/%{name}/qml/python/python_hosts/*.pyo
 # a ghost config to not have it somehow overwritten, both cannot work. user dirs not allow
-# %%ghost %%config ${HOME}/.config/%%{organization}/%%{Name}/%%{shortname}.conf
-#%ghost %config %{_home_dir}/.config/%{organization}/%%{Name}/%{shortname}.conf
+# %%ghost %%config ${HOME}/.config/%%{organization}/%%{name}/%%{shortname}.conf
+#%ghost %config %{_home_dir}/.config/%{organization}/%%{name}/%{shortname}.conf
 
 # >> files
 # << files
@@ -112,7 +112,7 @@ install -p -m 644 %{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}
 %if "%{?vendor}" == "harbour"
   version_id=grep VERSION_ID /etc/os-release | cut -f2 -d'='
   if [ $($version_id | cut -f1 -d'.') -le 4  && $($versionid | cut -f2 -d'.') -lt 6 ]; then
-    echo 'ERROR: Installation of Defender not supported below 4.6.0.15!' >&2
+    echo 'ERROR: Installation of Defender from Jolla store not supported below SFOS 4.6.0.15!' >&2
     exit 1
   fi
 %endif
@@ -168,9 +168,11 @@ sed -e 's/text: \"[0-9]\.[0-9]\.[0-9]\"/text: \"%{version}\"/' -i %{_datadir}/%{
 
 # temporary hack, until Jolla fixes aliendalvik bind mount of /system/etc/hosts
 # this bas been "fixed" via AppSupport but still needed for older versions
-grep -q '^lxc\.mount\.entry.=./system/etc/hosts system/etc/hosts' /var/lib/lxc/aliendalvik/extra_config
-if [ 0 != $? ]; then
-    echo "lxc.mount.entry = /system/etc/hosts system/etc/hosts none bind,ro 0 0" >> /var/lib/lxc/aliendalvik/extra_config
+if [ -d /var/lib/lxc/aliendalvik ]; then 
+    grep -q '^lxc\.mount\.entry.=./system/etc/hosts system/etc/hosts' /var/lib/lxc/aliendalvik/extra_config 2&>/dev/null
+    if [ 0 != $? ]; then
+        echo "lxc.mount.entry = /system/etc/hosts system/etc/hosts none bind,ro 0 0" >> /var/lib/lxc/aliendalvik/extra_config
+    fi
 fi
 
 # temporary hack, until Jolla fixes nsswitch.conf problematic
@@ -188,20 +190,20 @@ fi
 # So for easing, we only sailjail from SFOS 5.0 onwards ;)
 # if [ $(grep VERSION_ID /etc/os-release  | cut -f2 -d'=' | cut -f1 -d'.') -lt 5 ]; then
 # Changed to sailjail from 4.6, matured enough and allows installation on older devices
-version_id=grep VERSION_ID /etc/os-release  | cut -f2 -d'='
-if [ $(echo $version_id | cut -f1 -d'.') -le 4  && $(echo $versionid | cut -f2 -d'.') -lt 6 ]; then
+version_id=$(grep VERSION_ID /etc/os-release  | cut -f2 -d'=')
+if [ $(echo $version_id | cut -f1 -d'.') -le 4  && $(echo $version_id | cut -f2 -d'.') -lt 6 ]; then
     #sed -i 's/^#X-Nemo-Application/X-Nemo-Application/' /usr/share/applications/harbour-defender.desktop
     #sed -i 's/^#Exec=harbour-defender/Exec=harbour-defender/' /usr/share/applications/harbour-defender.desktop
     #sed -i 's/^Exec=\/usr\/bin\/sailjail/#Exec=\/usr\/bin\/sailjail/' /usr/share/applications/harbour-defender.desktop
-    sed -i 's/^#Sandboxing=Disabled/Sandboxing=Disabled/' /usr/share/applications/%{Name}.desktop
+    sed -i 's/^#Sandboxing=Disabled/Sandboxing=Disabled/' /usr/share/applications/%{name}.desktop
 fi
 
 # for Xperia 10 devices we need a LOT more libs in sailjailed environment
 # causing the app to take >35sec to start
 if [ $(grep 'NAME=' /etc/hw-release | grep -q 'Xperia 10'; echo $?) -eq 0 ]; then
-    cat /etc/sailjail/permissions/%{Name}.profile.partial.10 >> /etc/sailjail/permissions/%{Name}.profile 
+    cat /etc/sailjail/permissions/%{name}.profile.partial.10 >> /etc/sailjail/permissions/%{name}.profile 
 fi
-rm /etc/sailjail/permissions/%{Name}.profile.partial*
+rm /etc/sailjail/permissions/%{name}.profile.partial* 2&> /dev/null
 
 ## small fix for sailjail, as /var/log/ and mkfile do not like each other
 #touch /var/log/defender_last.json
@@ -232,10 +234,10 @@ if [ "$1" = "0" ]; then
         #[ -f /var/log/defender_err.log ] && rm /var/log/defender_err.log ] :
         
         # clean sailjail dirs
-        config_dir="/home/${xuser}/.config/%{organization}/%{Name}"
-        config_bak="/home/${xuser}/.config/%{Name}"
-        cache_dir="/home/${xuser}/.cache/%{organization}/%{Name}"
-        data_dir="/home/${xuser}/.local/share/%{organization}/%{Name}"
+        config_dir="/home/${xuser}/.config/%{organization}/%{name}"
+        config_bak="/home/${xuser}/.config/%{name}"
+        cache_dir="/home/${xuser}/.cache/%{organization}/%{name}"
+        data_dir="/home/${xuser}/.local/share/%{organization}/%{name}"
         #[ -d "${config_dir}" ] && rm -fr "${config_dir}"
         [ -d "${cache_dir}" ] && rm -fr "${cache_dir}"
         [ -d "${data_dir}" ] && rm -fr "${data_dir}"
