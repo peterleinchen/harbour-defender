@@ -316,6 +316,9 @@ read-write /tmp/defender/
 ## python
 whitelist /usr/share/harbour-defender/qml/python/
 read-only /usr/share/harbour-defender/qml/python/
+# with noarch we need access to the full qml dir
+whitelist /usr/share/harbour-defender/qml/
+read-only /usr/share/harbour-defender/qml/
 
 
 ## default
