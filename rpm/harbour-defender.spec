@@ -201,7 +201,7 @@ fi
 # for Xperia 10 devices we need a LOT more libs in sailjailed environment
 # causing the app to take >35sec to start
 if [ $(grep 'NAME=' /etc/hw-release | grep -q 'Xperia 10'; echo $?) -eq 0 ]; then
-    cat /etc/sailjail/permissions/%{name}.profile.partial.10 >> /etc/sailjail/permissions/%{name}.profile 
+    cat /etc/sailjail/permissions/%{name}.profile.partial_Xperia10 >> /etc/sailjail/permissions/%{name}.profile 
 fi
 rm /etc/sailjail/permissions/%{name}.profile.partial* 2&> /dev/null
 
@@ -220,6 +220,9 @@ systemctl disable --now %{name}-updLoop.path
 systemctl disable --now %{name}-adRestart.path
 systemctl disable --now %{name}
 #systemctl daemon-reload
+
+# check for existence of the partial Xperia10 profile and touch to suppress rpm warning
+[ -f /etc/sailjail/permissions/%{name}.profile.partial_Xperia10 ] || touch /etc/sailjail/permissions/%{name}.profile.partial_Xperia10
 
 # in case of removal
 if [ "$1" = "0" ]; then    
