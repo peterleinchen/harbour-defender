@@ -41,6 +41,9 @@ for(res, SAILFISHAPP_ICONS) {
   # append the dynamic rule to the installation engine queue
   INSTALLS += icons_$${res}
 }
+# the qml and underlying python and more
+qml_dir.files = qml
+qml_dir.path = $${PREFIX}/share/harbour-defender
 # end noarch
 
 OTHER_FILES += qml/harbour-defender.qml \
