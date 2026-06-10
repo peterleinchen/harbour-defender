@@ -44,7 +44,7 @@ for(res, SAILFISHAPP_ICONS) {
 # the qml and underlying python and more
 qml_dir.files = qml
 qml_dir.path = $${PREFIX}/share/harbour-defender
-INSTALLS = qml_dir
+INSTALLS += qml_dir
 # end noarch
 
 OTHER_FILES += qml/harbour-defender.qml \
