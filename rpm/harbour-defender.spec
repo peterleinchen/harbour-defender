@@ -111,7 +111,7 @@ install -p -m 644 %{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}
 %pre
 %if "%{?vendor}" == "harbour"
   version_id=$(grep VERSION_ID /etc/os-release | cut -f2 -d'=')
-  if [ $($version_id | cut -f1 -d'.') -le 4  && $($versionid | cut -f2 -d'.') -lt 6 ]; then
+  if [[ $(echo $version_id | cut -f1 -d'.') -le 4  && $(echo $version_id | cut -f2 -d'.') -lt 6 ]]; then
     echo 'ERROR: Installation of Defender from Jolla store not supported below SFOS 4.6.0.15!' >&2
     exit 1
   fi
@@ -169,7 +169,7 @@ sed -e 's/text: \"[0-9]\.[0-9]\.[0-9]\"/text: \"%{version}\"/' -i %{_datadir}/%{
 # temporary hack, until Jolla fixes aliendalvik bind mount of /system/etc/hosts
 # this bas been "fixed" via AppSupport but still needed for older versions
 if [ -d /var/lib/lxc/aliendalvik ]; then 
-    grep -q '^lxc\.mount\.entry.=./system/etc/hosts system/etc/hosts' /var/lib/lxc/aliendalvik/extra_config 2&>/dev/null
+    grep -q '^lxc\.mount\.entry.=./system/etc/hosts system/etc/hosts' /var/lib/lxc/aliendalvik/extra_config &>/dev/null
     if [ 0 != $? ]; then
         echo "lxc.mount.entry = /system/etc/hosts system/etc/hosts none bind,ro 0 0" >> /var/lib/lxc/aliendalvik/extra_config
     fi
@@ -203,7 +203,7 @@ fi
 if [ $(grep 'NAME=' /etc/hw-release | grep -q 'Xperia 10'; echo $?) -eq 0 ]; then
     cat /etc/sailjail/permissions/%{name}.profile.partial_Xperia10 >> /etc/sailjail/permissions/%{name}.profile 
 fi
-rm /etc/sailjail/permissions/%{name}.profile.partial* 2&>/dev/null
+rm /etc/sailjail/permissions/%{name}.profile.partial* &>/dev/null
 
 ## small fix for sailjail, as /var/log/ and mkfile do not like each other
 #touch /var/log/defender_last.json
@@ -233,8 +233,8 @@ if [ "$1" = "0" ]; then
     
         # remove temporary files
         [ -d /tmp/defender ] && rm -fr /tmp/defender :
-        #[ -f /var/log/defender_last.json ] && rm /var/log/defender_last.json ] :
-        #[ -f /var/log/defender_err.log ] && rm /var/log/defender_err.log ] :
+        #[ -f /var/log/defender_last.json ] && rm /var/log/defender_last.json :
+        #[ -f /var/log/defender_err.log ] && rm /var/log/defender_err.log :
         
         # clean sailjail dirs
         config_dir="/home/${xuser}/.config/%{organization}/%{name}"
@@ -246,7 +246,7 @@ if [ "$1" = "0" ]; then
         [ -d "${data_dir}" ] && rm -fr "${data_dir}" :
         # backup the personal config
         [ -d /home/$xuser ] && [ -d "$config_bak" ] || echo "mkdir -p $config_bak" | su - $xuser :
-        cp -ar "${config_dir}/*" "${config_bak}/" 2&>/dev/null
+        cp -ar "${config_dir}/*" "${config_bak}/" &>/dev/null
         
         # public dir errlog file
         [ -f /home/${xuser}/Public/.%{shortname}_err.log ] && rm /home/${xuser}/Public/.%{shortname}_err.log :
