@@ -91,8 +91,8 @@ def show_error_log():
     except Exception as e:
         print(e)
 
-if USER_NAME != 'root':
-    write_error_log("DOH: You do NEED to run me (the " + APP_NAME + "_updater.py) as root!", False)
+if USER_NAME != None and USER_NAME != 'root'::
+    write_error_log("DOH: You do NEED to run me (the " + APP_NAME + "_updater.py) with root priviledges4", False)
     sys.exit(2)
 
 if NON_ADMIN_USER == 'root':
