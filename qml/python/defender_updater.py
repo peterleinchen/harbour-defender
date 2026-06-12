@@ -6,18 +6,19 @@ APP_DIR = '/usr/share/harbour-' + APP_NAME + '/qml/python'
 app_name = 'harbour-' + APP_NAME
 organization = 'leinchen.peter'
 
-import sys
-sys.path.insert(0, APP_DIR)
 from python_hosts import Hosts, HostsEntry
 from python_hosts import UnableToWriteHosts
-from copy import copy
-import os
+
 import configparser
-from shutil import copyfile
+from copy import copy
 import json
-import time
-from subprocess import check_output
+import os
+from shutil import copyfile
 import socket
+from subprocess import check_output
+import sys
+sys.path.insert(0, APP_DIR)
+import time
 
 
 #APP_DIR = '/opt/sdk/harbour-' + APP_NAME + '/usr/share/harbour-' + APP_NAME + '/qml/python''
@@ -32,7 +33,7 @@ import socket
 #if not os.path.isdir(HOME_DIR):
 #    print("Neither 'nemo' nor 'defaultuser' have a home :(, \n \
 #    please give a new one in qml/python/defender_updater.py (around line: 30)")
-USER_NAME = os.environ['USER']
+USER_NAME = os.environ.get('USER')
 TMP_DIR = '/tmp/' + APP_NAME
 
 # getent /etc/passwd 100000 | cut -f1 -d':'
@@ -44,9 +45,9 @@ with open(TMP_DIR + '/dir', 'r') as f:
     HOME_DIR = f.read()
     f.close()
 
-config_dirpart = '/.config/' + organization + '/' + app_name
+config_dir_part = '/.config/' + organization + '/' + app_name
 cache_dir_part = '/.cache/' + organization + '/' + app_name
-data_dir_part = '/.local/share/' + organization + '/' app_name
+data_dir_part = '/.local/share/' + organization + '/' + app_name
 #CONFIG_HOME_DIR = HOME_DIR + '/.config/harbour-' + APP_NAME          
 CONFIG_HOME_DIR = HOME_DIR + config_dir_part
 CONFIG_HOME_PATH = CONFIG_HOME_DIR + '/' + APP_NAME + '.conf'
@@ -63,15 +64,17 @@ UPDATE_FILE_PATH = HOME_DIR + '/' + cache_dir_part + '/' + 'update'
 LOGFILE_LAST_PATH = HOME_DIR + '/' + data_dir_part + '/' + APP_NAME +'_last.json'
 #
 #ERRLOG_FILE_PATH = '/var/log/' + APP_NAME + '_err.log'
-ERRLOG_FILE_PATH = HOME_DIR + '/' + data_dir + '/' + APP_NAME + '_err.log'
+LOG_DIR = HOME_DIR + '/' + data_dir_part
+ERRLOG_FILE_PATH = LOG_DIR + '/' + APP_NAME + '_err.log'
 TMP_ERRLOG_FILE_PATH = HOME_DIR + '/Public/.' + APP_NAME + '_err.log'
 
-def write_error_log(errlog=None):
+def write_error_log(errlog=None, root=True):
     print(errlog)
     oserrlog1 = "echo -e \"" + "--\n$(date)" + "\" >> " + ERRLOG_FILE_PATH
     oserrlog2 = "echo    \"" + errlog        + "\" >> " + ERRLOG_FILE_PATH
-    oserrlog1 = "echo '" + oserrlog1 + "' | su - " + NON_ADMIN_USER
-    oserrlog2 = "echo '" + oserrlog2 + "' | su - " + NON_ADMIN_USER
+    if root:
+        oserrlog1 = "echo '" + oserrlog1 + "' | su - " + NON_ADMIN_USER
+        oserrlog2 = "echo '" + oserrlog2 + "' | su - " + NON_ADMIN_USER
     os.system(oserrlog1)
     os.system(oserrlog2)
 
@@ -89,11 +92,11 @@ def show_error_log():
         print(e)
 
 if USER_NAME != 'root':
-    write_err_log(f"DOH: You do NEED to run me (the {APP_NAME}_updater.py) as root!")
-    exit(2)
+    write_error_log("DOH: You do NEED to run me (the " + APP_NAME + "_updater.py) as root!", False)
+    sys.exit(2)
 
 if NON_ADMIN_USER == 'root':
-    write_err_log(f"""DOH: SOMEHOW you managed to spoil it up, by running {APP_NAME}(.py) as root?! \n
+    write_error_log("""DOH: SOMEHOW you managed to spoil it up, by running """ + APP_NAME + """(.py) as root?! \n
 Please restart the app, I will clean up the mess...""")
     show_error_log()
     #cleaning up
@@ -101,7 +104,7 @@ Please restart the app, I will clean up the mess...""")
     os.system("chown " + NON_ADMIN_USER + ":" + NON_ADMIN_USER + " " + HOME_DIR + "/" + config_dir_part + "/*")
     os.system("chown " + NON_ADMIN_USER + ":" + NON_ADMIN_USER + " " + HOME_DIR + "/" + cache_dir_part + "/*")
     os.system("chown " + NON_ADMIN_USER + ":" + NON_ADMIN_USER + " " + HOME_DIR + "/" + data_dir_part + "/*")
-    exit(3)
+    sys.exit(3)
 
 if not NON_ADMIN_USER == "nemo" and not NON_ADMIN_USER == "defaultuser":
     write_err_log("Warning: Neither 'nemo' nor 'defaultuser' \n \
@@ -110,7 +113,7 @@ if not os.path.isdir(HOME_DIR):
     write_err_log("ERROR: Neither 'nemo' nor 'defaultuser' \n \
     NOR '" + NON_ADMIN_USER + "' with '" + HOME_DIR + "' are valid, \n \
     cannot continue!")
-    exit(4)
+    sys.exit(4)
                                         
 whitelist = []
 urls = []

@@ -322,7 +322,9 @@ read-only /usr/share/harbour-defender/qml/
 
 
 ## default
-whitelist ${HOME}/.config/harbour-defender
+#mkdir ${HOME}/.cache/leinchen.peter/harbour-defender
+#mkdir ${HOME}/.config/leinchen.peter/harbour-defender
+#mkdir ${HOME}/.local/share/leinchen.peter/harbour-defender
 whitelist ${HOME}/.cache/leinchen.peter/harbour-defender
 whitelist ${HOME}/.config/leinchen.peter/harbour-defender
 whitelist ${HOME}/.local/share/leinchen.peter/harbour-defender

@@ -191,7 +191,7 @@ fi
 # if [ $(grep VERSION_ID /etc/os-release  | cut -f2 -d'=' | cut -f1 -d'.') -lt 5 ]; then
 # Changed to sailjail from 4.6, matured enough and allows installation on older devices
 version_id=$(grep VERSION_ID /etc/os-release  | cut -f2 -d'=')
-if [ $(echo $version_id | cut -f1 -d'.') -le 4  && $(echo $version_id | cut -f2 -d'.') -lt 6 ]; then
+if [[ $(echo $version_id | cut -f1 -d'.') -le 4  && $(echo $version_id | cut -f2 -d'.') -lt 6 ]]; then
     #sed -i 's/^#X-Nemo-Application/X-Nemo-Application/' /usr/share/applications/harbour-defender.desktop
     #sed -i 's/^#Exec=harbour-defender/Exec=harbour-defender/' /usr/share/applications/harbour-defender.desktop
     #sed -i 's/^Exec=\/usr\/bin\/sailjail/#Exec=\/usr\/bin\/sailjail/' /usr/share/applications/harbour-defender.desktop
@@ -238,13 +238,13 @@ if [ "$1" = "0" ]; then
         
         # clean sailjail dirs
         config_dir="/home/${xuser}/.config/%{organization}/%{name}"
-        config_bak="/home/${xuser}/.config/%{name}"
         cache_dir="/home/${xuser}/.cache/%{organization}/%{name}"
         data_dir="/home/${xuser}/.local/share/%{organization}/%{name}"
         #[ -d "${config_dir}" ] && rm -fr "${config_dir}"
         [ -d "${cache_dir}" ] && rm -fr "${cache_dir}" :
-        [ -d "${data_dir}" ] && rm -fr "${data_dir}" :
+        [ -d "${data_dir}" ] && rm -fr "${data_dir}" : 
         # backup the personal config
+        config_bak=${configdir}.bak
         [ -d /home/$xuser ] && [ -d "$config_bak" ] || echo "mkdir -p $config_bak" | su - $xuser :
         cp -ar "${config_dir}/*" "${config_bak}/" &>/dev/null
         
