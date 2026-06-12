@@ -213,29 +213,28 @@ rm /etc/sailjail/permissions/%{name}.profile.partial* &>/dev/null
 # << install post
 
 %preun
-# stop and disable all services
-systemctl disable --now %{name}.timer
-systemctl disable --now %{name}.path
-systemctl disable --now %{name}-updLoop.path
-systemctl disable --now %{name}-adRestart.path
-systemctl stop %{name}
-#systemctl daemon-reload
-
-# check for existence of the partial Xperia10 profile and touch to suppress rpm warning
-[ -f /etc/sailjail/permissions/%{name}.profile.partial_Xperia10 ] || touch /etc/sailjail/permissions/%{name}.profile.partial_Xperia10 || :
-
 # in case of removal
 if [ "$1" = "0" ]; then    
+    # stop and disable all services
+    systemctl disable --now %{name}.timer
+    systemctl disable --now %{name}.path
+    systemctl disable --now %{name}-updLoop.path
+    systemctl disable --now %{name}-adRestart.path
+    systemctl stop %{name}
+    #systemctl daemon-reload
+    
+    # check for existence of the partial Xperia10 profile and touch to suppress rpm warning
+    [ -f /etc/sailjail/permissions/%{name}.profile.partial_Xperia10 ] || touch /etc/sailjail/permissions/%{name}.profile.partial_Xperia10 || :
+    
     for xuser in nemo defaultuser; do
+        # fkrst check if real dir or symlink
+        [ ! -d /home/$xuser ] && continue || :
+        [ -L /home/$xuser ] && continue || :
+
         # unlock cookies (in case of cookies are locked on uninstall)
         #[ -f /home/defaultuser/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite ] && chmod u+w /home/defaultuser/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite* || [ -f /home/nemo/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite ] && chmod u+w /home/nemo/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite*
         [ -f /home/${xuser}/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite ] && chmod u+w /home/${xuser}/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite* || :
     
-        # remove temporary files
-        [ -d /tmp/defender ] && rm -fr /tmp/defender || :
-        #[ -f /var/log/defender_last.json ] && rm /var/log/defender_last.json || :
-        #[ -f /var/log/defender_err.log ] && rm /var/log/defender_err.log || :
-        
         # clean sailjail dirs
         config_dir="/home/${xuser}/.config/%{organization}/%{name}"
         cache_dir="/home/${xuser}/.cache/%{organization}/%{name}"
@@ -251,6 +250,11 @@ if [ "$1" = "0" ]; then
         # public dir errlog file
         [ -f /home/${xuser}/Public/.%{shortname}_err.log ] && rm /home/${xuser}/Public/.%{shortname}_err.log || :
     done
+
+    # remove temporary files
+    [ -d /tmp/defender ] && rm -fr /tmp/defender || :
+    #[ -f /var/log/defender_last.json ] && rm /var/log/defender_last.json || :
+    #[ -f /var/log/defender_err.log ] && rm /var/log/defender_err.log || :
     
     # copy back manually created entries to hosts
     [ -f %{_sysconfdir}/hosts.editable ] && cp %{_sysconfdir}/hosts.editable %{_sysconfdir}/hosts 2>/dev/null || echo "Info: %{_sysconfdir}/hosts.editable does not exist" || :
