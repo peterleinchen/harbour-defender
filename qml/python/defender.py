@@ -3,6 +3,7 @@ import os
 import sqlite3
 from stat import S_IREAD, S_IRGRP, S_IROTH, S_IWUSR
 from subprocess import check_output
+import sys
 import json
 import datetime
 #import dbus
@@ -24,10 +25,31 @@ if not config_dir:
 if not cache_dir:
     cache_dir = HOME_DIR + '/.cache/' + organization + '/' + app_name
 if not data_dir:
-    data_dir = HOME_DIR + '.local/share/' +  organization + '/' + app_name
-print(config_dir)
-print(cache_dir)
-print(data_dir)
+    data_dir = HOME_DIR + '/.local/share/' +  organization + '/' + app_name
+
+#LOGFILE_LAST = '/var/log/'+ APP_NAME +'_last.json'
+LOG_DIR = data_dir
+LOGFILE_LAST = LOG_DIR + '/' + APP_NAME + '_last.json'
+#
+ERRLOG_FILE = APP_NAME + '_err.log'
+ERRLOG_FILE_PATH = LOG_DIR + '/' + ERRLOG_FILE
+TMP_ERRLOG_FILE_PATH = HOME_DIR + '/Public/.' + ERRLOG_FILE
+
+def write_error_log(errlog=None, root=False):
+    print(errlog)
+    oserrlog1 = "echo -e \"" + "--\n$(date)" + "\" >> " + ERRLOG_FILE_PATH
+    oserrlog2 = "echo    \"" + errlog        + "\" >> " + ERRLOG_FILE_PATH
+    if root:
+        oserrlog1 = "echo '" + oserrlog1 + "' | su - " + USER_NAME
+        oserrlog2 = "echo '" + oserrlog2 + "' | su - " + USER_NAME
+    os.system(oserrlog1)
+    os.system(oserrlog2)
+
+if USER_NAME == 'root':
+   #  write_error_log("DOH, do NOT run me as root!", True)
+    print("DOH, do NOT run me as root!")
+    # the hard way: os._exit(1)
+    sys.exit(1)
 
 #if not os.path.isdir("/tmp/defender"):
 #    os.mkdir("/tmp/defender");
@@ -52,29 +74,10 @@ UPDLOOP_FILE_PATH = cache_dir + '/' + 'updLoop'
 #ADRESTART_FILE_PATH = CONFIG_HOME_DIR + '/' + 'adRestart'
 ADRESTART_FILE_PATH = cache_dir + '/' + 'adRestart'
 
-LOG_DIR = data_dir
-#LOGFILE_LAST = '/var/log/'+ APP_NAME +'_last.json'
-LOGFILE_LAST = LOG_DIR + '/' + APP_NAME + '_last.json'
-#
-ERRLOG_FILE = APP_NAME + '_err.log'
-ERRLOG_FILE_PATH = LOG_DIR + '/' + ERRLOG_FILE
-TMP_ERRLOG_FILE_PATH = HOME_DIR + '/Public/.' + ERRLOG_FILE
-
 cookies_path = HOME_DIR + '/.local/share/org.sailfishos/browser/.mozilla/' + 'cookies.sqlite'
 if not os.path.isfile(cookies_path):
     cookies_path = HOME_DIR + '/.mozilla/mozembed/' + 'cookies.sqlite'
 #nope, cookies_path += '?immutable=1'
-
-def write_error_log(errlog=None):
-    print(errlog)
-    oserrlog1 = "echo -e \"" + "--\n$(date)" + "\" >> " + ERRLOG_FILE_PATH
-    oserrlog2 = "echo    \"" + errlog        + "\" >> " + ERRLOG_FILE_PATH
-    os.system(oserrlog1)
-    os.system(oserrlog2)
-
-if USER_NAME == 'root':
-    write_err_log("DOH, do NOT run me as root!")
-    exit(1)
 
 def initialize():
     if not os.path.isdir(CONFIG_HOME_DIR):
