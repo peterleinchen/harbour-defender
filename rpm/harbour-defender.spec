@@ -121,17 +121,17 @@ install -p -m 644 %{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}
 
 %post
 [ -f %{_sysconfdir}/hosts ] && echo "Info: /etc/hosts exists" || echo -e "127.0.0.1               localhost.localdomain localhost\n::1             localhost6.localdomain6 localhost6\n" >> %{_sysconfdir}/hosts
-[ -f %{_sysconfdir}/hosts.editable ] && echo "Info: /etc/hosts.editable exists" || cp %{_sysconfdir}/hosts %{_sysconfdir}/hosts.editable 2>/dev/null :
+[ -f %{_sysconfdir}/hosts.editable ] && echo "Info: /etc/hosts.editable exists" || cp %{_sysconfdir}/hosts %{_sysconfdir}/hosts.editable 2>/dev/null || :
 # Android files
 if [ -d "%{_a1configdir}" ]; then
   # Only if the dir exists
-  [ -f %{_a1configdir}/hosts ] && echo "Info: %{_a1configdir}/hosts exists" || echo -e "127.0.0.1                   localhost\n" >> %{_a1configdir}/hosts :
-  [ -f %{_a1configdir}/hosts.editable ] && echo "Info: %{_a1configdir}/hosts.editable exists" || cp %{_a1configdir}/hosts %{_a1configdir}/hosts.editable 2>/dev/null :
+  [ -f %{_a1configdir}/hosts ] && echo "Info: %{_a1configdir}/hosts exists" || echo -e "127.0.0.1                   localhost\n" >> %{_a1configdir}/hosts || :
+  [ -f %{_a1configdir}/hosts.editable ] && echo "Info: %{_a1configdir}/hosts.editable exists" || cp %{_a1configdir}/hosts %{_a1configdir}/hosts.editable 2>/dev/null || :
 fi
 if [ -d "%{_a2configdir}" ]; then
   # Only if the dir exists
-  [ -f %{_a2configdir}/hosts ] && echo "%{_a2configdir}/hosts exists" || echo -e "127.0.0.1                   localhost\n" >> %{_a2configdir}/hosts :
-  [ -f %{_a2configdir}/hosts.editable ] && echo "%{_a2configdir}/hosts.editable exists" || cp %{_a2configdir}/hosts %{_a2configdir}/hosts.editable 2>/dev/null :
+  [ -f %{_a2configdir}/hosts ] && echo "%{_a2configdir}/hosts exists" || echo -e "127.0.0.1                   localhost\n" >> %{_a2configdir}/hosts || :
+  [ -f %{_a2configdir}/hosts.editable ] && echo "%{_a2configdir}/hosts.editable exists" || cp %{_a2configdir}/hosts %{_a2configdir}/hosts.editable 2>/dev/null || :
 fi
 
 if [ -f /usr/lib/systemd/system/sailfish-unlock-agent.service ]; then
@@ -218,43 +218,43 @@ systemctl disable --now %{name}.timer
 systemctl disable --now %{name}.path
 systemctl disable --now %{name}-updLoop.path
 systemctl disable --now %{name}-adRestart.path
-systemctl disable --now %{name}
+systemctl stop %{name}
 #systemctl daemon-reload
 
 # check for existence of the partial Xperia10 profile and touch to suppress rpm warning
-[ -f /etc/sailjail/permissions/%{name}.profile.partial_Xperia10 ] || touch /etc/sailjail/permissions/%{name}.profile.partial_Xperia10 :
+[ -f /etc/sailjail/permissions/%{name}.profile.partial_Xperia10 ] || touch /etc/sailjail/permissions/%{name}.profile.partial_Xperia10 || :
 
 # in case of removal
 if [ "$1" = "0" ]; then    
     for xuser in nemo defaultuser; do
         # unlock cookies (in case of cookies are locked on uninstall)
         #[ -f /home/defaultuser/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite ] && chmod u+w /home/defaultuser/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite* || [ -f /home/nemo/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite ] && chmod u+w /home/nemo/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite*
-        [ -f /home/${xuser}/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite ] && chmod u+w /home/${xuser}/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite* :
+        [ -f /home/${xuser}/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite ] && chmod u+w /home/${xuser}/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite* || :
     
         # remove temporary files
-        [ -d /tmp/defender ] && rm -fr /tmp/defender :
-        #[ -f /var/log/defender_last.json ] && rm /var/log/defender_last.json :
-        #[ -f /var/log/defender_err.log ] && rm /var/log/defender_err.log :
+        [ -d /tmp/defender ] && rm -fr /tmp/defender || :
+        #[ -f /var/log/defender_last.json ] && rm /var/log/defender_last.json || :
+        #[ -f /var/log/defender_err.log ] && rm /var/log/defender_err.log || :
         
         # clean sailjail dirs
         config_dir="/home/${xuser}/.config/%{organization}/%{name}"
         cache_dir="/home/${xuser}/.cache/%{organization}/%{name}"
         data_dir="/home/${xuser}/.local/share/%{organization}/%{name}"
         #[ -d "${config_dir}" ] && rm -fr "${config_dir}"
-        [ -d "${cache_dir}" ] && rm -fr "${cache_dir}" :
-        [ -d "${data_dir}" ] && rm -fr "${data_dir}" : 
+        [ -d "${cache_dir}" ] && rm -fr "${cache_dir}" || :
+        [ -d "${data_dir}" ] && rm -fr "${data_dir}" || :
         # backup the personal config
         config_bak=${configdir}.bak
-        [ -d /home/$xuser ] && [ -d "$config_bak" ] || echo "mkdir -p $config_bak" | su - $xuser :
+        [ -d /home/$xuser ] && [ -d "$config_bak" ] || echo "mkdir -p $config_bak" | su - $xuser || :
         cp -ar "${config_dir}/*" "${config_bak}/" &>/dev/null
         
         # public dir errlog file
-        [ -f /home/${xuser}/Public/.%{shortname}_err.log ] && rm /home/${xuser}/Public/.%{shortname}_err.log :
+        [ -f /home/${xuser}/Public/.%{shortname}_err.log ] && rm /home/${xuser}/Public/.%{shortname}_err.log || :
     done
     
     # copy back manually created entries to hosts
-    [ -f %{_sysconfdir}/hosts.editable ] && cp %{_sysconfdir}/hosts.editable %{_sysconfdir}/hosts 2>/dev/null || echo "Info: %{_sysconfdir}/hosts.editable does not exist" :
-    [ -f %{_a1configdir}/hosts.editable ] && cp %{_a1configdir}/hosts.editable %{_a1configdir}/hosts 2>/dev/null || echo "Info: %{_a1configdir}/hosts.editable does not exist" :
-    [ -f %{_a2configdir}/hosts.editable ] && cp %{_a2configdir}/hosts.editable %{_a2configdir}/hosts 2>/dev/null || echo "Info: %{_a2configdir}/hosts.editable does not exist" :
+    [ -f %{_sysconfdir}/hosts.editable ] && cp %{_sysconfdir}/hosts.editable %{_sysconfdir}/hosts 2>/dev/null || echo "Info: %{_sysconfdir}/hosts.editable does not exist" || :
+    [ -f %{_a1configdir}/hosts.editable ] && cp %{_a1configdir}/hosts.editable %{_a1configdir}/hosts 2>/dev/null || echo "Info: %{_a1configdir}/hosts.editable does not exist" || :
+    [ -f %{_a2configdir}/hosts.editable ] && cp %{_a2configdir}/hosts.editable %{_a2configdir}/hosts 2>/dev/null || echo "Info: %{_a2configdir}/hosts.editable does not exist" || :
 fi
 
