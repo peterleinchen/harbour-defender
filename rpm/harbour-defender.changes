@@ -9,6 +9,11 @@
 # - Summary of changes
 # * date Peter Leinchen <peterleinchen@t-online.de> vx.y.z
 
+v0.8.16
+- corrected calculations of cookies/domains count on deletion
+
+ 
+
 v0.8.15
 - Norwegian translation for "Defender" in qml and app icon
 
