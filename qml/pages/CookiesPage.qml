@@ -88,7 +88,7 @@ Page {
                                 }
 			    })
 			    py.call(appname+'.get_stats', [], function (result) {
-			        stats = result
+				stats = result
                             })
                         })
                     }
