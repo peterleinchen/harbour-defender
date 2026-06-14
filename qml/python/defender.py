@@ -69,6 +69,8 @@ CONFIG_ETC_PATH = CONFIG_ETC_DIR + '/'  + APP_NAME + '.conf'
 
 #UPDATE_FILE_PATH = CONFIG_HOME_DIR + '/' + 'update'
 UPDATE_FILE_PATH = cache_dir + '/' + 'update'
+#UPDINTERVAL_FILE_PATH = CONFIG_HOME_DIR + '/' + 'updInterval'
+UPDINTERVAL_FILE_PATH = cache_dir + '/' + 'updInterval'
 #UPDLOOP_FILE_PATH = CONFIG_HOME_DIR + '/' + 'updLoop'
 UPDLOOP_FILE_PATH = cache_dir + '/' + 'updLoop'
 #ADRESTART_FILE_PATH = CONFIG_HOME_DIR + '/' + 'adRestart'
@@ -126,7 +128,13 @@ def get_config_bool(section, key, fallback):
     config_home = configparser.ConfigParser()
     config_home.read(CONFIG_ETC_PATH)
     config_home.read(CONFIG_HOME_PATH)
-    return config_home.getboolean(section, key, fallback=True)
+    return config_home.get(section, key, fallback=True)
+
+def get_config_string(section, key, fallback):
+    config_home = configparser.ConfigParser()
+    config_home.read(CONFIG_ETC_PATH)
+    config_home.read(CONFIG_HOME_PATH)
+    return config_home.get(section, key, fallback='')
 
 def rebuild_config(config1, config2, force=False, enabled='no'):
     if not os.path.isdir(CONFIG_HOME_DIR):
@@ -156,24 +164,6 @@ def disable_all():
     output = load_sources(force=True, enabled='no')
     update_now()
     return output
-
-def clear_update_loop():
-    #os.system("ps aux | grep -v grep | grep defender_updater.py | tr -s ' ' | cut -d' ' -f2 | xargs kill")
-    updCommand = """if [ $(ps aux | grep -v grep | grep -q 'defender_updater.py' | echo $?) -eq 0 ]; then 
-        echo '--' >> """ + ERRLOG_FILE_PATH + """; 
-        echo 'INFO: update was still running - cancelled' >> """ + ERRLOG_FILE_PATH + """; 
-        #systemctl stop harbour-defender; 
-        # above would need root rights (defender_updater), 
-        # possibly via service/path unit harbour-defender-updLoop: 
-        touch """ + UPDLOOP_FILE_PATH + """; sleep 1; 
-    fi;"""
-    print(updCommand)
-    print(os.system(updCommand))
-    show_error_log()
-    if os.path.isfile(UPDATE_FILE_PATH):
-        os.remove(UPDATE_FILE_PATH)
-    if os.path.isfile(UPDLOOP_FILE_PATH):
-        os.remove(UPDLOOP_FILE_PATH)
 
 #def open_browser(url=""):
 #    try:
@@ -212,6 +202,29 @@ def restart_android_support():
     os.system("touch " + ADRESTART_FILE_PATH + "; sleep 1;")
     if os.path.isfile(ADRESTART_FILE_PATH):
         os.remove(ADRESTART_FILE_PATH)
+
+def set_update_interval(interval):
+    os.system("echo " + interval + " > " + UPDINTERVAL_FILE_PATH + "; sleep 1;")
+    if not os.path.isfile(UPDINTERVAL_FILE_PATH):
+        os.remove(UPDINTERVAL_FILE_PATH)
+
+def clear_update_loop():
+    #os.system("ps aux | grep -v grep | grep defender_updater.py | tr -s ' ' | cut -d' ' -f2 | xargs kill")
+    updCommand = """if [ $(ps aux | grep -v grep | grep -q 'defender_updater.py' | echo $?) -eq 0 ]; then 
+        echo '--' >> """ + ERRLOG_FILE_PATH + """; 
+        echo 'INFO: update was still running - cancelled' >> """ + ERRLOG_FILE_PATH + """; 
+        #systemctl stop harbour-defender; 
+        # above would need root rights (defender_updater), 
+        # possibly via service/path unit harbour-defender-updLoop: 
+        touch """ + UPDLOOP_FILE_PATH + """; sleep 1; 
+    fi;"""
+    print(updCommand)
+    print(os.system(updCommand))
+    show_error_log()
+    if os.path.isfile(UPDATE_FILE_PATH):
+        os.remove(UPDATE_FILE_PATH)
+    if os.path.isfile(UPDLOOP_FILE_PATH):
+        os.remove(UPDLOOP_FILE_PATH)
 
 def update_now():
     """

@@ -226,7 +226,7 @@ def rebuild_hosts(path, android=False):
 def check_hosts(path, android=False):
     if android1_hosts in path:
         android = True
-    if not os.path.isfile(path):
+    if os.path.isfile(path):
         rebuild_hosts(path, android)
 
 def write_all(hosts):

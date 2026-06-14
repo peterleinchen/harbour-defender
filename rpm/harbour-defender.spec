@@ -15,7 +15,7 @@
 
 Name:       harbour-defender
 Summary:    A privacy guard for SFOS
-Version:    0.9.1
+Version:    0.9.2
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3
@@ -160,6 +160,7 @@ systemctl daemon-reload
 systemctl disable --now %{name}.path; # this one may be needed on upgrade
 systemctl enable --now %{name}.path
 systemctl enable --now %{name}-adRestart.path
+systemctl enable --now %{name}-updInterval.path
 systemctl enable --now %{name}-updLoop.path
 systemctl enable --now %{name}.timer
 
@@ -218,6 +219,7 @@ if [ "$1" = "0" ]; then
     # stop and disable all services
     systemctl disable --now %{name}.timer
     systemctl disable --now %{name}.path
+    systemctl disable --now %{name}-updInterval.path
     systemctl disable --now %{name}-updLoop.path
     systemctl disable --now %{name}-adRestart.path
     systemctl stop %{name}
