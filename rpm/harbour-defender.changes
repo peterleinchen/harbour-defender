@@ -9,6 +9,11 @@
 # - Summary of changes
 # * date Peter Leinchen <peterleinchen@t-online.de> vx.y.z
 
+v0.9.2
+- added config possibility for update timer 
+
+ 
+
 v0.9.1
 first step for a "harbourization"
 - changed .config/ to .config/leinchen.peter/
