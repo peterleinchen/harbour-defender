@@ -205,7 +205,7 @@ def restart_android_support():
 
 def set_update_interval(interval):
     os.system("echo " + interval + " > " + UPDINTERVAL_FILE_PATH + "; sleep 1;")
-    if not os.path.isfile(UPDINTERVAL_FILE_PATH):
+    if os.path.isfile(UPDINTERVAL_FILE_PATH):
         os.remove(UPDINTERVAL_FILE_PATH)
 
 def clear_update_loop():
