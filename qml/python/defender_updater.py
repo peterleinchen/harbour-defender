@@ -91,7 +91,7 @@ def show_error_log():
     except Exception as e:
         print(e)
 
-if USER_NAME != None and USER_NAME != 'root'::
+if USER_NAME != None and USER_NAME != 'root':
     write_error_log("DOH: You do NEED to run me (the " + APP_NAME + "_updater.py) with root priviledges4", False)
     sys.exit(2)
 
@@ -264,6 +264,12 @@ def update(remote_sources = urls):
     write_all(hosts)
     if os.path.isfile(tmp_hosts):
         os.remove(tmp_hosts)
+    
+    #version_id = check_output("grep VERSION_ID /etc/os-release | cut -f2 -d'='", shell=True).decode("utf-8").strip()
+    version_id = check_output("grep VERSION_ID /etc/os-release | cut -f2 -d'='", shell=True, text=True).strip()
+    [vid1, vid2, vid3, vid4] = version_id.split('.')
+    print("Version: ", vid1, vid2, vid3, vid4)
+    #if [[ $(echo $version_id | cut -f1 -d'.') -le 4  && $(echo $version_id | cut -f2 -d'.') -lt 6 ]]; then
     
     # remember the hotspot status
     hsStatus = os.system("dbus-send --system --print-reply --dest=net.connman /net/connman/technology/wifi net.connman.Technology.GetProperties | grep \"Tethering\" -A1 | grep boolean  | grep -q true")
