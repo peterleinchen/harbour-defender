@@ -51,11 +51,9 @@ if USER_NAME == 'root':
     # the hard way: os._exit(1)
     sys.exit(1)
 
-#if not os.path.isdir("/tmp/defender"):
-#    os.mkdir("/tmp/defender");
-#os.system("echo -n '" + USER_NAME + "' > /tmp/defender/usr")
-#os.system("echo -n '" + HOME_DIR + "' > /tmp/defender/dir")
 TMP_DIR = '/tmp/' + APP_NAME
+if not os.path.isdir(TMP_DIR):
+    os.mkdir(TMP_DIR);
 os.system("echo -n '" + USER_NAME + "' > " + TMP_DIR + "/usr")
 os.system("echo -n '" + HOME_DIR + "' > " + TMP_DIR + "/dir")
 
