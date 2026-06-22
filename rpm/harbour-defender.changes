@@ -19,10 +19,11 @@ first step for a "harbourization"
 - changed .config/ to .config/leinchen.peter/
 - removed usage of /var/log (--> .local/share/leinchen.peter/), but kept /tmp
 - changed all systemd units to reflect new storage (.cache)
-- adapted the python scripts touse new storage locations
+- adapted the python scripts to use new storage locations
 - commented out not really needed whitelists in profile
-- swtiched from binary to noarch
-- changeg the spec file accordingly
+- switched from binary to noarch
+- changed the spec file accordingly
+- introduced X-HarbourBackup
 
  
 
