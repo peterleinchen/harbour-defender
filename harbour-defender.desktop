@@ -28,3 +28,6 @@ Permissions=Defender;Internet;PublicDir;xCompatibility
 CustomContentHandler=org.sailfishos.browser
 OrganizationName=leinchen.peter
 ApplicationName=harbour-defender
+
+[X-HarbourBackup]
+BackupPathList=.config/leinchen.peter/harbour-defender/
