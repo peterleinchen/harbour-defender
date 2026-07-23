@@ -9,6 +9,11 @@
 # - Summary of changes
 # * date Peter Leinchen <peterleinchen@t-online.de> vx.y.z
 
+v0.9.4
+- sailjail compliance for JP2601, added /etc/ld.so.preload to sailjail profile and added new partial profile (jp2601)
+
+ 
+
 v0.9.3
 - changed DNS cach flushing to 'systemd-resolve --flush-caches' (SFOS >= 5.1)
 
