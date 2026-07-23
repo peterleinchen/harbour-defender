@@ -21,6 +21,7 @@ Group:      Qt/Qt
 License:    GPLv3
 URL:        https://github.com/peterleinchen/harbour-defender
 Source:     %{name}-%{version}.tar.bz2
+Packager:   Peter Leinchen <peterleinchen@t-online.de>
 BuildArch:  noarch
 BuildRequires:  desktop-file-utils
 BuildRequires:  qt5-qttools-linguist
@@ -35,15 +36,20 @@ Conflicts:  noadshosts
 Conflicts:  sailfishos-hosts-adblock
 
 %description
-Configurable adblocker and privacy tuner for SFOS
+Configurable adblocker and privacy tuner for SFOS. 
+Allows to download ad-blocker lists from internet and adds them to /etc/hosts. Works for native Sailfish network/browser as well as for Android Support.
+Enables to black- or white-list cookies, delete them from the native browser's cookis.sqlite, and can make that DB read-only ( so new cookies will not be stored on browser restart).
+
 
 %if "%{?vendor}" == "chum" || "%{?vendor}" == "harbour"
 PackageName: Defender
 Categories:
  - System
  - Network
+ - Utilities
 Icon: https://raw.githubusercontent.com/peterleinchen/harbour-defender/master/qml/pages/images/harbour-defender.svg
 %endif
+
 
 %prep
 %setup -q -n %{name}-%{version}
@@ -204,6 +210,11 @@ fi
 if [ $(grep 'NAME=' /etc/hw-release | grep -q 'Xperia 10'; echo $?) -eq 0 ]; then
     cat /etc/sailjail/permissions/%{name}.profile.partial_Xperia10 >> /etc/sailjail/permissions/%{name}.profile 
 fi
+# for new Jolla Phone (jp2601) we need a different (much smaller) set of Andy libs
+if [ $(grep 'ID=' /etc/hw-release | grep -q 'jp2601'; echo $?) -eq 0 ]; then
+    cat /etc/sailjail/permissions/%{name}.profile.partial_jp2601 >> /etc/sailjail/permissions/%{name}.profile 
+fi
+
 rm /etc/sailjail/permissions/%{name}.profile.partial* &>/dev/null
 
 ## small fix for sailjail, as /var/log/ and mkfile do not like each other

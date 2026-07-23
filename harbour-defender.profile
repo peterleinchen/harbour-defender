@@ -24,7 +24,7 @@
 ## var
 #
 #writable-var-log
-#noblacklist /var/log/
+#noblacklist /var/log
 #noblacklist /var/log/defender_err.log
 #whitelist /var/log/defender_err.log
 #read-write /var/log/defender_err.log
@@ -41,42 +41,42 @@
 ## tmp
 #
 ignore private-tmp
-noblacklist /tmp/
+noblacklist /tmp
 
 
 ## lib
 #
 ignore private-lib #normally never set to private-lib
-noblacklist /lib/
-noblacklist /lib64/
-noblacklist /usr/lib/
-noblacklist /usr/lib64/
+noblacklist /lib
+noblacklist /lib64
+noblacklist /usr/lib
+noblacklist /usr/lib64
 #
-noblacklist /odm/lib/
-noblacklist /odm/lib64/
-noblacklist /system/lib/
-noblacklist /system/lib64/
-noblacklist /system/vendor/lib/
-noblacklist /system/vendor/lib64/
-noblacklist /vendor/lib/
-noblacklist /vendor/lib64/
-noblacklist /usr/libexec/droid-hybris/system/lib/
-noblacklist /usr/libexec/droid-hybris/system/lib64/
-noblacklist /apex/com.android.vndk.v30/lib/
-noblacklist /apex/com.android.vndk.v30/lib64/
+noblacklist /odm/lib
+noblacklist /odm/lib64
+noblacklist /system/lib
+noblacklist /system/lib64
+noblacklist /system/vendor/lib
+noblacklist /system/vendor/lib64
+noblacklist /vendor/lib
+noblacklist /vendor/lib64
+noblacklist /usr/libexec/droid-hybris/system/lib
+noblacklist /usr/libexec/droid-hybris/system/lib64
+noblacklist /apex/com.android.vndk.v30/lib
+noblacklist /apex/com.android.vndk.v30/lib64
 
 
 ## etc
 ##
 ignore private-etc
-noblacklist /etc/
+noblacklist /etc
 
 
 ## bin
 #
 #ignore private-bin
-noblacklist /bin/
-noblacklist /usr/bin/
+noblacklist /bin
+noblacklist /usr/bin
 
 #####
 
@@ -113,9 +113,9 @@ include /etc/sailjail/permissions/PublicDir.permission
 
 
 # TRYing to access error.log with browser (doh!), noblacklisting for browser, but browser has only Docuents.permission
-#noblacklist ${HOME}/.config/harbour-defender/
-#whitelist ${HOME}/.config/harbour-defender/
-#read-write ${HOME}/.config/harbour-defender/
+#noblacklist ${HOME}/.config/harbour-defender
+#whitelist ${HOME}/.config/harbour-defender
+#read-write ${HOME}/.config/harbour-defender
 
 
 ## dbus whitelistings
@@ -147,37 +147,43 @@ read-write ${HOME}/.local/share/org.sailfishos/browser/.mozilla/cookies.sqlite*
 # ignoring private-bin and noblacklisting, but also does not work, 
 # need private-bin
 #ignore private-bin
-#doh: whitelist /bin/
+#doh: whitelist /bin
 noblacklist /bin/
 noblacklist /bin/sh
 noblacklist /bin/busybox
-#doh: whitelist /usr/bin/
+#doh: whitelist /usr/bin
 noblacklist /usr/bin/
 noblacklist /usr/bin/sh
 noblacklist /usr/bin/busybox
 noblacklist /usr/bin/sailfish-browser # this does also not work, NEED private-bin
 #private-bin busybox,echo,grep,ps,sh,sleep,touch,wc,sailfish-browser
-private-bin busybox,cp,echo,grep,ls,ps,sh,sleep,touch,wc,sailfish-browser,invoker
+private-bin busybox,cp,echo,grep,ls,ps,sh,sleep,touch,wc,zcat,sailfish-browser,invoker
 
 
 ## etc
 ignore private-etc
-noblacklist /etc/
-#doh, crashes sailjail: whitelist /etc/
+noblacklist /etc
+#doh, crashes sailjail: whitelist /etc
 
 # themes://silica
-whitelist /etc/dconf/
-read-only /etc/dconf/
+whitelist /etc/dconf
+read-only /etc/dconf
 
+# since SFOS 5.2 or jp2601
+whitelist /etc/ld.so.preload
+read-only /etc/ld.so.preload
+
+# fontconfig
+#whitelist /etc/fonts
+whitelist /etc/fonts/fonts.conf
+read-only /etc/fonts/fonts.conf
+
+# Defender conf
 # nope: private-etc defender.conf
 whitelist /etc/defender.conf
 read-write /etc/defender.conf
 
-# Fontconfig
-#whitelist /etc/fonts/
-whitelist /etc/fonts/fonts.conf
-read-only /etc/fonts/fonts.conf
-
+# host files
 whitelist /etc/hosts*
 read-write /etc/hosts*
 whitelist /system/etc/hosts*
@@ -253,31 +259,32 @@ whitelist /usr/lib64/*
 read-only /usr/lib64/*
 # END OF LIB section for Jolla devices
 #
-### for 10 devices' libs sectiom, see at end of file 
+### for Xperia10 devices' libs sectiom, see at end of file 
+### for jp2601 devices' libs sectiom, see at end of file 
 #
 
 ## tmp
 ##hmm, seems all not really to work for single files
 ignore private-tmp
-noblacklist /tmp/
+noblacklist /tmp
 ## should not be needed
-#ignore read-only /tmp/
-#read-write /tmp/
+#ignore read-only /tmp
+#read-write /tmp
 
-#doh, crashes sailjail: whiitelist /tmp/
+#doh, crashes sailjail: whiitelist /tmp
 mkfile /tmp/hosts
 whitelist /tmp/hosts
 read-write /tmp/hosts
 #
-#mkdir -m 755 /tmp/defender/
-mkdir /tmp/defender/
-noblacklist /tmp/defender/
-whitelist /tmp/defender/
-read-write /tmp/defender/
+#mkdir -m 755 /tmp/defender
+mkdir /tmp/defender
+noblacklist /tmp/defender
+whitelist /tmp/defender
+read-write /tmp/defender
 
 
 ## var/log
-#noblacklist /var/log/
+#noblacklist /var/log
 ##doh: mkfile /var/log/defender_last.json
 #noblacklist /var/log/defender_err.log
 #whitelist /var/log/defender_err.log
@@ -289,36 +296,36 @@ read-write /tmp/defender/
 
 ## usr/share
 ## non-sense regarding themes://silica, but kept anymway
-##doh: whitelist /usr/share/
-##read-only /usr/share/
-#noblacklist /usr/share/themes/
-#whitelist /usr/share/themes/
-#read-only /usr/share/themes/
-#whitelist /usr/share/themes//silica/
-#read-only /usr/share/themes//silica/
-#whitelist /usr/share/themes/sailfish-default/
-#read-only /usr/share/themes/sailfish-default/
-#whitelist /usr/share/themes/sailfish-default/silica/
-#read-only /usr/share/themes/sailfish-default/silica/
-#whitelist /usr/share/themes/sailfish-default/silica/z1.75/
-#read-only /usr/share/themes/sailfish-default/silica/z1.75/
-#whitelist /usr/share/themes/sailfish-default/silica/z1.75/icons-monochrome/
-#read-only /usr/share/themes/sailfish-default/silica/z1.75/icons-monochrome/
-#whitelist /usr/share/ambience/
-#read-only /usr/share/ambience/
-#whitelist /usr/share/icons/
-#read-only /usr/share/icons/
+##doh: whitelist /usr/share
+##read-only /usr/share
+#noblacklist /usr/share/themes
+#whitelist /usr/share/themes
+#read-only /usr/share/themes
+#whitelist /usr/share/themes//silica
+#read-only /usr/share/themes//silica
+#whitelist /usr/share/themes/sailfish-default
+#read-only /usr/share/themes/sailfish-default
+#whitelist /usr/share/themes/sailfish-default/silica
+#read-only /usr/share/themes/sailfish-default/silica
+#whitelist /usr/share/themes/sailfish-default/silica/z1.75
+#read-only /usr/share/themes/sailfish-default/silica/z1.75
+#whitelist /usr/share/themes/sailfish-default/silica/z1.75/icons-monochrome
+#read-only /usr/share/themes/sailfish-default/silica/z1.75/icons-monochrome
+#whitelist /usr/share/ambience
+#read-only /usr/share/ambience
+#whitelist /usr/share/icons
+#read-only /usr/share/icons
 ##
 #whitelist /usr/share/fonts/
 #read-only /usr/share/fonts/
 
 
 ## python
-whitelist /usr/share/harbour-defender/qml/python/
-read-only /usr/share/harbour-defender/qml/python/
+whitelist /usr/share/harbour-defender/qml/python
+read-only /usr/share/harbour-defender/qml/python
 # with noarch we need access to the full qml dir
-whitelist /usr/share/harbour-defender/qml/
-read-only /usr/share/harbour-defender/qml/
+whitelist /usr/share/harbour-defender/qml
+read-only /usr/share/harbour-defender/qml
 
 
 ## default
