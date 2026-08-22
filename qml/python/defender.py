@@ -126,7 +126,7 @@ def get_config_bool(section, key, fallback):
     config_home = configparser.ConfigParser()
     config_home.read(CONFIG_ETC_PATH)
     config_home.read(CONFIG_HOME_PATH)
-    return config_home.get(section, key, fallback=True)
+    return config_home.getboolean(section, key, fallback=True)
 
 def get_config_string(section, key, fallback):
     config_home = configparser.ConfigParser()

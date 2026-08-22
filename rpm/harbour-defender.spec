@@ -15,7 +15,7 @@
 
 Name:       harbour-defender
 Summary:    A privacy guard for SFOS
-Version:    0.9.3
+Version:    0.9.5
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3
@@ -32,8 +32,10 @@ BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 Requires:   pyotherside-qml-plugin-python3-qt5
 Requires:   sailfishsilica-qt5 >= 0.10.9
+Requires:   libsailfishapp-launcher
 Conflicts:  noadshosts
 Conflicts:  sailfishos-hosts-adblock
+Conflicts:  hosts-block
 
 %description
 Configurable adblocker and privacy tuner for SFOS. 
@@ -140,35 +142,7 @@ if [ -d "%{_a2configdir}" ]; then
   [ -f %{_a2configdir}/hosts.editable ] && echo "%{_a2configdir}/hosts.editable exists" || cp %{_a2configdir}/hosts %{_a2configdir}/hosts.editable 2>/dev/null || :
 fi
 
-if [ -f /usr/lib/systemd/system/sailfish-unlock-agent.service ]; then
-  # exchange the path unit's WantedBy in case of ENcrypted devices, 
-  # normally the default for X.. (and 10) devices and/or SW >= 3.3 flashed
-  sed -e 's/^WantedBy=.*/WantedBy=sailfish-unlock-agent.service/' -i /etc/systemd/system/%{name}.path
-  sed -e 's/^WantedBy=.*/WantedBy=sailfish-unlock-agent.service/' -i /etc/systemd/system/%{name}-adRestart.path
-  sed -e 's/^WantedBy=.*/WantedBy=sailfish-unlock-agent.service/' -i /etc/systemd/system/%{name}-updLoop.path
-else if [ -f /usr/lib/systemd/system/decrypt-home_encrypted.service ]; then
-  # exchange the path unit's WantedBy in case of ENrypted devices, 
-  # normally the default for X.. devices and SW >= 3.3 flashed
-  # but different for community ports!
-  sed -e 's/^WantedBy=.*/WantedBy=decrypt-home_encrypted.service/' -i /etc/systemd/system/%{name}.path
-  sed -e 's/^WantedBy=.*/WantedBy=decrypt-home_encrypted.service/' -i /etc/systemd/system/%{name}-adRestart.path
-  sed -e 's/^WantedBy=.*/WantedBy=decrypt-home_encrypted.service/' -i /etc/systemd/system/%{name}-updLoop.path
-else
-  # exchange the path unit's WantedBy in case of NOT encrypted devices, 
-  # for older devices not supporting or having activated  encryption
-  sed -e 's/^WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}.path
-  sed -e 's/^WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}-adRestart.path
-  sed -e 's/^WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}-updLoop.path
-  fi
-fi
-#
-systemctl daemon-reload
-systemctl disable --now %{name}.path; # this one may be needed on upgrade
-systemctl enable --now %{name}.path
-systemctl enable --now %{name}-adRestart.path
-systemctl enable --now %{name}-updInterval.path
-systemctl enable --now %{name}-updLoop.path
-systemctl enable --now %{name}.timer
+# moved ssystemd section to the end of post scriptlet
 
 # sed the version number into DocsPage
 sed -e 's/text: \"[0-9]\.[0-9]\.[0-9]\"/text: \"%{version}\"/' -i %{_datadir}/%{name}/qml/pages/DocsPage.qml
@@ -214,13 +188,44 @@ fi
 if [ $(grep 'ID=' /etc/hw-release | grep -q 'jp2601'; echo $?) -eq 0 ]; then
     cat /etc/sailjail/permissions/%{name}.profile.partial_jp2601 >> /etc/sailjail/permissions/%{name}.profile 
 fi
-
+# remove not needed partial lists
 rm /etc/sailjail/permissions/%{name}.profile.partial* &>/dev/null
 
 ## small fix for sailjail, as /var/log/ and mkfile do not like each other
 #touch /var/log/defender_last.json
 #touch /var/log/defender_err.log
 #chmod o+w /var/log/defender_*
+
+# systemd
+if [ -f /usr/lib/systemd/system/sailfish-unlock-agent.service ]; then
+  # exchange the path unit's WantedBy in case of ENcrypted devices, 
+  # normally the default for X.. (and 10) devices and/or SW >= 3.3 flashed
+  sed -e 's/^WantedBy=.*/WantedBy=sailfish-unlock-agent.service/' -i /etc/systemd/system/%{name}.path
+  sed -e 's/^WantedBy=.*/WantedBy=sailfish-unlock-agent.service/' -i /etc/systemd/system/%{name}-adRestart.path
+  sed -e 's/^WantedBy=.*/WantedBy=sailfish-unlock-agent.service/' -i /etc/systemd/system/%{name}-updLoop.path
+else if [ -f /usr/lib/systemd/system/decrypt-home_encrypted.service ]; then
+  # exchange the path unit's WantedBy in case of ENrypted devices, 
+  # normally the default for X.. devices and SW >= 3.3 flashed
+  # but different for community ports!
+  sed -e 's/^WantedBy=.*/WantedBy=decrypt-home_encrypted.service/' -i /etc/systemd/system/%{name}.path
+  sed -e 's/^WantedBy=.*/WantedBy=decrypt-home_encrypted.service/' -i /etc/systemd/system/%{name}-adRestart.path
+  sed -e 's/^WantedBy=.*/WantedBy=decrypt-home_encrypted.service/' -i /etc/systemd/system/%{name}-updLoop.path
+else
+  # exchange the path unit's WantedBy in case of NOT encrypted devices, 
+  # for older devices not supporting or having activated  encryption
+  sed -e 's/^WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}.path
+  sed -e 's/^WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}-adRestart.path
+  sed -e 's/^WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}-updLoop.path
+  fi
+fi
+#
+systemctl daemon-reload
+systemctl disable --now %{name}.path; # this one may be needed on upgrade
+systemctl enable --now %{name}.path
+systemctl enable --now %{name}-adRestart.path
+systemctl enable --now %{name}-updInterval.path
+systemctl enable --now %{name}-updLoop.path
+systemctl enable --now %{name}.timer
 # >> install post
 # << install post
 
