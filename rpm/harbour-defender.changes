@@ -9,6 +9,10 @@
 # - Summary of changes
 # * date Peter Leinchen <peterleinchen@t-online.de> vx.y.z
 
+v0.9.7
+- added Nederlands and Vlaam langugage ts (courtesy of @nthn)
+
+ 
 v0.9.6
 - adapted hagezi's lists urls to cdn.jsdelivr.net
 
