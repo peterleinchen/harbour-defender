@@ -111,7 +111,7 @@ install -p -m 644 %{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}
 %exclude %{_datadir}/%{name}/qml/python/python_hosts/*.pyo
 # a ghost config to not have it somehow overwritten, both cannot work. user dirs not allow
 # %%ghost %%config ${HOME}/.config/%%{organization}/%%{name}/%%{shortname}.conf
-#%ghost %config %{_home_dir}/.config/%{organization}/%%{name}/%{shortname}.conf
+# %%ghost %%config %{_home_dir}/.config/%%{organization}/%%{name}/%%{shortname}.conf
 
 # >> files
 # << files
