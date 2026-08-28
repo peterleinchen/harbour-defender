@@ -22,70 +22,75 @@
 <context>
     <name>CookiesPage</name>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="14"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="9"/>
+        <source>Browser still open?</source>
+        <translation type="Browser noch offen?"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/CookiesPage.qml" line="20"/>
         <source>Search cookies</source>
         <translation>Kekse suchen</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="29"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="35"/>
         <source>Unlock cookies</source>
         <translation>Kekse freigeben</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="29"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="35"/>
         <source>Lock cookies</source>
         <translation>Kekse sperren</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="31"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="37"/>
         <source>Unlocking</source>
         <translation>Am Freigeben dran sein tun...</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="31"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="37"/>
         <source>Locking</source>
         <translation>Am Sperren dran sein tun...</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="40"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="46"/>
         <source>Delete all blacklisted</source>
         <translation>Lösche alle schwarz gelisteten</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="42"/>
-        <location filename="../qml/pages/CookiesPage.qml" line="58"/>
-        <location filename="../qml/pages/CookiesPage.qml" line="83"/>
-        <location filename="../qml/pages/CookiesPage.qml" line="162"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="48"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="66"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="93"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="177"/>
         <source>Deleting</source>
-	<translation>Am Löschen dran sein tun...</translation>
+        <translation>Am Löschen dran sein tun...</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="56"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="64"/>
         <source>Delete all not whitelisted</source>
         <translation>Lösche alle nicht weiß gelisteten</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="111"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="126"/>
         <source>Remove</source>
         <translation>Entferne</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="115"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="130"/>
         <source>Remove from Whitelist</source>
         <translation>Entferne von der Weißliste</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="115"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="130"/>
         <source>Add to Whitelist</source>
         <translation>Füge zur Weißliste hinzu</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="134"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="149"/>
         <source>Remove from Blacklist</source>
         <translation>Entferne von Schwarzliste</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="134"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="149"/>
         <source>Add to Blacklist</source>
         <translation>Füge zur Schwarzliste hinzu</translation>
     </message>
@@ -176,33 +181,68 @@
 <context>
     <name>SettingsPage</name>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="19"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="17"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="22"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="21"/>
+        <source>Cookie lists</source>
+        <translation type="Keksliste"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="25"/>
         <source>Clear Cookie Blacklist</source>
         <translation>Leere Keks-Schwarzliste</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="25"/>
-        <location filename="../qml/pages/SettingsPage.qml" line="36"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="28"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="40"/>
         <source>Clearing</source>
         <translation>Am Reinigen...</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="33"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="37"/>
         <source>Clear Cookie Whitelist</source>
         <translation>Leere Keks-Weißliste</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="44"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="49"/>
+        <source>Update Interval</source>
+        <translation type="Auffrischintervall"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="55"/>
+        <source>Interval</source>
+        <translation type="Intervall"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="59"/>
+        <source>Daily</source>
+        <translation type="Täglich"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="66"/>
+        <source>Weekly</source>
+        <translation type="Wöchentlich"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="73"/>
+        <source>Monthly</source>
+        <translation type="Monatlich"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="91"/>
+        <source>WLAN/GPRS usage</source>
+	<translation type="WLAN/GPRS Nutzung"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="95"/>
         <source>WLAN only</source>
         <translation>Nur WLAN</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="45"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="96"/>
         <source>Downloads adblock lists only if connected to WLAN (tested only on Jolla phones)</source>
         <translation>Lade Werbeblocker Listen nur herunter, wenn mit WLAN verbunden (getestet nur mit Jolla Gerät).</translation>
     </message>
@@ -268,7 +308,7 @@
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="23"/>
         <source>Preparing cancel/clear</source>
-		<translation>In Vorbereitung zum Abbruch/Aufräumen...</translation>
+        <translation>In Vorbereitung zum Abbruch/Aufräumen...</translation>
     </message>
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="29"/>
@@ -298,7 +338,7 @@
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="47"/>
         <source>Preparing update</source>
-	<translation>In Vorbereitung zur Auffrischung...</translation>
+        <translation>In Vorbereitung zur Auffrischung...</translation>
     </message>
     <message>
         <location filename="../qml/pages/SourcesPage.qml" line="56"/>
@@ -319,22 +359,22 @@
 <context>
     <name>WelcomePage</name>
     <message>
-        <location filename="../qml/pages/WelcomePage.qml" line="27"/>
+        <location filename="../qml/pages/WelcomePage.qml" line="28"/>
         <source>Adblock Lists</source>
-	<translation>"Werbeblocker-Listen</translation>
+        <translation>&quot;Werbeblocker-Listen</translation>
     </message>
     <message>
-        <location filename="../qml/pages/WelcomePage.qml" line="34"/>
+        <location filename="../qml/pages/WelcomePage.qml" line="35"/>
         <source>Cookies</source>
         <translation>Kekse</translation>
     </message>
     <message>
-        <location filename="../qml/pages/WelcomePage.qml" line="40"/>
+        <location filename="../qml/pages/WelcomePage.qml" line="41"/>
         <source>Documentation</source>
         <translation>Dokumentation</translation>
     </message>
     <message>
-        <location filename="../qml/pages/WelcomePage.qml" line="46"/>
+        <location filename="../qml/pages/WelcomePage.qml" line="47"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
