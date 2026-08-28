@@ -21,12 +21,12 @@ BackgroundItem {
         }
         DetailItem {
             label: qsTr("Cookies")
-            value: stats.cookies_count
+            value: (stats != undefined) ? stats.cookies_count : ""
             anchors.horizontalCenter: parent.horizontalCenter
         }
         DetailItem {
             label: qsTr("Domains")
-            value: stats.domains_count
+            value: (stats != undefined) ? stats.domains_count : ""
             anchors.horizontalCenter: parent.horizontalCenter
         }
         Label {
