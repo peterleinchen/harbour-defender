@@ -15,7 +15,7 @@
 
 Name:       harbour-defender
 Summary:    A privacy guard for SFOS
-Version:    0.9.7
+Version:    0.9.8
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3
@@ -133,12 +133,12 @@ install -p -m 644 %{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}
 # Android files
 if [ -d "%{_a1configdir}" ]; then
   # Only if the dir exists
-  [ -f %{_a1configdir}/hosts ] && echo "Info: %{_a1configdir}/hosts exists" || echo -e "127.0.0.1                   localhost\n" >> %{_a1configdir}/hosts || :
+  [ -f %{_a1configdir}/hosts ] && echo "Info: %{_a1configdir}/hosts exists" || echo -e "127.0.0.1                   localhost.localdomain localhost\n" >> %{_a1configdir}/hosts || :
   [ -f %{_a1configdir}/hosts.editable ] && echo "Info: %{_a1configdir}/hosts.editable exists" || cp %{_a1configdir}/hosts %{_a1configdir}/hosts.editable 2>/dev/null || :
 fi
 if [ -d "%{_a2configdir}" ]; then
   # Only if the dir exists
-  [ -f %{_a2configdir}/hosts ] && echo "%{_a2configdir}/hosts exists" || echo -e "127.0.0.1                   localhost\n" >> %{_a2configdir}/hosts || :
+  [ -f %{_a2configdir}/hosts ] && echo "%{_a2configdir}/hosts exists" || echo -e "127.0.0.1                   localhost.localdomain localhost\n" >> %{_a2configdir}/hosts || :
   [ -f %{_a2configdir}/hosts.editable ] && echo "%{_a2configdir}/hosts.editable exists" || cp %{_a2configdir}/hosts %{_a2configdir}/hosts.editable 2>/dev/null || :
 fi
 
