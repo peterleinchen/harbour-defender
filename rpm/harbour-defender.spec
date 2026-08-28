@@ -105,6 +105,7 @@ install -p -m 644 %{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}
 %attr(0644,root,root) %{_unitdir}/%{name}*.service
 %attr(0644,root,root) %{_unitdir}/%{name}.timer
 %attr(0644,root,root) %{_sysconfdir}/%{shortname}.conf
+%attr(0644,root,root) %{_sysconfdir}/%{shortname}.hosts
 %exclude %{_datadir}/%{name}/qml/python/*.pyc
 %exclude %{_datadir}/%{name}/qml/python/*.pyo
 %exclude %{_datadir}/%{name}/qml/python/python_hosts/*.pyc
