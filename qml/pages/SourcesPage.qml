@@ -109,7 +109,6 @@ Page {
         }
         VerticalScrollDecorator {}
     }
-
     RemorsePopup { id: remorse }
 }
 

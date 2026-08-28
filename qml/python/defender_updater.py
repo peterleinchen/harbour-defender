@@ -120,8 +120,9 @@ urls = []
 whitelist_priority = True # whether the whitelist should surpass the blacklist in .editable files
 sanitize = True
 
-tmp_dir = '/tmp'
-tmp_hosts = '/tmp/hosts'
+tmp_dir = "/tmp"
+tmp_hosts = "/tmp/hosts"
+default_hosts = "/etc/defender.hosts"
 native_dir="/etc"
 native_hosts="/etc/hosts"
 android1_dir="/system/etc"
@@ -174,8 +175,8 @@ def load_sources():
 
 urls, whitelist, whitelist_priority, sanitize, single_editable = load_sources()
 
-def add_default_entry(hosts, native = False):
-    if native:
+def add_default_entry(hosts, ipv6 = False):
+    if ipv6:
         hosts.add(entries = [
             HostsEntry(entry_type = 'ipv6',
                         address = '::1', names = ['localhost6.localdomain6', 'localhost6'])
@@ -202,9 +203,9 @@ def write_hosts(hosts, remote_entries=None, path=None, editable_path=None, white
     if not whitelist_priority:
         hosts.import_file(editable_path, write_file = False)
     # Add default entries
-    add_default_entry(hosts, native = False)
+    add_default_entry(hosts, ipv6 = False)
     if not android:
-        add_default_entry(hosts, native = True)
+        add_default_entry(hosts, ipv6 = True)
     try:
         hosts.write(path=path)
     except UnableToWriteHosts:
@@ -214,30 +215,40 @@ def write_hosts(hosts, remote_entries=None, path=None, editable_path=None, white
 def rebuild_hosts(path, android=False):
     #new_hosts = Hosts() #would read all /etc/hosts entries, which we do not want
     new_hosts = Hosts(path) #will except -catched- on populate as this path is yet invalid
-    #new_hosts.add(entry_type = 'comment', comment = ">> created by hosts-adblock-plus <<")
-    add_default_entry(new_hosts, native = False)
-    if not android:
-        add_default_entry(new_hosts, native = True)
+    #new_hosts.add(HostsEntry(entry_type = "comment", comment = ">> created by Defender <<"))
+    #new_hosts.add(HostsEntry([None, "comment", None, ">> created by Defender <<", None]))
+    new_hosts.add(entries = [HostsEntry(entry_type = "comment", comment = ">> created by Defender <<")])
+    new_hosts.import_file(default_hosts)
+    add_default_entry(new_hosts, ipv6 = False)
+    if not android or True:
+        add_default_entry(new_hosts, ipv6 = True)
     try:
         new_hosts.write(path)
     except UnableToWriteHosts:
         write_error_log("ERROR: could not rebuild/write " + path)
 
 def check_hosts(path, android=False):
-    if android1_hosts in path:
+    if android1_hosts in path or android2_hosts in path:
         android = True
-    if os.path.isfile(path):
+    if not os.path.isfile(path):
         rebuild_hosts(path, android)
+
+def add_ipv6(path):
+    # sed the whole hosts and copy all IPv4 0.0.0.0 to IPv6 :: entries
+    os.system("sed -i '/^0.0.0.0/{p; s/^0.0.0.0/::/}' " + path)
 
 def write_all(hosts):
     # Workaround to copy remote entries and keep different .editable files split
     remote_entries = list(hosts.entries)
     
+    write_hosts(hosts, remote_entries = remote_entries, path = native_hosts)
+    add_ipv6(path = native_hosts)
     if os.path.isdir(android1_dir):
         write_hosts(hosts, remote_entries = remote_entries, path = android1_hosts, android = True)
+        add_ipv6(path = android1_hosts)
     if os.path.isdir(android2_dir):
         write_hosts(hosts, remote_entries = remote_entries, path = android2_hosts, android = True)
-    write_hosts(hosts, remote_entries = remote_entries, path = native_hosts)
+        add_ipv6(path = android2_hosts)
     return 0
 
 def update(remote_sources = urls):
@@ -245,7 +256,8 @@ def update(remote_sources = urls):
     Main update function - takes a list of remote source URLs, writes all available hosts and returns 0.
     """
     hosts = Hosts(path=tmp_hosts)
-    
+    hosts.import_file(default_hosts)
+
     # clear errlog
     #if os.path.isfile(ERRLOG_FILE_PATH):
     #    os.remove(ERRLOG_FILE_PATH)
@@ -256,6 +268,8 @@ def update(remote_sources = urls):
     for remote_source in remote_sources:
         try:
             print(remote_source['url'])
+            hosts.add(entries = [HostsEntry(entry_type = "blank", names = [])])
+            hosts.add(entries = [HostsEntry(entry_type = "comment", comment = str(remote_source["url"]), names = [""])])
             hosts.import_url(url = remote_source['url'], single_format = remote_source['single_format'], sanitize = sanitize)
         except Exception as e:
             write_error_log('WARNING: URL ' + remote_source['url'] + ' - ' + str(e))

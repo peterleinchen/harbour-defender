@@ -50,4 +50,11 @@ Page {
             menuItemSource: "components/GeneralMenuItem.qml"
         }
     }
+    onStatusChanged: {
+            if (status === PageStatus.Active) {
+                py.call(appname+'.get_stats', [], function (result) {
+                    stats = result
+                })
+            }
+    }
 }

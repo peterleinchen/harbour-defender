@@ -5,6 +5,12 @@ import Sailfish.Silica 1.0
 Page {
     id: page
     property string searchString
+    Text {
+	    text: qsTr("Browser still open?") 
+	    anchors.centerIn: parent
+	    color: "red"
+    	    visible: (0 === cookiesModel.count)
+    }
     SilicaListView {
         id: listView
         model: cookiesModel
@@ -42,9 +48,11 @@ Page {
                     remorse.execute(qsTr("Deleting"), function() {
                         py.call(appname+'.cookie_delete_blacklist', [cookieBlacklist, searchString], function (result) {
                             cookiesModel.clear()
-                            for (var i = 0; i < result.length; i++) {
-                                cookiesModel.append(result[i])
-                            }
+			    if (result != undefined) {
+				for (var i = 0; i < result.length; i++) {
+				    cookiesModel.append(result[i])
+                                }
+			    }
                         });
                         py.call(appname+'.get_stats', [], function (result) {
                             stats = result
@@ -58,9 +66,11 @@ Page {
                     remorse.execute(qsTr("Deleting"), function() {
                         py.call(appname+'.cookie_delete_whitelist', [cookieWhitelist, searchString], function (result) {
                             cookiesModel.clear()
-                            for (var i = 0; i < result.length; i++) {
-                                cookiesModel.append(result[i])
-                            }
+			    if (result != undefined) {
+				for (var i = 0; i < result.length; i++) {
+                                    cookiesModel.append(result[i])
+                                }
+			    } 
                         });
                         py.call(appname+'.get_stats', [], function (result) {
                             stats = result
@@ -83,9 +93,11 @@ Page {
                         remorseAction(qsTr("Deleting"), function() {
                             py.call(appname+'.cookie_delete_domain', [section, searchString], function(result) {
                                 cookiesModel.clear()
-                                for (var i = 0; i < result.length; i++) {
-                                    cookiesModel.append(result[i])
-                                }
+				if (result != undefined) {
+				    for (var i = 0; i < result.length; i++) {
+                                        cookiesModel.append(result[i])
+                                    }
+			        }
 			    })
 			    py.call(appname+'.get_stats', [], function (result) {
 				stats = result
@@ -164,7 +176,7 @@ Page {
             function remove() {
                 remorseAction(qsTr("Deleting"), function() {
                     py.call(appname+'.cookie_delete_single', [cookiesModel.get(index).id, searchString], function(result) {
-                        listView.model.remove(index)
+                        if (result != undefined) listView.model.remove(index)
 		    })
                     py.call(appname+'.get_stats', [], function (result) {
 			    stats = result
@@ -196,9 +208,11 @@ Page {
     }
     Component.onCompleted: {
         py.call(appname+'.load_cookies', [], function(result) {
-            for (var i = 0; i < result.length; i++) {
-                cookiesModel.append(result[i])
-            }
+		if (result != undefined) {
+		    for (var i = 0; i < result.length; i++) {
+			cookiesModel.append(result[i])
+		    }
+		}
         })
     }
     RemorsePopup { id: remorse }
