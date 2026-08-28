@@ -9,6 +9,17 @@
 # - Summary of changes
 # * date Peter Leinchen <peterleinchen@t-online.de> vx.y.z
 
+v0.9.8
+- removed warnings (cannot read property of undefined) in logging at startup
+- added more checks for deleting cookies (possibility) and corected display output
+- added automatic recalculation on CoverPage
+- corrected the links (now single-format lists) for Hagezi block lists
+- corrected building up hosts file, first default section, then sanitized url imports, then the (original) hosts.editable
+- added IPv6 support
+- added 'date' as command to whitelist
+
+ 
+
 v0.9.7
 - added Nederlands and Vlaam langugage ts (courtesy of @nthn)
 
