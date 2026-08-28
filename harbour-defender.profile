@@ -156,8 +156,7 @@ noblacklist /usr/bin/
 noblacklist /usr/bin/sh
 noblacklist /usr/bin/busybox
 noblacklist /usr/bin/sailfish-browser # this does also not work, NEED private-bin
-#private-bin busybox,echo,grep,ps,sh,sleep,touch,wc,sailfish-browser
-private-bin busybox,cp,echo,grep,ls,ps,sh,sleep,touch,wc,zcat,sailfish-browser,invoker
+private-bin busybox,cp,date,echo,grep,ls,ps,sh,sleep,touch,wc,zcat,sailfish-browser,invoker
 
 
 ## etc
