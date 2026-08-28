@@ -256,38 +256,62 @@ def load_cookies(searchStr=None):
     return result_list
 
 def cookie_delete_single(cookieId, searchStr=None):
+    result_list = None
     cur = sqlite3.connect(cookies_path).cursor()
-    data = cur.execute("DELETE FROM moz_cookies WHERE id=?", (cookieId,))
-    cur.connection.commit()
-    result_list = load_query(cur, searchStr)
+    try:
+        data = cur.execute("DELETE FROM moz_cookies WHERE id=?", (cookieId,))
+    except Exception as e:
+        cur.connection.rollback()
+        write_error_log(f"Cookies (si) error: {e}")
+    else:
+        cur.connection.commit()
+        result_list = load_query(cur, searchStr)
     cur.connection.close()
     return result_list
 
 def cookie_delete_domain(cookieDomain, searchStr=None):
+    result_list = None
     cur = sqlite3.connect(cookies_path).cursor()
-    data = cur.execute("DELETE FROM moz_cookies WHERE host=?", (cookieDomain,))
-    cur.connection.commit()
-    result_list = load_query(cur, searchStr)
+    try:
+        data = cur.execute("DELETE FROM moz_cookies WHERE host=?", (cookieDomain,))
+    except Exception as e:
+        cur.connection.rollback()
+        write_error_log(f"Cookies (do) error: {e}")
+    else:
+        cur.connection.commit()
+        result_list = load_query(cur, searchStr)
     cur.connection.close()
     return result_list
 
 def cookie_delete_blacklist(cookieBlacklist, searchStr=None):
+    result_list = None
     cur = sqlite3.connect(cookies_path).cursor()
     sql = "DELETE FROM moz_cookies WHERE host IN ({seq})".format(
     seq=','.join(['?']*len(cookieBlacklist)))
-    cur.execute(sql, cookieBlacklist)
-    cur.connection.commit()
-    result_list = load_query(cur, searchStr)
+    try:
+        cur.execute(sql, cookieBlacklist)
+    except Exception as e:
+        cur.connection.rollback()
+        write_error_log(f"Cookies (bl) error: {e}")
+    else:
+        cur.connection.commit()
+        result_list = load_query(cur, searchStr)
     cur.connection.close()
     return result_list
 
 def cookie_delete_whitelist(cookieWhitelist, searchStr=None):
+    result_list = None
     cur = sqlite3.connect(cookies_path).cursor()
     sql = "DELETE FROM moz_cookies WHERE host NOT IN ({seq})".format(
     seq=','.join(['?']*len(cookieWhitelist)))
-    cur.execute(sql, cookieWhitelist)
-    cur.connection.commit()
-    result_list = load_query(cur, searchStr)
+    try:
+        cur.execute(sql, cookieWhitelist)
+    except Exception as e:
+        cur.connection.rollback()
+        write_error_log(f"Cookies (wl) error: {e}")
+    else:
+        cur.connection.commit()
+        result_list = load_query(cur, searchStr)
     cur.connection.close()
     return result_list
 
@@ -356,8 +380,10 @@ def get_stats():
     cur = sqlite3.connect(cookies_path).cursor()
     try:
         cookies_count, domains_count = cur.execute("SELECT COUNT(*) AS cookies_count, COUNT(DISTINCT host) AS domains_count FROM moz_cookies").fetchall()[0]
-    except:
-        print("Warn, could not execute on DB, cookies/domains count set to zero")
+    except Exception as e:
+        cookies_count = -1
+        domains_count = -1
+        print(f"Warn: cannot read DB ({e}), \ncookies/domains count set to -1")
     cur.connection.close()
     cookie_bl_count = len(cookie_load_list(blacklist = True))
     if os.path.isfile(LOGFILE_LAST):
