@@ -19,7 +19,7 @@ CoverBackground {
             width: Theme.itemSizeLarge
             height: width
             anchors.centerIn: parent
-            opacity: (stats.last_sources > 0) ? 1 : 0.5
+            opacity: (stats != undefined) ? (stats.last_sources > 0) ? 1 : 0.5 : 0.1
         }
 
         Label {
