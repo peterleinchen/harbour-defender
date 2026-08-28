@@ -21,12 +21,12 @@ BackgroundItem {
         }
         DetailItem {
             label: qsTr("Blocked")
-            value: stats.hosts_lines
+            value: (stats != undefined) ? stats.hosts_lines : ""
             anchors.horizontalCenter: parent.horizontalCenter
         }
         DetailItem {
             label: qsTr("Lists")
-            value: stats.sources_enabled_count + "/" + stats.sources_count
+            value: (stats != undefined) ? stats.sources_enabled_count + "/" + stats.sources_count : ""
             anchors.horizontalCenter: parent.horizontalCenter
         }
         Label {
