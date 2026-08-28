@@ -70,7 +70,7 @@ INSTALLS += units
 conf.path = $${CONFDIR}
 conf.extra = \
   install -p -m 644 $$PWD/qml/python/defender_default.conf \
-  ${INSTALL_ROOT}$${CONFDIR}/defender.conf
+  ${INSTALL_ROOT}$${CONFDIR}/defender.conf \
   install -p -m 644 $$PWD/qml/python/defender_default.hosts \
   ${INSTALL_ROOT}$${CONFDIR}/defender.hosts
 INSTALLS += conf
