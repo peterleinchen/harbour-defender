@@ -22,70 +22,75 @@
 <context>
     <name>CookiesPage</name>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="14"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="9"/>
+        <source>Browser still open?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/CookiesPage.qml" line="20"/>
         <source>Search cookies</source>
         <translation>Sök cookies</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="29"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="35"/>
         <source>Unlock cookies</source>
         <translation>Lås upp cookies</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="29"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="35"/>
         <source>Lock cookies</source>
         <translation>Lås cookies</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="31"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="37"/>
         <source>Unlocking</source>
         <translation>Låser upp</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="31"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="37"/>
         <source>Locking</source>
         <translation>Låser</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="40"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="46"/>
         <source>Delete all blacklisted</source>
         <translation>Ta bort alla svartlistade</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="42"/>
-        <location filename="../qml/pages/CookiesPage.qml" line="58"/>
-        <location filename="../qml/pages/CookiesPage.qml" line="83"/>
-        <location filename="../qml/pages/CookiesPage.qml" line="162"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="48"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="66"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="93"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="177"/>
         <source>Deleting</source>
         <translation>Tar bort</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="56"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="64"/>
         <source>Delete all not whitelisted</source>
         <translation>Ta bort alla icke vitlistade</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="111"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="126"/>
         <source>Remove</source>
         <translation>Ta bort</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="115"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="130"/>
         <source>Remove from Whitelist</source>
         <translation>Ta bort från vitlistan</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="115"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="130"/>
         <source>Add to Whitelist</source>
         <translation>Lägg till i vitlistan</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="134"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="149"/>
         <source>Remove from Blacklist</source>
         <translation>Ta bort från svartlistan</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CookiesPage.qml" line="134"/>
+        <location filename="../qml/pages/CookiesPage.qml" line="149"/>
         <source>Add to Blacklist</source>
         <translation>Lägg till i svartlistan</translation>
     </message>
@@ -176,33 +181,68 @@
 <context>
     <name>SettingsPage</name>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="19"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="17"/>
         <source>Settings</source>
         <translation>Inställningar</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="22"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="21"/>
+        <source>Cookie lists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="25"/>
         <source>Clear Cookie Blacklist</source>
         <translation>Rensa cookie-svartlistan</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="25"/>
-        <location filename="../qml/pages/SettingsPage.qml" line="36"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="28"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="40"/>
         <source>Clearing</source>
         <translation>Rensar</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="33"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="37"/>
         <source>Clear Cookie Whitelist</source>
         <translation>Rensa cookie-vitlistan</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="44"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="49"/>
+        <source>Update Interval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="55"/>
+        <source>Interval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="59"/>
+        <source>Daily</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="66"/>
+        <source>Weekly</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="73"/>
+        <source>Monthly</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="91"/>
+        <source>WLAN/GPRS usage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="95"/>
         <source>WLAN only</source>
         <translation>Endast WLAN</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="45"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="96"/>
         <source>Downloads adblock lists only if connected to WLAN (tested only on Jolla phones)</source>
         <translation>Laddar ner blocklistor endast vid WLAN-anslutning (testad endast på Jolla-telefoner)</translation>
     </message>
@@ -319,22 +359,22 @@
 <context>
     <name>WelcomePage</name>
     <message>
-        <location filename="../qml/pages/WelcomePage.qml" line="27"/>
+        <location filename="../qml/pages/WelcomePage.qml" line="28"/>
         <source>Adblock Lists</source>
         <translation>Blocklistor</translation>
     </message>
     <message>
-        <location filename="../qml/pages/WelcomePage.qml" line="34"/>
+        <location filename="../qml/pages/WelcomePage.qml" line="35"/>
         <source>Cookies</source>
         <translation>Cookies</translation>
     </message>
     <message>
-        <location filename="../qml/pages/WelcomePage.qml" line="40"/>
+        <location filename="../qml/pages/WelcomePage.qml" line="41"/>
         <source>Documentation</source>
         <translation>Dokumentation</translation>
     </message>
     <message>
-        <location filename="../qml/pages/WelcomePage.qml" line="46"/>
+        <location filename="../qml/pages/WelcomePage.qml" line="47"/>
         <source>Settings</source>
         <translation>Inställningar</translation>
     </message>
