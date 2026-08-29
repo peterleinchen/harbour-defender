@@ -24,7 +24,7 @@
     <message>
         <location filename="../qml/pages/CookiesPage.qml" line="9"/>
         <source>Browser still open?</source>
-        <translation type="unfinished"></translation>
+        <translation type="Sta’ de browser nog open?"></translation>
     </message>
     <message>
         <location filename="../qml/pages/CookiesPage.qml" line="20"/>
@@ -188,7 +188,7 @@
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="21"/>
         <source>Cookie lists</source>
-        <translation type="unfinished"></translation>
+        <translation type="Cookielijsten"></translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="25"/>
@@ -209,32 +209,32 @@
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="49"/>
         <source>Update Interval</source>
-        <translation type="unfinished"></translation>
+        <translation type="Updatefrequentie"></translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="55"/>
         <source>Interval</source>
-        <translation type="unfinished"></translation>
+        <translation type="Frequentie"></translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="59"/>
         <source>Daily</source>
-        <translation type="unfinished"></translation>
+        <translation type="Dagelijks"></translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="66"/>
         <source>Weekly</source>
-        <translation type="unfinished"></translation>
+        <translation type="Wekelijks"></translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="73"/>
         <source>Monthly</source>
-        <translation type="unfinished"></translation>
+        <translation type="Maandelijks"></translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="91"/>
         <source>WLAN/GPRS usage</source>
-        <translation type="unfinished"></translation>
+	<translation type="WLAN/GPRS-gebruik"></translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="95"/>
