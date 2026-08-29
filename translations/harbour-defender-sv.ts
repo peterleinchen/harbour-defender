@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="sv_SV">
+<TS version="2.1" language="sv">
 <context>
     <name>CookiesMenuItem</name>
     <message>
@@ -24,7 +24,7 @@
     <message>
         <location filename="../qml/pages/CookiesPage.qml" line="9"/>
         <source>Browser still open?</source>
-        <translation type="unfinished"></translation>
+        <translation>Är webbläsaren fortfarande öppen?</translation>
     </message>
     <message>
         <location filename="../qml/pages/CookiesPage.qml" line="20"/>
@@ -188,7 +188,7 @@
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="21"/>
         <source>Cookie lists</source>
-        <translation type="unfinished"></translation>
+        <translation>Cookie-lista</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="25"/>
@@ -209,32 +209,32 @@
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="49"/>
         <source>Update Interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Uppdateringsintervall</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="55"/>
         <source>Interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervall</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="59"/>
         <source>Daily</source>
-        <translation type="unfinished"></translation>
+        <translation>Dagligen</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="66"/>
         <source>Weekly</source>
-        <translation type="unfinished"></translation>
+        <translation>Veckovis</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="73"/>
         <source>Monthly</source>
-        <translation type="unfinished"></translation>
+        <translation>Månatligen</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="91"/>
         <source>WLAN/GPRS usage</source>
-        <translation type="unfinished"></translation>
+        <translation>WLAN/GPRS-användning</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="95"/>
