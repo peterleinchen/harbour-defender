@@ -7,26 +7,26 @@ Page {
 
     SilicaFlickable {
         anchors.fill: parent
-
         contentHeight: column.height
 
         Column {
             id: column
-
             width: page.width
             spacing: Theme.paddingLarge
-            PageHeader {
+	    
+	    PageHeader {
                 title: qsTr("Version")
             }
             Label {
                 x: Theme.paddingLarge
                 width: parent.width - 2*x
-                text: "0.6.1"
+                text: "0.9.8"
                 color: Theme.primaryColor
                 wrapMode: Text.Wrap
                 font.pixelSize: Theme.fontSizeMedium
             }
-            PageHeader {
+	    
+	    PageHeader {
                 title: qsTr("Warning")
             }
             Label {
@@ -37,10 +37,11 @@ Page {
                 wrapMode: Text.Wrap
                 font.pixelSize: Theme.fontSizeMedium
             }
-            PageHeader {
+	    
+	    PageHeader {
                 title: qsTr("Adblock Lists")
-            }
-            SectionHeader {
+            } 
+	    SectionHeader {
                 text: qsTr("How to add custom lists?")
             }
             Label {
@@ -51,7 +52,7 @@ Page {
                 wrapMode: Text.Wrap
                 font.pixelSize: Theme.fontSizeMedium
             }
-            SectionHeader {
+	    SectionHeader {
                 text: qsTr("Why can't I add new sources from the app?")
             }
             Label {
@@ -62,7 +63,7 @@ Page {
                 wrapMode: Text.Wrap
                 font.pixelSize: Theme.fontSizeMedium
             }
-            SectionHeader {
+	    SectionHeader {
                 text: qsTr("How to add custom entries?")
             }
             Label {
@@ -73,7 +74,7 @@ Page {
                 wrapMode: Text.Wrap
                 font.pixelSize: Theme.fontSizeMedium
             }
-            SectionHeader {
+	    SectionHeader {
                 text: qsTr("Why can't I add new entries from the app?")
             }
             Label {
@@ -84,7 +85,8 @@ Page {
                 wrapMode: Text.Wrap
                 font.pixelSize: Theme.fontSizeMedium
             }
-            PageHeader {
+	    
+	    PageHeader {
                 title: qsTr("Cookies")
             }
             Label {
@@ -95,7 +97,7 @@ Page {
                 wrapMode: Text.Wrap
                 font.pixelSize: Theme.fontSizeMedium
             }
-            SectionHeader {
+	    SectionHeader {
                 text: qsTr("Cookie Locking")
             }
             Label {
@@ -107,6 +109,18 @@ Page {
                 font.pixelSize: Theme.fontSizeMedium
             }
 
+            PageHeader {
+                title: qsTr("Updating")
+            }
+            Label {
+                x: Theme.paddingLarge
+                width: parent.width - 2*x
+		text: qsTr("You can define an update interval of daily/weekly/monthly. As well you may configure to have your blacklisted (or not-whitelisted) cookies to be deleted on each update interval. So, no need to worry about bad cookies anymore or do this manually. 
+This automatic action will start at the same time when you last started an update.")
+                color: Theme.primaryColor
+                wrapMode: Text.Wrap
+                font.pixelSize: Theme.fontSizeMedium
+            }
         }
     }
 }
