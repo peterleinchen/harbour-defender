@@ -15,7 +15,7 @@
 
 Name:       harbour-defender
 Summary:    A privacy guard for SFOS
-Version:    0.9.8
+Version:    0.9.9
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3
@@ -65,6 +65,8 @@ Icon: https://raw.githubusercontent.com/peterleinchen/harbour-defender/master/qm
 # so please see section in .pro file
 # translations, should already be handled with pro file
 %qtc_lrelease translations/*.ts
+# manual cli ts coomand (as note only): 
+#lupdate -extensions qml . -ts translations/harbour-defender*.ts
 
 %install
 ls -R . # debugging only

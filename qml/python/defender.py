@@ -240,6 +240,11 @@ def touch(path):
     with open(path, 'a'):
         os.utime(path, None)
 
+#from defender import load_query
+##from defender import load_cookies
+#from defender_cookies import cookie_delete_blacklist
+#from defender_cookies import cookie_delete_whitelist
+#from defender_cookies import cookie_load_list
 def load_query(cur, searchStr=None):
     if searchStr and searchStr.isalnum():
         query = cur.execute("SELECT * FROM moz_cookies WHERE host LIKE ? ORDER BY host, creationTime", ('%'+searchStr+'%',))

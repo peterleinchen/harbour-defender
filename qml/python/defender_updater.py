@@ -15,11 +15,12 @@ import json
 import os
 from shutil import copyfile
 import socket
+import sqlite3
 from subprocess import check_output
+from subprocess import run
 import sys
 sys.path.insert(0, APP_DIR)
 import time
-
 
 #APP_DIR = '/opt/sdk/harbour-' + APP_NAME + '/usr/share/harbour-' + APP_NAME + '/qml/python''
 
@@ -45,11 +46,11 @@ with open(TMP_DIR + '/dir', 'r') as f:
     HOME_DIR = f.read()
     f.close()
 
-config_dir_part = '/.config/' + organization + '/' + app_name
-cache_dir_part = '/.cache/' + organization + '/' + app_name
-data_dir_part = '/.local/share/' + organization + '/' + app_name
+config_dir_part = '.config/' + organization + '/' + app_name
+cache_dir_part = '.cache/' + organization + '/' + app_name
+data_dir_part = '.local/share/' + organization + '/' + app_name
 #CONFIG_HOME_DIR = HOME_DIR + '/.config/harbour-' + APP_NAME          
-CONFIG_HOME_DIR = HOME_DIR + config_dir_part
+CONFIG_HOME_DIR = HOME_DIR + '/' + config_dir_part
 CONFIG_HOME_PATH = CONFIG_HOME_DIR + '/' + APP_NAME + '.conf'
 
 CONFIG_ETC_DIR = '/etc'
@@ -68,24 +69,49 @@ LOG_DIR = HOME_DIR + '/' + data_dir_part
 ERRLOG_FILE_PATH = LOG_DIR + '/' + APP_NAME + '_err.log'
 TMP_ERRLOG_FILE_PATH = HOME_DIR + '/Public/.' + APP_NAME + '_err.log'
 
+cookies_path = HOME_DIR + '/.local/share/org.sailfishos/browser/.mozilla/' + 'cookies.sqlite'
+if not os.path.isfile(cookies_path):
+    cookies_path = HOME_DIR + '/.mozilla/mozembed/' + 'cookies.sqlite'
+#nope, cookies_path += '?immutable=1'
+
 def write_error_log(errlog=None, root=True):
     print(errlog)
-    oserrlog1 = "echo -e \"" + "--\n$(date)" + "\" >> " + ERRLOG_FILE_PATH
-    oserrlog2 = "echo    \"" + errlog        + "\" >> " + ERRLOG_FILE_PATH
+    oserrlog1 = 'echo -e \"' + '--\n$(date)' + '\" >> ' + ERRLOG_FILE_PATH
+    oserrlog2 = 'echo    \"' + errlog         + '\" >> ' + ERRLOG_FILE_PATH
     if root:
-        oserrlog1 = "echo '" + oserrlog1 + "' | su - " + NON_ADMIN_USER
-        oserrlog2 = "echo '" + oserrlog2 + "' | su - " + NON_ADMIN_USER
+        #oserrlog1 = "echo '" + oserrlog1 + "' | su - " + NON_ADMIN_USER
+        #oserrlog2 = "echo '" + oserrlog2 + "' | su - " + NON_ADMIN_USER
+        oserrlog1 = 'echo \'' + oserrlog1 + '\' | su ' + NON_ADMIN_USER
+        oserrlog2 = 'echo \'' + oserrlog2 + '\' | su ' + NON_ADMIN_USER
+        #oserrlog1 = 'su - ' + NON_ADMIN_USER + ' -c \'' + oserrlog1 + '\''
+        #oserrlog2 = 'su - ' + NON_ADMIN_USER + ' -c \'' + oserrlog2 + '\''
+        #oserrlog1 = 'su ' + NON_ADMIN_USER + ' -c \'' + oserrlog1 + '\''
+        #oserrlog2 = 'su ' + NON_ADMIN_USER + ' -c \'' + oserrlog2 + '\''
+    #print(oserrlog1)
     os.system(oserrlog1)
+    #res1 = check_output(oserrlog1, shell = True)
+    #print(oserrlog2)
     os.system(oserrlog2)
+    #res2 = run(oserrlog2, shell = True, capture_output=True, text=True)
+    #print (res1)
+    #print (res2)
 
-def show_error_log():
+def show_error_log(root=True):
     try:
         if os.path.isfile(ERRLOG_FILE_PATH) and (os.path.getsize(ERRLOG_FILE_PATH) > 0):
-            print("cp " + ERRLOG_FILE_PATH + " " + TMP_ERRLOG_FILE_PATH)
-            os.system("cp " + ERRLOG_FILE_PATH + " " + TMP_ERRLOG_FILE_PATH)
+            cpCommand = "cp " + ERRLOG_FILE_PATH + " " + TMP_ERRLOG_FILE_PATH
             sfbCommand = "/usr/bin/sailfish-browser " + TMP_ERRLOG_FILE_PATH + " &"
-            print(sfbCommand)
-            os.system("echo '" + sfbCommand + "' | su - " + NON_ADMIN_USER)
+            if root:
+                cpCommand =  "echo \'" + cpCommand  + "\' | su " + NON_ADMIN_USER
+                sfbCommand = "echo \'" + sfbCommand + "\' | su - " + NON_ADMIN_USER
+            #print(cpCommand)
+            #os.system(cpCommand)
+            resCp = check_output(cpCommand, shell=True)
+            #print(resCp)
+            #print(sfbCommand)
+            #os.system(sfbCommand)
+            resSfb = run(sfbCommand, shell=True)
+            print(resSfb)
             #os.system("invoker --type=browser,silica-qt5 -n sailfish-browser " + ERRLOG_FILE_PATH + " &")
             #open_browser(ERRLOG_FILE_PATH)
     except Exception as e:
@@ -142,17 +168,12 @@ config_home.read(CONFIG_HOME_PATH)
 def load_sources():
     urls = []
     #zip_urls = []
-    #config_etc = configparser.ConfigParser()
-    #config_etc.read(CONFIG_ETC_PATH)
-    #config_home = configparser.ConfigParser()
-    #config_home.read(CONFIG_HOME_PATH)
     whitelist = []
     whitelist_priority = True
     sanitize = True
 
     for entry in config_etc.sections():
         if entry in ['SETTINGS', 'DEFAULT']:
-            #wlan_only = config_home.getboolean("SETTINGS", "WlanOnly", fallback = config_etc.getboolean("SETTINGS", "WlanOnly", fallback = True)) 
             whitelist = config_etc.get("SETTINGS", "HostsWhitelist", fallback = '')
             if whitelist:
                 whitelist = whitelist.split(',')
@@ -161,8 +182,7 @@ def load_sources():
             single_editable = config_etc.getboolean("SETTINGS", "SingleEditable", fallback = False)
         else:
             print(config_etc.get(entry, 'Url'))
-            print(config_etc.getboolean(entry, 'sourceenabled', fallback=None))
-            print(config_home.getboolean(entry, 'sourceenabled', fallback=None))
+            print('etc:  ' + str(config_etc.getboolean(entry, 'sourceenabled', fallback=None)) + '; home: ' + str(config_home.getboolean(entry, 'sourceenabled', fallback=None)))
             enabled = config_home.getboolean(entry, 'sourceenabled', fallback = config_etc.getboolean(entry, 'sourceenabled', fallback = False))
             if enabled:
                 urls.append({'url': config_etc[entry]['Url'], 'single_format': config_etc.getboolean(entry, 'SingleFormat', fallback=False)})
@@ -319,6 +339,103 @@ def update(remote_sources = urls):
 def reset_hosts():
     return update(remote_sources = [])
 
+#from defender import load_query
+##from defender import load_cookies
+#from defender import cookie_delete_blacklist
+#from defender import cookie_delete_whitelist
+#from defender import cookie_load_list
+def load_query(cur, searchStr=None):
+    if searchStr and searchStr.isalnum():
+        query = cur.execute("SELECT * FROM moz_cookies WHERE host LIKE ? ORDER BY host, creationTime", ('%'+searchStr+'%',))
+    else:
+        query = cur.execute('SELECT * FROM moz_cookies ORDER BY host, creationTime')
+    colname = [ d[0] for d in query.description ]
+    result_list = [ dict(zip(colname, r)) for r in query.fetchall() ]
+    return result_list
+
+def load_cookies(searchStr=None):
+    cur = sqlite3.connect(cookies_path).cursor()
+    result_list = load_query(cur, searchStr)
+    cur.connection.close()
+    return result_list
+
+def cookie_delete_blacklist(cookieBlacklist, searchStr=None):
+    result_list = None
+    cur = sqlite3.connect(cookies_path).cursor()
+    sql = "DELETE FROM moz_cookies WHERE host IN ({seq})".format(
+    seq=','.join(['?']*len(cookieBlacklist)))
+    try:
+        cur.execute(sql, cookieBlacklist)
+    except Exception as e:
+        cur.connection.rollback()
+        write_error_log(f"Cookies (bl) error: {e}")
+    else:
+        cur.connection.commit()
+        result_list = load_query(cur, searchStr)
+    cur.connection.close()
+    return result_list
+
+def cookie_delete_whitelist(cookieWhitelist, searchStr=None):
+    result_list = None
+    cur = sqlite3.connect(cookies_path).cursor()
+    sql = "DELETE FROM moz_cookies WHERE host NOT IN ({seq})".format(
+    seq=','.join(['?']*len(cookieWhitelist)))
+    try:
+        cur.execute(sql, cookieWhitelist)
+    except Exception as e:
+        cur.connection.rollback()
+        write_error_log(f"Cookies (wl) error: {e}")
+    else:
+        cur.connection.commit()
+        result_list = load_query(cur, searchStr)
+    cur.connection.close()
+    return result_list
+
+def cookie_load_list(blacklist = False):
+    if blacklist:
+        key = 'DomainBlacklist'
+    else:
+        key = 'DomainWhitelist'
+    config_home = configparser.ConfigParser()
+    config_home.read(CONFIG_HOME_PATH)
+    try:
+        result = config_home.get('SETTINGS', key).split(',')
+    except:
+        result = []
+    return result
+
+def delete_cookies_on_update():
+    delete_cookies = config_home.get("SETTINGS", "DeleteCookiesOnUpdate", fallback = config_etc.get("SETTINGS", "DeleteCookiesOnUpdate", fallback = 'none'))
+    close_browser = config_home.getboolean("SETTINGS", "CloseBrowserOnCookiesDeletion", fallback = config_etc.getboolean("SETTINGS", "CloseBrowserOnCookiesDeletion", fallback = False))
+    browserIsOpen = (0 == os.system('ps aux | grep -v grep | grep /usr/bin/sailfish-browser'))
+    
+    print('Delete cokies on update: ', delete_cookies)
+    print('Browser is open: ', browserIsOpen)
+    print('Close browser on cookie deletion: ' + str(close_browser))
+    
+    if delete_cookies != 'none':
+        doDelete = True
+        if (browserIsOpen):
+            if (close_browser):
+                os.system('killall sailfish-browser')
+                print('Browser closed')
+            else:
+                doDelete = False
+                write_error_log('Warning: Closing the browser on delete cookies on update not configured')
+        if doDelete:
+            if delete_cookies == 'blacklist':
+                print('Deleted all blacklisted')
+                cookie_delete_blacklist(cookie_load_list(blacklist=True))
+            elif delete_cookies == 'whitelist':
+                print('Deleted all not whitelisted')
+                cookie_delete_whitelist(cookie_load_list(blacklist=False))
+            else:
+                print('Wrong black/white list config: ' + delete_cookies)
+            if browserIsOpen:
+                sfbCommand = "/usr/bin/sailfish-browser &"
+                sfbCommand = "echo \'" + sfbCommand + "\' | su - " + NON_ADMIN_USER
+                os.system(sfbCommand)
+                #resSfb = run(sfbCommand, shell=True)
 
 if __name__ == '__main__':
     if not os.path.isfile(CONFIG_ETC_PATH):
@@ -331,18 +448,15 @@ if __name__ == '__main__':
         print ('Internet not connected')
         write_error_log('ERROR: no internet - canceling update')
     else:
-        #config_etc = configparser.ConfigParser()
-        #config_etc.read(CONFIG_ETC_PATH)
-        #config_home = configparser.ConfigParser()
-        #config_home.read(CONFIG_HOME_PATH)
-        for entry in config_etc.sections():
-            if entry in ['SETTINGS', 'DEFAULT']:
-                wlan_only = config_home.getboolean("SETTINGS", "WlanOnly", fallback = config_etc.getboolean("SETTINGS", "WlanOnly", fallback = True))
+        wlan_only = config_home.getboolean("SETTINGS", "WlanOnly", fallback = config_etc.getboolean("SETTINGS", "WlanOnly", fallback = True))
         if wlan_only and "Not connected" in check_output(["iw", "dev", "wlan0", "link"]).decode("utf-8"):
             print('WLAN not connected')
             write_error_log('ERROR: WLAN required but not connected - canceling update')
         else:
+            # update the block list
             update(urls)
+    # delete cookies (obey this is second step after update)
+    delete_cookies_on_update()
     if os.path.isfile(UPDATE_FILE_PATH):
         os.remove(UPDATE_FILE_PATH)
     show_error_log()
