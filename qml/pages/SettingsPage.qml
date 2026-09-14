@@ -87,9 +87,10 @@ Page {
 
                 Component.onCompleted: {
                     py.call(appname + '.get_config_string', ['SETTINGS', 'UpdateInterval', 'weekly'], function(result) {
-                        if (result === 'daily') currentIndex = 0
-                        else if (result === 'weekly') currentIndex = 1
-                        else if (result === 'monthly') currentIndex = 2
+                        if (result === 'never') currentIndex = 0
+                        else if (result === 'daily') currentIndex = 1
+                        else if (result === 'weekly') currentIndex = 2
+                        else if (result === 'monthly') currentIndex = 3
                     })
 	        }
             }
