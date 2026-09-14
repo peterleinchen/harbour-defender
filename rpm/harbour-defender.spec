@@ -40,7 +40,7 @@ Conflicts:  hosts-block
 %description
 Configurable adblocker and privacy tuner for SFOS. 
 Allows to download ad-blocker lists from internet and adds them to /etc/hosts. Works for native Sailfish network/browser as well as for Android Support.
-Enables to black- or white-list cookies, delete them from the native browser's cookis.sqlite, and can make that DB read-only ( so new cookies will not be stored on browser restart).
+Enables to black- or white-list cookies, delete them from the native browser's cookies.sqlite, and can make that DB read-only ( so new cookies will not be stored on browser restart).
 
 
 %if "%{?vendor}" == "chum" || "%{?vendor}" == "harbour"
