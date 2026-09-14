@@ -110,7 +110,7 @@ Page {
             }
 
             PageHeader {
-                title: qsTr("Updating")
+                title: qsTr("Update")
             }
             Label {
                 x: Theme.paddingLarge
