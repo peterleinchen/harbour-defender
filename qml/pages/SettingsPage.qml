@@ -56,6 +56,13 @@ Page {
 
                 menu: ContextMenu {
                     MenuItem {
+                        text: qsTr("Never")
+                        onClicked: {
+                            py.call(appname + '.change_config', ['SETTINGS', 'UpdateInterval', ''], function(result) {})
+                            py.call(appname + '.set_update_interval', [''], function(result) {})
+                        }
+                    }
+                    MenuItem {
                         text: qsTr("Daily")
                         onClicked: {
                             py.call(appname + '.change_config', ['SETTINGS', 'UpdateInterval', 'daily'], function(result) {})
