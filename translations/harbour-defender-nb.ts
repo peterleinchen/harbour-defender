@@ -142,12 +142,12 @@
         <translation>Låsing fungerer ved å skrivebeskytte databasen for informasjonskapsler, slik at innholdet forblir uendret mellom omstarter av nettleseren. Effekten er at informasjonskapsler ikke lagres permanent over økter.</translation>
     </message>
     <message>
-        <source>Updating</source>
+        <source>You can define an update interval of daily/weekly/monthly. As well you may configure to have your blacklisted (or not-whitelisted) cookies to be deleted on each update interval. So, no need to worry about bad cookies anymore or do this manually. 
+This automatic action will start at the same time when you last started an update.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>You can define an update interval of daily/weekly/monthly. As well you may configure to have your blacklisted (or not-whitelisted) cookies to be deleted on each update interval. So, no need to worry about bad cookies anymore or do this manually. 
-This automatic action will start at the same time when you last started an update.</source>
+        <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -179,10 +179,6 @@ This automatic action will start at the same time when you last started an updat
     </message>
     <message>
         <source>Cookie lists</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Update Interval</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -226,7 +222,11 @@ This automatic action will start at the same time when you last started an updat
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>To enable the deletion of cookies, the browser mut not be open. If this setting is not enabled and the browser is open, cookies will not be deleted on update interval.</source>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To enable the deletion of cookies, the browser must not be open. If this setting is not enabled and the browser is open, cookies will not be deleted on update interval.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

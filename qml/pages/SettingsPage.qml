@@ -46,7 +46,7 @@ Page {
             }
 
             SectionHeader {
-                text: qsTr("Update Interval")
+                text: qsTr("Update")
             }
 	    
 	    ComboBox {
@@ -128,7 +128,7 @@ Page {
 	    TextSwitch {
 		id: tsCloseBrowser
                 text: qsTr("Close browser on cookies deletion")
-                description: qsTr("To enable the deletion of cookies, the browser mut not be open. If this setting is not enabled and the browser is open, cookies will not be deleted on update interval.")
+                description: qsTr("To enable the deletion of cookies, the browser must not be open. If this setting is not enabled and the browser is open, cookies will not be deleted on update interval.")
 		//visible: !(cbCookiesDeletion.currentIndex === 0)
 		//onEnabledChanged: if (!enabled) {visible = false}
 		enabled: !(cbCookiesDeletion.currentIndex === 0)

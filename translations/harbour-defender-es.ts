@@ -94,10 +94,6 @@
         <translation>¿Cómo añadir listas personalizadas?</translation>
     </message>
     <message>
-        <source>You can add custom lists by editing the file /etc/%1.conf as root (either using the command line or an appropriate editor). See other sections in the config file for inspiration. In the square brackets [] should be a unique id.</source>
-        <translation type="vanished">Puedes añadir listas personalizadas al hosts editando el fichero /etc/%1.conf como root (ya sea usando la línea de comandos o un editor apropiado). Consulta otras secciones en el archivo de configuración para la inspiración. Entre corchetes [] debería haber un único id.</translation>
-    </message>
-    <message>
         <source>Version</source>
         <translation>Versión</translation>
     </message>
@@ -138,10 +134,6 @@
         <translation>El gestor de cookies funciona editando la base de datos sqlite ubicada en ~/.local/share/org.sailfishos/browser/.mozilla/ (hasta la versión 3.4 de SFOS: ~/.mozilla/mozembed/) . Para poder acceder/trabajar con las cookies, es necesario cerrar el navegador antes de abrir la sección de cookies; de lo contrario, podrías ver una ventana vacía. Para que todos los cambios surtan efecto es necesario cerrar/reiniciar el navegador.</translation>
     </message>
     <message>
-        <source>The cookie manager works by editing the /home/nemo/.mozilla/mozembed/cookies.sqlite database. All changes need the browser to be restarted in order to take effect.</source>
-        <translation type="vanished">El gestor de cookies funciona editando la base de datos sqlite /home/nemo/.mozilla/mozembed/cookies.sqlite. Para que todos los cambios tengan efecto es necesario reiniciar el navegador.</translation>
-    </message>
-    <message>
         <source>Cookie Locking</source>
         <translation>Bloqueo de cookies</translation>
     </message>
@@ -150,12 +142,12 @@
         <translation>El bloqueo de cookies funciona haciendo que la base de datos de cookies sea sólo de lectura, por tanto su contenido es el mismo al reiniciar el navegador. El efecto de esto es que las cookies no son persistentes en los reinicios del navegador.</translation>
     </message>
     <message>
-        <source>Updating</source>
+        <source>You can define an update interval of daily/weekly/monthly. As well you may configure to have your blacklisted (or not-whitelisted) cookies to be deleted on each update interval. So, no need to worry about bad cookies anymore or do this manually. 
+This automatic action will start at the same time when you last started an update.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>You can define an update interval of daily/weekly/monthly. As well you may configure to have your blacklisted (or not-whitelisted) cookies to be deleted on each update interval. So, no need to worry about bad cookies anymore or do this manually. 
-This automatic action will start at the same time when you last started an update.</source>
+        <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -187,10 +179,6 @@ This automatic action will start at the same time when you last started an updat
     </message>
     <message>
         <source>Cookie lists</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Update Interval</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -234,7 +222,11 @@ This automatic action will start at the same time when you last started an updat
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>To enable the deletion of cookies, the browser mut not be open. If this setting is not enabled and the browser is open, cookies will not be deleted on update interval.</source>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To enable the deletion of cookies, the browser must not be open. If this setting is not enabled and the browser is open, cookies will not be deleted on update interval.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -274,14 +266,6 @@ This automatic action will start at the same time when you last started an updat
 </context>
 <context>
     <name>SourcesPage</name>
-    <message>
-        <source>Disable</source>
-        <translation type="vanished">Desactivar</translation>
-    </message>
-    <message>
-        <source>Preparing</source>
-        <translation type="vanished">Preparando</translation>
-    </message>
     <message>
         <source>Disable all</source>
         <translation>Desactivar todo</translation>

@@ -72,7 +72,7 @@
     </message>
     <message>
         <source>Browser still open?</source>
-        <translation></translation>
+        <translation>Netzbetrachter noch offen?</translation>
     </message>
 </context>
 <context>
@@ -142,13 +142,14 @@
         <translation>Das Kekse sperren funktioniert, indem die Keks-Datenbank auf schreibgeschützt gesetzt wird. Daher bleibt ihr Inhalt gleich zwischen Browser Neustarts. Der Effekt ist, dass die Cookies nicht persistiert werden.</translation>
     </message>
     <message>
-        <source>Updating</source>
-        <translation type="unfinished"></translation>
+        <source>Update</source>
+        <translation>Auffrischung</translation>
     </message>
     <message>
         <source>You can define an update interval of daily/weekly/monthly. As well you may configure to have your blacklisted (or not-whitelisted) cookies to be deleted on each update interval. So, no need to worry about bad cookies anymore or do this manually. 
 This automatic action will start at the same time when you last started an update.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Auffrischintervall ist konfigurierbar zwischen täglich/wöchenlich/monatlich. Darüber hinaus kann man entscheiden, die schwarz (oder nicht-weiß) gelisteten Cookies beim Update zu löschen. Dies entlastet, darüber nachzudenken oder es manuell auszuführen.
+Diese automatische Aktion wird immer zur selben Zeit wie die zuletzt ausgeführte Auffrischung.</translation>
     </message>
 </context>
 <context>
@@ -159,7 +160,7 @@ This automatic action will start at the same time when you last started an updat
     </message>
     <message>
         <source>Clear Cookie Blacklist</source>
-        <translation>Leere Keks-Schwarzliste</translation>
+        <translation>Bereinige Keks-Schwarzliste</translation>
     </message>
     <message>
         <source>Clearing</source>
@@ -167,7 +168,7 @@ This automatic action will start at the same time when you last started an updat
     </message>
     <message>
         <source>Clear Cookie Whitelist</source>
-        <translation>Leere Keks-Weißliste</translation>
+        <translation>Bereinige Keks-Weißliste</translation>
     </message>
     <message>
         <source>WLAN only</source>
@@ -179,55 +180,55 @@ This automatic action will start at the same time when you last started an updat
     </message>
     <message>
         <source>Cookie lists</source>
-        <translation></translation>
+        <translation>Keksliste</translation>
     </message>
     <message>
-        <source>Update Interval</source>
-        <translation></translation>
+        <source>Update</source>
+        <translation>Auffrischung</translation>
     </message>
     <message>
         <source>Interval time</source>
-        <translation></translation>
+        <translation>Intervallzeit</translation>
     </message>
     <message>
         <source>Daily</source>
-        <translation></translation>
+        <translation>Täglich</translation>
     </message>
     <message>
         <source>Weekly</source>
-        <translation></translation>
+        <translation>Wöchentlich</translation>
     </message>
     <message>
         <source>Monthly</source>
-        <translation></translation>
+        <translation>Monatlich</translation>
     </message>
     <message>
         <source>Delete cookies on update</source>
-        <translation></translation>
+        <translation>Löschen der Keke bei der Auffrischung</translation>
+    </message>
+    <message>
+        <source>To enable the deletion of cookies, the browser must not be open. If this setting is not enabled and the browser is open, cookies will not be deleted on update interval.</source>
+        <translation>Damit die Kekse gelöscht werden können, darf der Netzbetrachter nicht offen sein. Falls diese Einstellung nicht aktiviert ist und der Netzbetrachter bei der Auffrischung noch offen ist, werden die Kekse nicht mitgelöscht.</translation>
     </message>
     <message>
         <source>None</source>
-        <translation></translation>
+        <translation>Keine</translation>
     </message>
     <message>
         <source>All blacklisted</source>
-        <translation></translation>
+        <translation>Alle schwarz gelisteten</translation>
     </message>
     <message>
         <source>All not whitelisted</source>
-        <translation></translation>
+        <translation>Alle nicht-weiß gelisteten</translation>
     </message>
     <message>
         <source>Close browser on cookies deletion</source>
-        <translation></translation>
+        <translation>Schließen des Netzbetrachters zum Löschen der Kekse</translation>
     </message>
     <message>
         <source>WLAN/GPRS usage</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To enable the deletion of cookies, the browser mut not be open. If this setting is not enabled and the browser is open, cookies will not be deleted on update interval.</source>
-        <translation type="unfinished"></translation>
+        <translation>WLAN/GPRS Nutzung</translation>
     </message>
 </context>
 <context>
@@ -276,7 +277,7 @@ This automatic action will start at the same time when you last started an updat
     </message>
     <message>
         <source>Cancel/clear update loop</source>
-        <translation>Abbruch/Löschen der Update-Schleife</translation>
+        <translation>Abbruch/Löschen der Auffrisch-Schleife</translation>
     </message>
     <message>
         <source>Preparing cancel/clear</source>
