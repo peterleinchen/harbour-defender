@@ -143,12 +143,13 @@
     </message>
     <message>
         <source>Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Uppdatera</translation>
     </message>
     <message>
         <source>You can define an update interval of never/daily/weekly/monthly. As well you may configure to have your blacklisted (or not-whitelisted) cookies to be deleted on each update interval. So, no need to worry about bad cookies anymore or do this manually. 
 This automatic action will start at the same time when you last started an update.</source>
-        <translation type="unfinished"></translation>
+        <translation>Du kan ange ett uppdateringsintervall som aldrig/dagligen/veckovis/månadsvis. Du kan också konfigurera så att dina svartlistade (eller inte vitlistade) cookies tas bort vid varje uppdateringsintervall. Så, ingen anledning att oroa sig för dåliga cookies längre eller göra detta manuellt.
+Denna automatiska åtgärd startar samtidigt som när du startar en uppdatering.</translation>
     </message>
 </context>
 <context>
@@ -203,35 +204,35 @@ This automatic action will start at the same time when you last started an updat
     </message>
     <message>
         <source>Delete cookies on update</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort cookies vid uppdatering</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen</translation>
     </message>
     <message>
         <source>All blacklisted</source>
-        <translation type="unfinished"></translation>
+        <translation>Alla svartlistade</translation>
     </message>
     <message>
         <source>All not whitelisted</source>
-        <translation type="unfinished"></translation>
+        <translation>Alla icke vitlistade</translation>
     </message>
     <message>
         <source>Close browser on cookies deletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Stäng webbläsaren vid cookie-borttagning</translation>
     </message>
     <message>
         <source>Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Uppdatera</translation>
     </message>
     <message>
         <source>To enable the deletion of cookies, the browser must not be open. If this setting is not enabled and the browser is open, cookies will not be deleted on update interval.</source>
-        <translation type="unfinished"></translation>
+        <translation>För att kunna radera cookies måste webbläsaren vara stängd. Om den här inställningen inte är aktiverad och webbläsaren är öppen kommer cookies inte att raderas vid uppdateringsintervallet.</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>Aldrig</translation>
     </message>
 </context>
 <context>
