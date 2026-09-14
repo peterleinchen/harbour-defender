@@ -146,9 +146,9 @@
         <translation>Auffrischung</translation>
     </message>
     <message>
-        <source>You can define an update interval of daily/weekly/monthly. As well you may configure to have your blacklisted (or not-whitelisted) cookies to be deleted on each update interval. So, no need to worry about bad cookies anymore or do this manually. 
+        <source>You can define an update interval of never/daily/weekly/monthly. As well you may configure to have your blacklisted (or not-whitelisted) cookies to be deleted on each update interval. So, no need to worry about bad cookies anymore or do this manually. 
 This automatic action will start at the same time when you last started an update.</source>
-        <translation>Das Auffrischintervall ist konfigurierbar zwischen täglich/wöchenlich/monatlich. Darüber hinaus kann man entscheiden, die schwarz (oder nicht-weiß) gelisteten Cookies beim Update zu löschen. Dies entlastet, darüber nachzudenken oder es manuell auszuführen.
+        <translation>Das Auffrischintervall ist konfigurierbar zwischen niemals/täglich/wöchenlich/monatlich. Darüber hinaus kann man entscheiden, die schwarz (oder nicht-weiß) gelisteten Cookies beim Update zu löschen. Dies entlastet, darüber nachzudenken oder es manuell auszuführen.
 Diese automatische Aktion wird immer zur selben Zeit wie die zuletzt ausgeführte Auffrischung.</translation>
     </message>
 </context>
@@ -229,6 +229,10 @@ Diese automatische Aktion wird immer zur selben Zeit wie die zuletzt ausgeführt
     <message>
         <source>WLAN/GPRS usage</source>
         <translation>WLAN/GPRS Nutzung</translation>
+    </message>
+    <message>
+        <source>Never</source>
+	<translation>Niemals</translation>
     </message>
 </context>
 <context>

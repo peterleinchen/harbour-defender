@@ -142,12 +142,12 @@
         <translation>El bloqueo de cookies funciona haciendo que la base de datos de cookies sea sólo de lectura, por tanto su contenido es el mismo al reiniciar el navegador. El efecto de esto es que las cookies no son persistentes en los reinicios del navegador.</translation>
     </message>
     <message>
-        <source>You can define an update interval of daily/weekly/monthly. As well you may configure to have your blacklisted (or not-whitelisted) cookies to be deleted on each update interval. So, no need to worry about bad cookies anymore or do this manually. 
-This automatic action will start at the same time when you last started an update.</source>
+        <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Update</source>
+        <source>You can define an update interval of never/daily/weekly/monthly. As well you may configure to have your blacklisted (or not-whitelisted) cookies to be deleted on each update interval. So, no need to worry about bad cookies anymore or do this manually. 
+This automatic action will start at the same time when you last started an update.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -227,6 +227,10 @@ This automatic action will start at the same time when you last started an updat
     </message>
     <message>
         <source>To enable the deletion of cookies, the browser must not be open. If this setting is not enabled and the browser is open, cookies will not be deleted on update interval.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
