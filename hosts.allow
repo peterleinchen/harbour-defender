@@ -1,0 +1,8 @@
+# allows explicitly (with precedence) all incoming requests from
+#All: Ip
+#service: Ip1,Ip2
+##port: Ip1,Ip2
+#http: 10.0.0.1,10.0.0.2
+#80: 10.0.0.1,10.0.0.2
+#
+All: 127.0.0.1,localhost,[::1],localhost6
