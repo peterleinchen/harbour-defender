@@ -12,6 +12,9 @@
 v0.9.9
 - added new funtionality to delete (none, black- or not whitelisted) cookies on each triggered update, taking the need of closed browser into account
 - added according settings
+- corrected typo in spec documentation section
+- added hosts.allow and hosts.deny as examples to git
+- added Dan Pollock - someonewhocares to blocklist
 
  
 
