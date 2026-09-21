@@ -264,8 +264,8 @@ if [ "$1" = "0" ]; then
         [ -d "${cache_dir}" ] && rm -fr "${cache_dir}" || :
         [ -d "${data_dir}" ] && rm -fr "${data_dir}" || :
         # backup the personal config
-        config_bak=${configdir}.bak
-        [ -d /home/$xuser ] && [ -d "$config_bak" ] || echo "mkdir -p $config_bak" | su - $xuser || :
+        config_bak=${config_dir}.bak
+        [ -d /home/$xuser ] && [ -d "$config_bak" ] || echo "mkdir -p $config_bak" | su $xuser || :
         cp -ar "${config_dir}/*" "${config_bak}/" &>/dev/null
         
         # public dir errlog file
