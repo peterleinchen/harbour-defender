@@ -142,9 +142,18 @@ def rebuild_config(config1, config2, force=False, enabled='no'):
         for entry in config1.sections():
             new_config.add_section(entry)
             if entry in ['SETTINGS', 'DEFAULT']:
-                if force:
-                    new_config.set(entry, 'DomainBlacklist', '')
-                    new_config.set(entry, 'DomainWhitelist', '')
+                #if force:
+                new_config.set(entry, 'DomainBlacklist', '')
+                new_config.set(entry, 'DomainWhitelist', '')
+                #else: pass
+                if not force:
+                    if entry in config2.sections():
+                        for (key, value) in config2[entry].items():
+                            if key in config1[entry]:
+                                #print(f"{key}-{value}-"+str(type(value)))
+                                #if value:
+                                    #new_config.set(entry, str(key), str(value))
+                                new_config.set(entry, key, value)
             else:
                 if force:
                     new_config.set(entry, 'SourceEnabled', enabled)
