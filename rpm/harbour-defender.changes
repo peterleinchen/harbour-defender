@@ -15,6 +15,9 @@ v0.9.9
 - corrected typo in spec documentation section
 - added hosts.allow and hosts.deny as examples to git
 - added Dan Pollock - someonewhocares to blocklist
+- removed it again, as download was refused, would need a faked user agent in headers
+- fixed glitch in spec not ceating the bak directory for user settings on update
+- fixed bug that overwrote the user settings on update (number of sources changed)
 
  
 
