@@ -14,10 +14,12 @@ v0.9.9
 - added according settings
 - corrected typo in spec documentation section
 - added hosts.allow and hosts.deny as examples to git
-- added Dan Pollock - someonewhocares to blocklist
-- removed it again, as download was refused, would need a faked user agent in headers
-- fixed glitch in spec not ceating the bak directory for user settings on update
+- added DanPollock - someonewhocares.org to blocklist
+- removed DanPollock again, as download was refused, would need a faked user agent in headers
+- fixed glitch in spec not creating the bak directory for user settings on update - 
+  DOH: only now noticed: sailjail!!! - fixed differently
 - fixed bug that overwrote the user settings on update (number of sources changed)
+- corrected one translation string in source and de ts file
 
  
 
