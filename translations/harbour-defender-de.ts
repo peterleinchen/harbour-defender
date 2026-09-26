@@ -148,8 +148,14 @@
     <message>
         <source>You can define an update interval of never/daily/weekly/monthly. As well you may configure to have your blacklisted (or not-whitelisted) cookies to be deleted on each update interval. So, no need to worry about bad cookies anymore or do this manually. 
 This automatic action will start at the same time when you last started an update.</source>
-        <translation>Das Auffrischintervall ist konfigurierbar zwischen niemals/täglich/wöchenlich/monatlich. Darüber hinaus kann man entscheiden, die schwarz (oder nicht-weiß) gelisteten Cookies beim Update zu löschen. Dies entlastet, darüber nachzudenken oder es manuell auszuführen.
+        <translation type="vanished">Das Auffrischintervall ist konfigurierbar zwischen niemals/täglich/wöchenlich/monatlich. Darüber hinaus kann man entscheiden, die schwarz (oder nicht-weiß) gelisteten Cookies beim Update zu löschen. Dies entlastet, darüber nachzudenken oder es manuell auszuführen.
 Diese automatische Aktion wird immer zur selben Zeit wie die zuletzt ausgeführte Auffrischung.</translation>
+    </message>
+    <message>
+        <source>You can define an update interval of never/daily/weekly/monthly. As well you may configure to have your blacklisted (or not-whitelisted) cookies to be deleted on each update interval. So, no need to worry about bad cookies anymore or do this manually. 
+This automatic action will start at midnight of a new day, week, month. If the device was powered off at that time this will be retried on next boot.</source>
+        <translation type="vanished">Das Auffrischintervall ist konfigurierbar zwischen niemals/täglich/wöchenlich/monatlich. Darüber hinaus kann man entscheiden, die schwarz (oder nicht-weiß) gelisteten Cookies beim Update zu löschen. Dies entlastet, darüber nachzudenken oder es manuell auszuführen.
+		Diese automatische Aktion wird immer um Mitternacht eines neuen/r/n Tages, Woche, Monats ausgeführt. Sollte das Gerät ausgeschaltet sein, so wird dies beim nächsten Start nachgeholt.</translation>
     </message>
 </context>
 <context>
@@ -232,7 +238,7 @@ Diese automatische Aktion wird immer zur selben Zeit wie die zuletzt ausgeführt
     </message>
     <message>
         <source>Never</source>
-	<translation>Niemals</translation>
+        <translation>Niemals</translation>
     </message>
 </context>
 <context>

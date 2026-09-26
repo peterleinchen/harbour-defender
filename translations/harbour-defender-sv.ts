@@ -147,9 +147,9 @@
     </message>
     <message>
         <source>You can define an update interval of never/daily/weekly/monthly. As well you may configure to have your blacklisted (or not-whitelisted) cookies to be deleted on each update interval. So, no need to worry about bad cookies anymore or do this manually. 
-This automatic action will start at the same time when you last started an update.</source>
-        <translation>Du kan ange ett uppdateringsintervall som aldrig/dagligen/veckovis/månadsvis. Du kan också konfigurera så att dina svartlistade (eller inte vitlistade) cookies tas bort vid varje uppdateringsintervall. Så, ingen anledning att oroa sig för dåliga cookies längre eller göra detta manuellt.
-Denna automatiska åtgärd startar samtidigt som när du startar en uppdatering.</translation>
+This automatic action will start at midnight of a new day, week, month. If the device was powered off at that time this will be retried on next boot.</source>
+        <translation type="unfinished">Du kan ange ett uppdateringsintervall som aldrig/dagligen/veckovis/månadsvis. Du kan också konfigurera så att dina svartlistade (eller inte vitlistade) cookies tas bort vid varje uppdateringsintervall. Så, ingen anledning att oroa sig för dåliga cookies längre eller göra detta manuellt.
+This automatic action will start at midnight of a new day, week, month. If the device was powered off at that time this will be retried on next boot.</source>
     </message>
 </context>
 <context>

@@ -116,7 +116,7 @@ Page {
                 x: Theme.paddingLarge
                 width: parent.width - 2*x
 		text: qsTr("You can define an update interval of never/daily/weekly/monthly. As well you may configure to have your blacklisted (or not-whitelisted) cookies to be deleted on each update interval. So, no need to worry about bad cookies anymore or do this manually. 
-This automatic action will start at the same time when you last started an update.")
+This automatic action will start at midnight of a new day, week, month. If the device was powered off at that time this will be retried on next boot.")
                 color: Theme.primaryColor
                 wrapMode: Text.Wrap
                 font.pixelSize: Theme.fontSizeMedium
