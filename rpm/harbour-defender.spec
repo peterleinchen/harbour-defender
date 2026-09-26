@@ -146,9 +146,16 @@ if [ -d "%{_a2configdir}" ]; then
 fi
 
 # backup the personal config
-[ -f "${config_dir}/%{name}.baker" ] && mv "${config_dir}/%{name}.baker" "${config_dir}/%{name}.bakest" &>/dev/null
-[ -f "${config_dir}/%{name}.bak" ] && mv "${config_dir}/%{name}.bak" "${config_dir}/%{name}.baker" &>/dev/null
-[ -f "${config_dir}/%{name}.conf" ] && cp "${config_dir}/%{name}.conf" "${config_dir}/%{name}.bak" &>/dev/null
+for xuser in nemo defaultuser; do
+    # first check if real dir or symlink
+    [ ! -d /home/$xuser ] && continue || :
+    [ -L /home/$xuser ] && continue || :
+
+    config_dir="/home/${xuser}/.config/%{organization}/%{name}"
+    [ -f "${config_dir}/%{shortname}.baker" ] && mv "${config_dir}/%{shortname}.baker" "${config_dir}/%{shortname}.bakest" &>/dev/null
+    [ -f "${config_dir}/%{shortname}.bak" ] && mv "${config_dir}/%{shortname}.bak" "${config_dir}/%{shortname}.baker" &>/dev/null
+    [ -f "${config_dir}/%{shortname}.conf" ] && cp "${config_dir}/%{shortname}.conf" "${config_dir}/%{shortname}.bak" &>/dev/null
+done
         
 # moved ssystemd section to the end of post scriptlet
 
@@ -253,7 +260,7 @@ if [ "$1" = "0" ]; then
     [ -f /etc/sailjail/permissions/%{name}.profile.partial_Xperia10 ] || touch /etc/sailjail/permissions/%{name}.profile.partial_Xperia10 || :
     
     for xuser in nemo defaultuser; do
-        # fkrst check if real dir or symlink
+        # first check if real dir or symlink
         [ ! -d /home/$xuser ] && continue || :
         [ -L /home/$xuser ] && continue || :
 
@@ -269,7 +276,7 @@ if [ "$1" = "0" ]; then
         [ -d "${cache_dir}" ] && rm -fr "${cache_dir}" || :
         [ -d "${data_dir}" ] && rm -fr "${data_dir}" || :
         # keep (only) the last config
-        [ -d "${config_dir}" ] && rm "${config_dir}/%{name}.bak*" &>/dev/null
+        [ -d "${config_dir}" ] && rm "${config_dir}/%{shortname}.bak*" &>/dev/null
         
         # public dir errlog file
         [ -f /home/${xuser}/Public/.%{shortname}_err.log ] && rm /home/${xuser}/Public/.%{shortname}_err.log || :
