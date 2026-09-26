@@ -145,6 +145,11 @@ if [ -d "%{_a2configdir}" ]; then
   [ -f %{_a2configdir}/hosts.editable ] && echo "%{_a2configdir}/hosts.editable exists" || cp %{_a2configdir}/hosts %{_a2configdir}/hosts.editable 2>/dev/null || :
 fi
 
+# backup the personal config
+[ -f "${config_dir}/%{name}.baker" ] && mv "${config_dir}/%{name}.baker" "${config_dir}/%{name}.bakest" &>/dev/null
+[ -f "${config_dir}/%{name}.bak" ] && mv "${config_dir}/%{name}.bak" "${config_dir}/%{name}.baker" &>/dev/null
+[ -f "${config_dir}/%{name}.conf" ] && cp "${config_dir}/%{name}.conf" "${config_dir}/%{name}.bak" &>/dev/null
+        
 # moved ssystemd section to the end of post scriptlet
 
 # sed the version number into DocsPage
@@ -263,10 +268,8 @@ if [ "$1" = "0" ]; then
         #[ -d "${config_dir}" ] && rm -fr "${config_dir}"
         [ -d "${cache_dir}" ] && rm -fr "${cache_dir}" || :
         [ -d "${data_dir}" ] && rm -fr "${data_dir}" || :
-        # backup the personal config
-        [ -f "${config_dir}/%{name}.baker" ] mv "${config_dir}/%{name}.baker" "${config_dir}/%{name}.bakest" &>/dev/null
-        [ -f "${config_dir}/%{name}.bak" ] mv "${config_dir}/%{name}.bak" "${config_dir}/%{name}.baker" &>/dev/null
-        [ -f "${config_dir}/%{name}.conf" ] cp "${config_dir}/%{name}.conf" "${config_dir}/%{name}.bak" &>/dev/null
+        # keep (only) the last config
+        [ -d "${config_dir}" ] && rm "${config_dir}/%{name}.bak*" &>/dev/null
         
         # public dir errlog file
         [ -f /home/${xuser}/Public/.%{shortname}_err.log ] && rm /home/${xuser}/Public/.%{shortname}_err.log || :
