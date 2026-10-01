@@ -12,6 +12,7 @@
 v0.9.9
 - added new funtionality to delete (none, black- or not whitelisted) cookies on each triggered update, taking the need of closed browser into account
 - added according settings
+- fixed cookies locking for cookies.sqlite-shm and -wal
 - corrected typo in spec documentation section
 - added hosts.allow and hosts.deny as examples to git
 - added DanPollock - someonewhocares.org to blocklist
@@ -20,7 +21,6 @@ v0.9.9
   DOH: only now noticed: sailjail!!! - fixed differently
 - fixed bug that overwrote the user settings on update (number of sources changed)
 - corrected one translation string in source and de ts file
-
  
 
 v0.9.8
