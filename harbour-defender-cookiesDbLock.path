@@ -1,14 +1,13 @@
 [Unit]
-Description=Run Defender updater whenever requested
-Documentation=man:systemd.path
+Description=Lock the cookies.sqlite db, make it immutable, on request from Defender
 #user units do NOT work for system: After=pre-user-session.target
 DefaultDependencies=no
 After=sailfish-unlock-agent.service
 After=decrypt-home_encrypted.service
 
 [Path]
-PathExists=/home/nemo/.cache/leinchen.peter/harbour-defender/update
-PathExists=/home/defaultuser/.cache/leinchen.peter/harbour-defender/update
+PathExists=/home/nemo/.cache/leinchen.peter/harbour-defender/cookiesDbLock
+PathExists=/home/defaultuser/.cache/leinchen.peter/harbour-defender/cookiesDbLock
 
 [Install]
 #user units do NOT work for system: WantedBy=default.target

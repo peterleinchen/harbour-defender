@@ -1,5 +1,6 @@
 [Unit]
 Description=Update the Defender hosts file
+Documentation=man:systemd.service
 
 [Service]
 Type=oneshot

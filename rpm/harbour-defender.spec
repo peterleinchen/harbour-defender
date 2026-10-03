@@ -238,6 +238,7 @@ systemctl daemon-reload
 systemctl disable --now %{name}.path; # this one may be needed on upgrade
 systemctl enable --now %{name}.path
 systemctl enable --now %{name}-adRestart.path
+systemctl enable --now %{name}-cookiesDbLock.path
 systemctl enable --now %{name}-updInterval.path
 systemctl enable --now %{name}-updLoop.path
 systemctl enable --now %{name}.timer
@@ -250,9 +251,10 @@ if [ "$1" = "0" ]; then
     # stop and disable all services
     systemctl disable --now %{name}.timer
     systemctl disable --now %{name}.path
+    systemctl disable --now %{name}-adRestart.path
+    systemctl disable --now %{name}-cookiesDbLock.path
     systemctl disable --now %{name}-updInterval.path
     systemctl disable --now %{name}-updLoop.path
-    systemctl disable --now %{name}-adRestart.path
     systemctl stop %{name}
     #systemctl daemon-reload
     

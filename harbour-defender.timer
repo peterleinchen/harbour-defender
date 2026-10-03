@@ -1,5 +1,6 @@
 [Unit]
 Description=Run Defender updater weekly
+Documentation=man:systemd.timer
 
 [Timer]
 OnCalendar=weekly

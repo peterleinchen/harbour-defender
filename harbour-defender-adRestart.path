@@ -1,6 +1,5 @@
 [Unit]
 Description=Restart AppSuppor/Aliendalvik service whenever requested from Defender
-Documentation= man:systemd.path
 #user units do NOT work for system: After=pre-user-session.target
 DefaultDependencies=no
 After=sailfish-unlock-agent.service
@@ -15,4 +14,4 @@ PathExists=/home/defaultuser/.cache/leinchen.peter/harbour-defender/adRestart
 #    encrypted devices: WantedBy = sailfish-unlock-agent.service
 #    encrypted devices: WantedBy = decrypt-home_encrypted.service
 #NOT encrypted devices: WantedBy = default.target
-WantedBy=
+WantedBy=sailfish-unlock-agent.service

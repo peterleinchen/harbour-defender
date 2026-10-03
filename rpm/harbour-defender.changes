@@ -12,7 +12,7 @@
 v0.9.9
 - added new funtionality to delete (none, black- or not whitelisted) cookies on each triggered update, taking the need of closed browser into account
 - added according settings
-- fixed cookies locking for cookies.sqlite-shm and -wal
+- fixed cookies locking functionality (immutable) - cookies.sqlite-shm and -wal unaffected, as well not .bak nor .bak-rebuild, created by browser/sqlite when cookies.sqlite was not writable - browser/sqlite moved db to bak - immutable fixed
 - corrected typo in spec documentation section
 - added hosts.allow and hosts.deny as examples to git
 - added DanPollock - someonewhocares.org to blocklist

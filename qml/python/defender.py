@@ -73,6 +73,8 @@ UPDINTERVAL_FILE_PATH = cache_dir + '/' + 'updInterval'
 UPDLOOP_FILE_PATH = cache_dir + '/' + 'updLoop'
 #ADRESTART_FILE_PATH = CONFIG_HOME_DIR + '/' + 'adRestart'
 ADRESTART_FILE_PATH = cache_dir + '/' + 'adRestart'
+#CookiesDbLock_FILE_PATH = CONFIG_HOME_DIR + '/' + 'cookiesDbLock'
+CookiesDbLock_FILE_PATH = cache_dir + '/' + 'cookiesDbLock'
 
 cookies_path = HOME_DIR + '/.local/share/org.sailfishos/browser/.mozilla/' + 'cookies.sqlite'
 if not os.path.isfile(cookies_path):
@@ -209,6 +211,11 @@ def restart_android_support():
     os.system("touch " + ADRESTART_FILE_PATH + "; sleep 1;")
     if os.path.isfile(ADRESTART_FILE_PATH):
         os.remove(ADRESTART_FILE_PATH)
+
+def lock_cookies_db(flag = '-i'):
+    os.system("echo \'" + flag + "\' > " + CookiesDbLock_FILE_PATH + "; sleep 1;")
+    if os.path.isfile(CookiesDbLock_FILE_PATH):
+        os.remove(CookiesDbLock_FILE_PATH)
 
 def set_update_interval(interval):
     os.system("echo \'" + interval + "\' > " + UPDINTERVAL_FILE_PATH + "; sleep 1;")
@@ -361,15 +368,39 @@ def cookie_locker(lock = False):
     """
     Locks the cookie file against changes. That way one can limit the cookies
     saved to only those that are already present.
+    new: need to meke the sqlite immutable as browser/sqlite try a rebuild
     """
     if lock:
         os.chmod(cookies_path, S_IREAD|S_IRGRP|S_IROTH)
-        os.chmod(cookies_path + '-shm', S_IREAD|S_IRGRP|S_IROTH)
-        os.chmod(cookies_path + '-wal', S_IREAD|S_IRGRP|S_IROTH)
+        lock_cookies_db('+i')
+        #try:
+        #    os.chmod(cookies_path + '-shm', S_IREAD|S_IRGRP|S_IROTH)
+        #except:
+        #    pass
+        #try:
+        #    os.chmod(cookies_path + '-wal', S_IREAD|S_IRGRP|S_IROTH)
+        #except:
+        #    pass
+        #if not os.path.isfile(f'{cookies_path}.bak'):
+        #    os.system(f'echo \'\' > {cookies_path}.bak')
+        #os.chmod(f'{cookies_path}.bak', S_IREAD|S_IRGRP|S_IROTH)
+        #if not os.path.isfile(f'{cookies_path}.bak-rebuild'):
+        #    os.system(f'echo \'\' > {cookies_path}.bak-rebuild')
+        #os.chmod(f'{cookies_path}.bak-rebuild', S_IREAD|S_IRGRP|S_IROTH)
+        pass
     else:
+        lock_cookies_db('-i')
         os.chmod(cookies_path, S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
-        os.chmod(cookies_path + '-shm', S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
-        os.chmod(cookies_path + '-wal', S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
+        #try:
+        #    os.chmod(cookies_path + '-shm', S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
+        #except:
+        #    pass
+        #try:
+        #    os.chmod(cookies_path + '-wal', S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
+        #except:
+        #    pass
+        #os.chmod(f'{cookies_path}.bak', S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
+        #os.chmod(f'{cookies_path}.bak-rebuild', S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
     return 0
 
 def cookie_is_locked():
