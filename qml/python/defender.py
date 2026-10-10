@@ -60,8 +60,8 @@ def show_error_log():
     except Exception as e:
         print(e)
 
-def clear_public_error_log():
-    # clear the public error log
+def truncate_public_error_log():
+    # truncate the public error log
     if os.path.isfile(PUB_ERRLOG_FILE_PATH) and (os.path.getsize(PUB_ERRLOG_FILE_PATH) > 0):
         os.system("echo -n '' > " + PUB_ERRLOG_FILE_PATH)
         #os.remove(PUB_ERRLOG_FILE_PATH)

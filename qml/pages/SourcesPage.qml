@@ -26,14 +26,6 @@ Page {
                 }
             }
             MenuItem {
-                text: qsTr("Show error log (just in case ;)")
-                onClicked: {
-                    remorse.execute(qsTr("Pulling up error.log (only if exists)"), function() {
-                        showErrorLog()
-                    })
-                }
-            }
-            MenuItem {
                 text: qsTr("Restart Android/App Support")
                 onClicked: {
                     remorse.execute(qsTr("Preparing Android restart"), function() {
@@ -50,7 +42,25 @@ Page {
                 }
             }
         }
-        header: Column {
+	PushUpMenu {
+            MenuItem {
+                text: qsTr("Show error log (just in case ;)")
+                onClicked: {
+                    remorse.execute(qsTr("Pulling up error.log (only if exists)"), function() {
+                        showErrorLog()
+                    })
+                }
+            }
+            MenuItem {
+                text: qsTr("Truncate the public error log")
+                onClicked: {
+                    remorse.execute(qsTr("Truncating the public error.log"), function() {
+                        truncatePublicErrorLog()
+                    })
+                }
+            }
+	}
+	header: Column {
             width: parent.width
             PageHeader {
                 title: qsTr("Sources")

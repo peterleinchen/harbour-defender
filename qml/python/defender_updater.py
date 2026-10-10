@@ -125,10 +125,10 @@ def clear_error_log():
     if os.path.isfile(ERRLOG_FILE_PATH) and (os.path.getsize(ERRLOG_FILE_PATH) > 0):
         os.system("echo -n '' > " + ERRLOG_FILE_PATH)
     # possibly clear the publc (tmp) errlog?
-    #clear_public_error_log()
+    #truncate_public_error_log()
 
-def clear_public_error_log():
-    # clear the public error log
+def truncate_public_error_log():
+    # truncate the public error log
     if os.path.isfile(PUB_ERRLOG_FILE_PATH) and (os.path.getsize(PUB_ERRLOG_FILE_PATH) > 0):
         os.system("echo -n '' > " + PUB_ERRLOG_FILE_PATH)
         #os.remove(PUB_ERRLOG_FILE_PATH)

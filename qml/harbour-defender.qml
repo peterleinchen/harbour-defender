@@ -80,12 +80,6 @@ ApplicationWindow
         })
     }
 
-    function showErrorLog() {
-        py.call(appname+'.show_error_log', [], function(result) {
-            //
-        })
-    }
-
     function restartAndroidSupport() {
         py.call(appname+'.restart_android_support', [], function(result) {
             //
@@ -95,6 +89,18 @@ ApplicationWindow
     function updateNow() {
         py.call(appname+'.update_now', [], function(result) {
             updating = true
+        })
+    }
+
+    function showErrorLog() {
+        py.call(appname+'.show_error_log', [], function(result) {
+            //
+        })
+    }
+
+    function truncatePublicErrorLog() {
+        py.call(appname+'.truncate_public_error_log', [], function(result) {
+            //
         })
     }
 

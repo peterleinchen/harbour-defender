@@ -22,6 +22,7 @@ v0.9.9
 - fixed bug that overwrote the user settings on update (number of sources changed)
 - corrected one translation string in source and de ts file
 - changed / "optimized" error log behaviour
+- added a new errlog menu (truncate) and moved to PushUpMenu
  
 
 v0.9.8
