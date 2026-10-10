@@ -67,7 +67,7 @@ LOGFILE_LAST_PATH = HOME_DIR + '/' + data_dir_part + '/' + APP_NAME +'_last.json
 #ERRLOG_FILE_PATH = '/var/log/' + APP_NAME + '_err.log'
 LOG_DIR = HOME_DIR + '/' + data_dir_part
 ERRLOG_FILE_PATH = LOG_DIR + '/' + APP_NAME + '_err.log'
-TMP_ERRLOG_FILE_PATH = HOME_DIR + '/Public/.' + APP_NAME + '_err.log'
+PUB_ERRLOG_FILE_PATH = HOME_DIR + '/Public/.' + APP_NAME + '_err.log'
 
 cookies_path = HOME_DIR + '/.local/share/org.sailfishos/browser/.mozilla/' + 'cookies.sqlite'
 if not os.path.isfile(cookies_path):
@@ -99,8 +99,9 @@ def write_error_log(errlog=None, root=True):
 def show_error_log(root=True):
     try:
         if os.path.isfile(ERRLOG_FILE_PATH) and (os.path.getsize(ERRLOG_FILE_PATH) > 0):
-            cpCommand = "cp " + ERRLOG_FILE_PATH + " " + TMP_ERRLOG_FILE_PATH
-            sfbCommand = "/usr/bin/sailfish-browser " + TMP_ERRLOG_FILE_PATH + " &"
+            #cpCommand = "cp " + ERRLOG_FILE_PATH + " " + PUB_ERRLOG_FILE_PATH
+            cpCommand = "cat " + ERRLOG_FILE_PATH + " >> " + PUB_ERRLOG_FILE_PATH
+            sfbCommand = "/usr/bin/sailfish-browser " + PUB_ERRLOG_FILE_PATH + " &"
             if root:
                 cpCommand =  "echo \'" + cpCommand  + "\' | su " + NON_ADMIN_USER
                 sfbCommand = "echo \'" + sfbCommand + "\' | su - " + NON_ADMIN_USER
@@ -116,6 +117,22 @@ def show_error_log(root=True):
             #open_browser(ERRLOG_FILE_PATH)
     except Exception as e:
         print(e)
+
+def clear_error_log():
+    # clear errlog
+    #old: if os.path.isfile(ERRLOG_FILE_PATH):
+    #old:    os.remove(ERRLOG_FILE_PATH)
+    if os.path.isfile(ERRLOG_FILE_PATH) and (os.path.getsize(ERRLOG_FILE_PATH) > 0):
+        os.system("echo -n '' > " + ERRLOG_FILE_PATH)
+    # possibly clear the publc (tmp) errlog?
+    #clear_public_error_log()
+
+def clear_public_error_log():
+    # clear the public error log
+    if os.path.isfile(PUB_ERRLOG_FILE_PATH) and (os.path.getsize(PUB_ERRLOG_FILE_PATH) > 0):
+        os.system("echo -n '' > " + PUB_ERRLOG_FILE_PATH)
+        #os.remove(PUB_ERRLOG_FILE_PATH)
+
 
 if USER_NAME != None and USER_NAME != 'root':
     write_error_log("DOH: You do NEED to run me (the " + APP_NAME + "_updater.py) with root priviledges4", False)
@@ -134,13 +151,13 @@ Please restart the app, I will clean up the mess...""")
 
 if not NON_ADMIN_USER == "nemo" and not NON_ADMIN_USER == "defaultuser":
     write_err_log("Warning: Neither 'nemo' nor 'defaultuser' \n \
-    have been used with '" + HOME_DIR + "' - might be invalid!")
+            have been used with '" + HOME_DIR + "' - might be invalid!")
 if not os.path.isdir(HOME_DIR):
     write_err_log("ERROR: Neither 'nemo' nor 'defaultuser' \n \
-    NOR '" + NON_ADMIN_USER + "' with '" + HOME_DIR + "' are valid, \n \
-    cannot continue!")
+            NOR '" + NON_ADMIN_USER + "' with '" + HOME_DIR + "' are valid, \n \
+            cannot continue!")
     sys.exit(4)
-                                        
+
 whitelist = []
 urls = []
 whitelist_priority = True # whether the whitelist should surpass the blacklist in .editable files
@@ -199,13 +216,13 @@ def add_default_entry(hosts, ipv6 = False):
     if ipv6:
         hosts.add(entries = [
             HostsEntry(entry_type = 'ipv6',
-                        address = '::1', names = ['localhost6.localdomain6', 'localhost6'])
-        ])
+                       address = '::1', names = ['localhost6.localdomain6', 'localhost6'])
+            ])
     else:
         hosts.add(entries = [
             HostsEntry(entry_type = 'ipv4',
-                        address = '127.0.0.1', names = ['localhost.localdomain', 'localhost'])
-        ])
+                       address = '127.0.0.1', names = ['localhost.localdomain', 'localhost'])
+            ])
     return 0
 
 def write_hosts(hosts, remote_entries=None, path=None, editable_path=None, whitelist=whitelist, android=False):
@@ -279,10 +296,7 @@ def update(remote_sources = urls):
     hosts.import_file(default_hosts)
 
     # clear errlog
-    #if os.path.isfile(ERRLOG_FILE_PATH):
-    #    os.remove(ERRLOG_FILE_PATH)
-    if os.path.isfile(ERRLOG_FILE_PATH) and (os.path.getsize(ERRLOG_FILE_PATH) > 0):
-        os.system("echo -n '' > " + ERRLOG_FILE_PATH);
+    clear_error_log()
     
     # Adding remote sources
     for remote_source in remote_sources:

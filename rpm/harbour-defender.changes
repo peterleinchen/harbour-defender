@@ -21,6 +21,7 @@ v0.9.9
   DOH: only now noticed: sailjail!!! - fixed differently
 - fixed bug that overwrote the user settings on update (number of sources changed)
 - corrected one translation string in source and de ts file
+- changed / "optimized" error log behaviour
  
 
 v0.9.8

@@ -33,7 +33,7 @@ LOGFILE_LAST = LOG_DIR + '/' + APP_NAME + '_last.json'
 #
 ERRLOG_FILE = APP_NAME + '_err.log'
 ERRLOG_FILE_PATH = LOG_DIR + '/' + ERRLOG_FILE
-TMP_ERRLOG_FILE_PATH = HOME_DIR + '/Public/.' + ERRLOG_FILE
+PUB_ERRLOG_FILE_PATH = HOME_DIR + '/Public/.' + ERRLOG_FILE
 
 def write_error_log(errlog=None, root=False):
     print(errlog)
@@ -44,6 +44,28 @@ def write_error_log(errlog=None, root=False):
         oserrlog2 = "echo '" + oserrlog2 + "' | su - " + USER_NAME
     os.system(oserrlog1)
     os.system(oserrlog2)
+
+def show_error_log():
+    try:
+        if os.path.isfile(ERRLOG_FILE_PATH) and (os.path.getsize(ERRLOG_FILE_PATH) > 0):
+            #cpCommand = "cp " + ERRLOG_FILE_PATH + " " + PUB_ERRLOG_FILE_PATH
+            cpCommand = "cat " + ERRLOG_FILE_PATH + " >> " + PUB_ERRLOG_FILE_PATH
+            print(cpCommand)
+            os.system(cpCommand)
+            sfbCommand = "/usr/bin/sailfish-browser " + PUB_ERRLOG_FILE_PATH + " &"
+            print(sfbCommand)
+            os.system(sfbCommand)
+            #os.system("invoker --type=browser,silica-qt5 -n sailfish-browser " + ERRLOG_FILE_PATH + " &")
+            #open_browser(ERRLOG_FILE_PATH)
+    except Exception as e:
+        print(e)
+
+def clear_public_error_log():
+    # clear the public error log
+    if os.path.isfile(PUB_ERRLOG_FILE_PATH) and (os.path.getsize(PUB_ERRLOG_FILE_PATH) > 0):
+        os.system("echo -n '' > " + PUB_ERRLOG_FILE_PATH)
+        #os.remove(PUB_ERRLOG_FILE_PATH)
+
 
 if USER_NAME == 'root':
    #  write_error_log("DOH, do NOT run me as root!", True)
@@ -191,18 +213,6 @@ def disable_all():
 #        print("Started browser with URl: " + url)
 #    except Exception as e:
 #        print(f"Error: {e}")
-
-def show_error_log():
-    try:
-        if os.path.isfile(ERRLOG_FILE_PATH) and (os.path.getsize(ERRLOG_FILE_PATH) > 0):
-            print("cp " + ERRLOG_FILE_PATH + " " + TMP_ERRLOG_FILE_PATH)
-            os.system("cp " + ERRLOG_FILE_PATH + " " + TMP_ERRLOG_FILE_PATH)
-            print("/usr/bin/sailfish-browser " + TMP_ERRLOG_FILE_PATH + " &")
-            os.system("/usr/bin/sailfish-browser " + TMP_ERRLOG_FILE_PATH + " &")
-            #os.system("invoker --type=browser,silica-qt5 -n sailfish-browser " + ERRLOG_FILE_PATH + " &")
-            #open_browser(ERRLOG_FILE_PATH)
-    except Exception as e:
-        print(e)
 
 def restart_android_support():
     #os.system("systemctl restart aliendalvik")
