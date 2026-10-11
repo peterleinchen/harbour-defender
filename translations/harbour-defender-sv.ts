@@ -148,8 +148,7 @@
     <message>
         <source>You can define an update interval of never/daily/weekly/monthly. As well you may configure to have your blacklisted (or not-whitelisted) cookies to be deleted on each update interval. So, no need to worry about bad cookies anymore or do this manually. 
 This automatic action will start at midnight of a new day, week, month. If the device was powered off at that time this will be retried on next boot.</source>
-        <translation type="unfinished">Du kan ange ett uppdateringsintervall som aldrig/dagligen/veckovis/månadsvis. Du kan också konfigurera så att dina svartlistade (eller inte vitlistade) cookies tas bort vid varje uppdateringsintervall. Så, ingen anledning att oroa sig för dåliga cookies längre eller göra detta manuellt.
-This automatic action will start at midnight of a new day, week, month. If the device was powered off at that time this will be retried on next boot.</translation>
+        <translation>Du kan ställa in ett uppdateringsintervall på aldrig/dagligen/veckovis ellermånadsvis. Du kan också konfigurera så att dina svartlistade (eller inte vitlistade) cookies tas bort vid varje uppdateringsintervall. Så du behöver inte längre oroa dig för dåliga cookies eller att göra detta manuellt. Denna automatiska åtgärd kommer att starta vid midnatt på en ny dag, vecka eller månad. Om enheten var avstängd vid den tiden kommer detta att göras igen vid nästa systemstart.</translation>
     </message>
 </context>
 <context>
@@ -322,6 +321,14 @@ This automatic action will start at midnight of a new day, week, month. If the d
     <message>
         <source>Update in progress. This may take a while, but you can safely close the application and the update will finish in the background.</source>
         <translation>Uppdatering pågår. Detta kan ta en stund, men du kan utan problem stänga programmet och låta uppdateringen slutföras i bakgrunden.</translation>
+    </message>
+    <message>
+        <source>Truncate the public error log</source>
+        <translation>Korta ner den offentliga felloggen</translation>
+    </message>
+    <message>
+        <source>Truncating the public error.log</source>
+        <translation>Kortar ner den offentliga filen error.log</translation>
     </message>
 </context>
 <context>
