@@ -323,6 +323,14 @@ This automatic action will start at midnight of a new day, week, month. If the d
         <source>Update in progress. This may take a while, but you can safely close the application and the update will finish in the background.</source>
         <translation>Uppdatering pågår. Detta kan ta en stund, men du kan utan problem stänga programmet och låta uppdateringen slutföras i bakgrunden.</translation>
     </message>
+    <message>
+        <source>Truncate the public error log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Truncating the public error.log</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WelcomePage</name>

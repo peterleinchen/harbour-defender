@@ -322,6 +322,14 @@ This automatic action will start at midnight of a new day, week, month. If the d
         <source>Update in progress. This may take a while, but you can safely close the application and the update will finish in the background.</source>
         <translation>Actualización en curso. Esto puede tardar un rato, pero puedes cerrar la aplicación con seguridad y la actualización se completará en segundo plano.</translation>
     </message>
+    <message>
+        <source>Truncate the public error log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Truncating the public error.log</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WelcomePage</name>
