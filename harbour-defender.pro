@@ -63,7 +63,7 @@ units.files = \
    harbour-defender-adRestart.service  \
    harbour-defender-adRestart.path  \
    harbour-defender-cookiesDbLock.service \
-   harbour-defender-cookiesDbLck.path \
+   harbour-defender-cookiesDbLock.path \
    harbour-defender-updInterval.service \
    harbour-defender-updInterval.path \
    harbour-defender-updLoop.service \
