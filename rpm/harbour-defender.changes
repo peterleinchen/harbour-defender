@@ -24,6 +24,8 @@ v0.9.9
 - changed / "optimized" error log behaviour
 - added a new errlog menu (truncate) and moved to PushUpMenu
 - fixed missing mention of new systemd services in pro and spec (a big THANKS to @ptu)
+- changed 'cookies locked' message and 
+- unified displaying of that error for all cookie deletion methods
 
  
 

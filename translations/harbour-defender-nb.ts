@@ -71,7 +71,8 @@
         <translation>Legg til i svarteliste</translation>
     </message>
     <message>
-        <source>Browser still open?</source>
+        <source>Cookies are locked!
+(browser still open?)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

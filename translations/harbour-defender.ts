@@ -19,10 +19,6 @@
 <context>
     <name>CookiesPage</name>
     <message>
-        <source>Browser still open?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Search cookies</source>
         <translation type="unfinished"></translation>
     </message>
@@ -72,6 +68,11 @@
     </message>
     <message>
         <source>Add to Blacklist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cookies are locked!
+(browser still open?)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

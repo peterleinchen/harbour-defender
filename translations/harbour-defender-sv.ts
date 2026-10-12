@@ -19,8 +19,10 @@
 <context>
     <name>CookiesPage</name>
     <message>
-        <source>Browser still open?</source>
-        <translation>Är webbläsaren fortfarande öppen?</translation>
+        <source>Cookies are locked!
+(browser still open?)</source>
+        <translation type="unfinished">Cookies lås!
+(är webbläsaren fortfarande öppen?)</translation>
     </message>
     <message>
         <source>Search cookies</source>

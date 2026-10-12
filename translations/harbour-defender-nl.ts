@@ -71,8 +71,10 @@
         <translation>Toevoegen aan zwarte lijst</translation>
     </message>
     <message>
-        <source>Browser still open?</source>
-        <translation>Staat de browser nog open?</translation>
+        <source>Cookies are locked!
+(browser still open?)</source>
+        <translation type="unfinished">Cookies zijn vergrendeld!
+(staat de browser nog open?)</translation>
     </message>
 </context>
 <context>

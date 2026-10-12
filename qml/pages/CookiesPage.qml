@@ -6,7 +6,8 @@ Page {
     id: page
     property string searchString
     Text {
-	    text: qsTr("Browser still open?") 
+	    text: qsTr("Cookies are locked!
+(browser still open?)") 
 	    anchors.centerIn: parent
 	    color: "red"
     	    visible: (0 === cookiesModel.count)
@@ -176,7 +177,13 @@ Page {
             function remove() {
                 remorseAction(qsTr("Deleting"), function() {
                     py.call(appname+'.cookie_delete_single', [cookiesModel.get(index).id, searchString], function(result) {
-                        if (result != undefined) listView.model.remove(index)
+			//if (result != undefined) listView.model.remove(index)
+                        cookiesModel.clear()
+	          	if (result != undefined) {
+			    for (var i = 0; i < result.length; i++) {
+				cookiesModel.append(result[i])
+			    }
+		        }  
 		    })
                     py.call(appname+'.get_stats', [], function (result) {
 			stats = result

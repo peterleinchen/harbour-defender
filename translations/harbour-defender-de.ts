@@ -71,8 +71,10 @@
         <translation>Füge zur Schwarzliste hinzu</translation>
     </message>
     <message>
-        <source>Browser still open?</source>
-        <translation>Netzbetrachter noch offen?</translation>
+        <source>Cookies are locked!
+(browser still open?)</source>
+        <translation>Kekse sind gesperrt!
+(Netzbetrachter noch offen?)</translation>
     </message>
 </context>
 <context>
