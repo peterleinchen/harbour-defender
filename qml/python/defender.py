@@ -387,30 +387,30 @@ def cookie_locker(lock = False):
         #    os.chmod(cookies_path + '-shm', S_IREAD|S_IRGRP|S_IROTH)
         #except:
         #    pass
-        #try:
-        #    os.chmod(cookies_path + '-wal', S_IREAD|S_IRGRP|S_IROTH)
-        #except:
-        #    pass
-        #if not os.path.isfile(f'{cookies_path}.bak'):
-        #    os.system(f'echo \'\' > {cookies_path}.bak')
-        #os.chmod(f'{cookies_path}.bak', S_IREAD|S_IRGRP|S_IROTH)
-        #if not os.path.isfile(f'{cookies_path}.bak-rebuild'):
-        #    os.system(f'echo \'\' > {cookies_path}.bak-rebuild')
-        #os.chmod(f'{cookies_path}.bak-rebuild', S_IREAD|S_IRGRP|S_IROTH)
-        pass
+        try:
+            os.chmod(cookies_path + '-wal', S_IREAD|S_IRGRP|S_IROTH)
+        except:
+            pass
+        ##if not os.path.isfile(f'{cookies_path}.bak'):
+        ##    os.system(f'echo \'\' > {cookies_path}.bak')
+        ##os.chmod(f'{cookies_path}.bak', S_IREAD|S_IRGRP|S_IROTH)
+        ##if not os.path.isfile(f'{cookies_path}.bak-rebuild'):
+        ##    os.system(f'echo \'\' > {cookies_path}.bak-rebuild')
+        ##os.chmod(f'{cookies_path}.bak-rebuild', S_IREAD|S_IRGRP|S_IROTH)
     else:
         lock_cookies_db('-i')
         os.chmod(cookies_path, S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
-        #try:
-        #    os.chmod(cookies_path + '-shm', S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
-        #except:
-        #    pass
-        #try:
-        #    os.chmod(cookies_path + '-wal', S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
-        #except:
-        #    pass
-        #os.chmod(f'{cookies_path}.bak', S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
-        #os.chmod(f'{cookies_path}.bak-rebuild', S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
+        try:
+            #os.chmod(cookies_path + '-shm', S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
+            os.remove(cookies_path + '-shm')
+        except:
+            pass
+        try:
+            os.chmod(cookies_path + '-wal', S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
+        except:
+            pass
+        ##os.chmod(f'{cookies_path}.bak', S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
+        ##os.chmod(f'{cookies_path}.bak-rebuild', S_IWUSR|S_IREAD|S_IRGRP|S_IROTH)
     return 0
 
 def cookie_is_locked():
