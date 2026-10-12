@@ -62,6 +62,10 @@ units.files = \
    harbour-defender.timer \
    harbour-defender-adRestart.service  \
    harbour-defender-adRestart.path  \
+   harbour-defender-cookiesDbLock.service \
+   harbour-defender-cookiesDbLck.path \
+   harbour-defender-updInterval.service \
+   harbour-defender-updInterval.path \
    harbour-defender-updLoop.service \
    harbour-defender-updLoop.path
 units.path = $${UNITDIR}

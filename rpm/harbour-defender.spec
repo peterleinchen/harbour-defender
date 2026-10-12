@@ -217,6 +217,8 @@ if [ -f /usr/lib/systemd/system/sailfish-unlock-agent.service ]; then
   # normally the default for X.. (and 10) devices and/or SW >= 3.3 flashed
   sed -e 's/^WantedBy=.*/WantedBy=sailfish-unlock-agent.service/' -i /etc/systemd/system/%{name}.path
   sed -e 's/^WantedBy=.*/WantedBy=sailfish-unlock-agent.service/' -i /etc/systemd/system/%{name}-adRestart.path
+  sed -e 's/^WantedBy=.*/WantedBy=sailfish-unlock-agent.service/' -i /etc/systemd/system/%{name}-cookiesDbLock.path
+  sed -e 's/^WantedBy=.*/WantedBy=sailfish-unlock-agent.service/' -i /etc/systemd/system/%{name}-updInterval.path
   sed -e 's/^WantedBy=.*/WantedBy=sailfish-unlock-agent.service/' -i /etc/systemd/system/%{name}-updLoop.path
 else if [ -f /usr/lib/systemd/system/decrypt-home_encrypted.service ]; then
   # exchange the path unit's WantedBy in case of ENrypted devices, 
@@ -224,12 +226,16 @@ else if [ -f /usr/lib/systemd/system/decrypt-home_encrypted.service ]; then
   # but different for community ports!
   sed -e 's/^WantedBy=.*/WantedBy=decrypt-home_encrypted.service/' -i /etc/systemd/system/%{name}.path
   sed -e 's/^WantedBy=.*/WantedBy=decrypt-home_encrypted.service/' -i /etc/systemd/system/%{name}-adRestart.path
+  sed -e 's/^WantedBy=.*/WantedBy=decrypt-home_encrypted.service/' -i /etc/systemd/system/%{name}-cookiesDbLock.path
+  sed -e 's/^WantedBy=.*/WantedBy=decrypt-home_encrypted.service/' -i /etc/systemd/system/%{name}-updInterval.path
   sed -e 's/^WantedBy=.*/WantedBy=decrypt-home_encrypted.service/' -i /etc/systemd/system/%{name}-updLoop.path
 else
   # exchange the path unit's WantedBy in case of NOT encrypted devices, 
   # for older devices not supporting or having activated  encryption
   sed -e 's/^WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}.path
   sed -e 's/^WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}-adRestart.path
+  sed -e 's/^WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}-cookiesDbLock.path
+  sed -e 's/^WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}-updInterval.path
   sed -e 's/^WantedBy=.*/WantedBy=default.target/' -i /etc/systemd/system/%{name}-updLoop.path
   fi
 fi
