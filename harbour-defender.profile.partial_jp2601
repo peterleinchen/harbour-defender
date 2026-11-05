@@ -5,6 +5,8 @@
 ###
 whitelist /vendor/lib64/hw/mapper.mediatek.so
 read-only /vendor/lib64/hw/mapper.mediatek.so
+whitelist /vendor/lib64/hw/mt6858/mapper.mediatek.so
+read-only /vendor/lib64/hw/mt6858/mapper.mediatek.so
 whitelist /vendor/lib64
 read-only /vendor/lib64
 #

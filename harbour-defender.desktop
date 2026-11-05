@@ -27,7 +27,7 @@ X-Desktop-File-Install-Version=0.26
 #Permissions=Defender;Internet;Compatibility;Priviledged;Diplay;WebView;Ambience
 Permissions=Defender;Internet;PublicDir;xCompatibility
 CustomContentHandler=org.sailfishos.browser
-OrganizationName=leinchen.peter
+OrganizationName=de.peterleinchen
 ApplicationName=harbour-defender
 
 [X-HarbourBackup]
