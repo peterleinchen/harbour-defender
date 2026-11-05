@@ -6,8 +6,8 @@ After=sailfish-unlock-agent.service
 After=decrypt-home_encrypted.service
 
 [Path]
-PathExists=/home/nemo/.cache/leinchen.peter/harbour-defender/updInterval
-PathExists=/home/defaultuser/.cache/leinchen.peter/harbour-defender/updInterval
+PathExists=/home/nemo/.cache/de.peterleinchen/harbour-defender/updInterval
+PathExists=/home/defaultuser/.cache/de.peterleinchen/harbour-defender/updInterval
 
 [Install]
 #user units do NOT work for system: WantedBy=default.target

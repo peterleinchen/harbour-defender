@@ -3,7 +3,7 @@ Description=Change the update interval time on request from Defender
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c "FILE_PATH=`cat /tmp/defender/dir`/.cache/leinchen.peter/harbour-defender; \
+ExecStart=/bin/sh -c "FILE_PATH=`cat /tmp/defender/dir`/.cache/de.peterleinchen/harbour-defender; \
                       INTERVAL=`cat $FILE_PATH/updInterval`; \
                       sed -e \"s/^OnCalendar=.*/OnCalendar=$INTERVAL/\" -i /etc/systemd/system/harbour-defender.timer; \
                       systemctl daemon-reload; \
