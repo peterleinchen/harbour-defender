@@ -8,9 +8,11 @@ import json
 import datetime
 #import dbus
 
+firstRunEtcHosts = True
+
 APP_NAME = 'defender'
 app_name = 'harbour-' + APP_NAME
-organization = 'leinchen.peter'
+organization = 'de.peterleinchen'
 
 USER_NAME = os.environ['USER']
 HOME_DIR = os.environ['HOME']
@@ -28,12 +30,11 @@ if not data_dir:
     data_dir = HOME_DIR + '/.local/share/' +  organization + '/' + app_name
 
 #LOGFILE_LAST = '/var/log/'+ APP_NAME +'_last.json'
-LOG_DIR = data_dir
-LOGFILE_LAST = LOG_DIR + '/' + APP_NAME + '_last.json'
-#
 ERRLOG_FILE = APP_NAME + '_err.log'
-ERRLOG_FILE_PATH = LOG_DIR + '/' + ERRLOG_FILE
+ERRLOG_FILE_PATH = cache_dir + '/' + ERRLOG_FILE
 PUB_ERRLOG_FILE_PATH = HOME_DIR + '/Public/.' + ERRLOG_FILE
+#
+LOGFILE_LAST = data_dir + '/' + APP_NAME + '_last.json'
 
 def write_error_log(errlog=None, root=False):
     print(errlog)
@@ -421,8 +422,12 @@ def cookie_is_locked():
     return not bool(st.st_mode & S_IWUSR)
 
 def get_stats():
-    hosts_lines = int(check_output(["wc", "-l", "/etc/hosts"]).decode("utf-8").split(' ')[0])
+    if not hasattr(get_stats, "hosts_lines_etc_hosts"):
+        #would need root rights to see/read: hosts_lines = int(check_output(["wc", "-l", "/proc/1/root/etc/hosts"]).decode("utf-8").split(' ')[0]
+        hosts_lines = int(check_output(["wc", "-l", "/etc/hosts"]).decode("utf-8").split(' ')[0])
+        #not yet: get_stats.hosts_lines_etc_hosts = hosts_lines
     hosts_editable_lines = int(check_output(["wc", "-l", "/etc/hosts.editable"]).decode("utf-8").split(' ')[0])
+
     config_etc = configparser.ConfigParser()
     config_etc.read(CONFIG_ETC_PATH)
     config_home = configparser.ConfigParser()
@@ -443,13 +448,25 @@ def get_stats():
         print(f"Warn: cannot read DB ({e}), \ncookies/domains count set to -1")
     cur.connection.close()
     cookie_bl_count = len(cookie_load_list(blacklist = True))
+    
     if os.path.isfile(LOGFILE_LAST):
         with open(LOGFILE_LAST) as data_file:    
             data = json.load(data_file)
             last_time = data['time']
+            last_hosts_lines = data['hosts_lines']
             last_sources = data['sources']
     else:
         last_time = 0
+        last_hosts_lines = -1
         last_sources = 0
+    
+    if not hasattr(get_stats, "hosts_lines_etc_hosts"):
+        get_stats.hosts_lines_etc_hosts = hosts_lines
+    else:
+        if (last_hosts_lines != get_stats.hosts_lines_etc_hosts):
+            hosts_lines = last_hosts_lines
+        else:
+            hosts_lines = get_stats.hosts_lines_etc_hosts
+
     return {'hosts_lines': hosts_lines, 'hosts_editable_lines': hosts_editable_lines, 'sources_count': sources_count, 'sources_enabled_count': sources_enabled_count, 'cookies_count': cookies_count, 'domains_count': domains_count, 'cookie_bl_count': cookie_bl_count, 'last_time': datetime.datetime.fromtimestamp(int(last_time)), 'last_sources': last_sources}
 

@@ -4,7 +4,7 @@
 APP_NAME = 'defender'
 APP_DIR = '/usr/share/harbour-' + APP_NAME + '/qml/python'
 app_name = 'harbour-' + APP_NAME
-organization = 'leinchen.peter'
+organization = 'de.peterleinchen'
 
 from python_hosts import Hosts, HostsEntry
 from python_hosts import UnableToWriteHosts
@@ -61,13 +61,13 @@ CONFIG_APP_PATH = APP_DIR + '/' + APP_NAME + '_default.conf'
 #UPDATE_FILE_PATH = CONFIG_HOME_DIR + '/' + 'update'
 UPDATE_FILE_PATH = HOME_DIR + '/' + cache_dir_part + '/' + 'update'
 
-#LOGFILE_LAST_PATH = '/var/log/'+ APP_NAME +'_last.json'
-LOGFILE_LAST_PATH = HOME_DIR + '/' + data_dir_part + '/' + APP_NAME +'_last.json'
-#
 #ERRLOG_FILE_PATH = '/var/log/' + APP_NAME + '_err.log'
-LOG_DIR = HOME_DIR + '/' + data_dir_part
+LOG_DIR = HOME_DIR + '/' + cache_dir_part
 ERRLOG_FILE_PATH = LOG_DIR + '/' + APP_NAME + '_err.log'
 PUB_ERRLOG_FILE_PATH = HOME_DIR + '/Public/.' + APP_NAME + '_err.log'
+#
+#LOGFILE_LAST_PATH = '/var/log/'+ APP_NAME +'_last.json'
+LOGFILE_LAST_PATH = HOME_DIR + '/' + data_dir_part + '/' + APP_NAME +'_last.json'
 
 cookies_path = HOME_DIR + '/.local/share/org.sailfishos/browser/.mozilla/' + 'cookies.sqlite'
 if not os.path.isfile(cookies_path):
@@ -344,6 +344,7 @@ def update(remote_sources = urls):
     
     data = {
         'time': time.time(),
+        'hosts_lines': int(check_output(["wc", "-l", "/etc/hosts"]).decode("utf-8").split(' ')[0]),
         'sources': len(remote_sources)
         }
     with open(LOGFILE_LAST_PATH, 'w') as outfile:
