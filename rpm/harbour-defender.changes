@@ -12,7 +12,7 @@
 v0.9.9
 - added new funtionality to delete (none, black- or not whitelisted) cookies on each triggered update, taking the need of closed browser into account
 - added according settings
-- fixed cookies locking functionality (immutable) - cookies.sqlite-shm and -wal unaffected, as well not .bak nor .bak-rebuild, created by browser/sqlite when cookies.sqlite was not writable - browser/sqlite moved db to bak - immutable fixed that
+l- fixed cookies locking functionality (immutable) - cookies.sqlite-shm and -wal unaffected, as well not .bak nor .bak-rebuild, created by browser/sqlite when cookies.sqlite was not writable - browser/sqlite moved db to bak - immutable fixed that
 - fixed cookie locking part2 - immutable cookies.sqlite was not enough - needed to remove cookies.sqlite-shm on unlocking
 - fixed cookies locking part3 - huge thanks to @ptu for debugging and helping
 - corrected typo in spec documentation section
@@ -28,6 +28,11 @@ v0.9.9
 - fixed missing mention of new systemd services in pro and spec (a big THANKS to @ptu)
 - changed 'cookies locked' message and 
 - unified displaying of that error for all cookie deletion methods
+- changed organization name from 'leinchen.peter' to more common 'de.peterleinchen' (will probably nuke your configuration, but you may restore it like: 
+#mv ~/.config/leinchen.peter/harbour-defender/defender.conf ~/.config/de.peterleinchen/harbour-defender/ 
+no need, rpm pre scriptlet takes care of that
+- fixed showing stale number of blocked hosts_lines items (due to sailjail was only read once at startup)
+- added the real filepath for mapper.mediatek.so (jp2601) to sailjail permissions
 
  
 

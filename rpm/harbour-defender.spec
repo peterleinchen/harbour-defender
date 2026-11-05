@@ -120,6 +120,15 @@ install -p -m 644 %{shortnameUpper}.permission %{buildroot}/%{_sailjaildir}
 # << files
 
 %pre
+
+# TEMPORARY HACK FOR ORG NAME CHANGE
+for xuser in nemo defaultuser; do
+    # move old org name configuration directory to new org name
+    [ -d /home/$xuser/.config/leinchen.peter ] && [ ! -d /home/$xuser/.config/de.peterleinchen ] && mv /home/$xuser/.config/leinchen.peter /home/$xuser/.config/de.peterleinchen || :
+done 
+# TEMPORARY HACK FOR ORG NAME CHANGE
+# can be rdmoved in next prod version bump > 0.9.9
+
 %if "%{?vendor}" == "harbour"
   version_id=$(grep VERSION_ID /etc/os-release | cut -f2 -d'=')
   if [[ $(echo $version_id | cut -f1 -d'.') -le 4  && $(echo $version_id | cut -f2 -d'.') -lt 6 ]]; then
