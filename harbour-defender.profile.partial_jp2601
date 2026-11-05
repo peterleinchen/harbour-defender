@@ -3,12 +3,24 @@
 # - mapper.mediatek.so (and others) is/are not found 
 #
 ###
-whitelist /vendor/lib64/hw/mapper.mediatek.so
-read-only /vendor/lib64/hw/mapper.mediatek.so
-whitelist /vendor/lib64/hw/mt6858/mapper.mediatek.so
-read-only /vendor/lib64/hw/mt6858/mapper.mediatek.so
 whitelist /vendor/lib64
 read-only /vendor/lib64
+whitelist /vendor/lib64/egl
+read-only /vendor/lib64/egl
+whitelist /vendor/lib64/egl/libGLES_mali.so
+read-only /vendor/lib64/egl/libGLES_mali.so
+whitelist /vendor/lib64/egl/mt6858
+read-only /vendor/lib64/egl/mt6858
+whitelist /vendor/lib64/egl/mt6858/libGLES_mali.so
+read-only /vendor/lib64/egl/mt6858/libGLES_mali.so
+whitelist /vendor/lib64/hw
+read-only /vendor/lib64/hw
+whitelist /vendor/lib64/hw/mapper.mediatek.so
+read-only /vendor/lib64/hw/mapper.mediatek.so
+whitelist /vendor/lib64/hw/mt6858
+read-only /vendor/lib64/hw/mt6858
+whitelist /vendor/lib64/hw/mt6858/mapper.mediatek.so
+read-only /vendor/lib64/hw/mt6858/mapper.mediatek.so
 #
 whitelist /system/bin/zcat
 read-only /system/bin/zcat

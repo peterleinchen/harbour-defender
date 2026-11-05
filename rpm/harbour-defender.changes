@@ -32,7 +32,7 @@ l- fixed cookies locking functionality (immutable) - cookies.sqlite-shm and -wal
 #mv ~/.config/leinchen.peter/harbour-defender/defender.conf ~/.config/de.peterleinchen/harbour-defender/ 
 no need, rpm pre scriptlet takes care of that
 - fixed showing stale number of blocked hosts_lines items (due to sailjail was only read once at startup)
-- added the real filepath for mapper.mediatek.so (jp2601) to sailjail permissions
+- added the real filepath for /vendor/lib64/hw/mg6858/mapper.mediatek.so and also /vendor/lib64/egl/mt6858/libGLES_mali.so (jp2601) to sailjail permissions
 
  
 
