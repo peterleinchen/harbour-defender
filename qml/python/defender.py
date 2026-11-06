@@ -457,16 +457,19 @@ def get_stats():
             last_sources = data['sources']
     else:
         last_time = 0
-        last_hosts_lines = -1
+        last_hosts_lines = 0
         last_sources = 0
     
     if not hasattr(get_stats, "hosts_lines_etc_hosts"):
         get_stats.hosts_lines_etc_hosts = hosts_lines
+        hosts_lines *= -1
     else:
-        if (last_hosts_lines != get_stats.hosts_lines_etc_hosts):
-            hosts_lines = last_hosts_lines
-        else:
+        if (last_hosts_lines == 0):
+            hosts_lines = -get_stats.hosts_lines_etc_hosts
+        elif (last_hosts_lines == get_stats.hosts_lines_etc_hosts):
             hosts_lines = get_stats.hosts_lines_etc_hosts
+        else:
+            hosts_lines = last_hosts_lines
 
     return {'hosts_lines': hosts_lines, 'hosts_editable_lines': hosts_editable_lines, 'sources_count': sources_count, 'sources_enabled_count': sources_enabled_count, 'cookies_count': cookies_count, 'domains_count': domains_count, 'cookie_bl_count': cookie_bl_count, 'last_time': datetime.datetime.fromtimestamp(int(last_time)), 'last_sources': last_sources}
 
